@@ -1,0 +1,13 @@
+Package: tmuxr
+Title: Control tmux from R
+Version: 0.0.0.9000
+Authors@R: person("Jeroen", "Janssens",
+                  email = "jeroen@datascienceworkshops.com",
+                  role = c("aut", "cre"))
+Description: Create, control, and record tmux sessions, windows, and panes
+    using a pipeable API.
+Depends: R (>= 3.4.0)
+License: GPLv3
+Encoding: UTF-8
+LazyData: true
+BugReports: https://github.com/datascienceworkshops/tmuxr/issues
