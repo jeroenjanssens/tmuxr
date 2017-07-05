@@ -8,7 +8,7 @@ tmux_command <- function(command) {
     )
     status <- attr(result, "status")
     if (!is.null(status) && (status > 0)) {
-      message(stringr::str_c("tmux: ", result, collapse = " "))
+      stop(stringr::str_c("tmux: ", result, collapse = " "))
     }
     invisible(result)
   }
