@@ -11,3 +11,15 @@ License: GPLv3
 Encoding: UTF-8
 LazyData: true
 BugReports: https://github.com/datascienceworkshops/tmuxr/issues
+Import:
+    magrittr
+    purrr
+    stringr
+Collate:
+    tmuxr.R
+    server.R
+    session.R
+    window.R
+    pane.R
+    send.R
+RoxygenNote: 6.0.1
