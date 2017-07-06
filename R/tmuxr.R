@@ -1,6 +1,7 @@
-# tmux_command
+#' @importFrom magrittr "%>%"
+NULL
+
 #' @keywords internal
-#'
 tmux_command <- function(command) {
   function(...) {
     suppressWarnings(
@@ -14,11 +15,15 @@ tmux_command <- function(command) {
   }
 }
 
-
 tmux_kill_server <- tmux_command("kill-server")
-tmux_new_session <- tmux_command("new-session")
-tmux_list_sessions <- tmux_command("list-sessions")
-tmux_rename_session <- tmux_command("rename-session")
 tmux_kill_session <- tmux_command("kill-session")
+tmux_list_panes <- tmux_command("list-panes")
+tmux_list_sessions <- tmux_command("list-sessions")
+tmux_list_windows <- tmux_command("list-windows")
+tmux_new_session <- tmux_command("new-session")
+tmux_rename_session <- tmux_command("rename-session")
+tmux_send_keys <- tmux_command("send-keys")
+tmux_start_server <- tmux_command("start-server")
+tmux_info <- tmux_command("info")
 
-#' importFrom magrittr "%>%"
+

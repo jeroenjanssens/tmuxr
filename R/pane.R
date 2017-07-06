@@ -5,7 +5,6 @@ pane_from_name <- function(name) {
 
 
 #' @export
-tmux_list_panes <- tmux_command("list-panes")
 list_panes <- function(target = NULL) {
   args <- c("-F", "'#{session_name}:#{window_index}.#{pane_index}'")
   if (is.null(target)) {

@@ -5,7 +5,6 @@ window_from_name <- function(name) {
 
 
 #' @export
-tmux_list_windows <- tmux_command("list-windows")
 list_windows <- function(target = NULL) {
   args <- c("-F", "'#{session_name}:#{window_index}'")
   if (is.null(target)) {

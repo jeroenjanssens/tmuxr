@@ -1,5 +1,4 @@
 #' @export
-tmux_send_keys <- tmux_command("send-keys")
 send_keys <- function(target, keys, literal = FALSE) {
   args <- c("-t", target$name)
   if (literal) args <- c(args, "-l")
