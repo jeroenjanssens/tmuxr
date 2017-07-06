@@ -1,5 +1,12 @@
 context("session")
 
+if (is_running()) stop("server is already running")
+
+
+test_that("server is not already running", {
+  expect_false(is_running())
+})
+
 test_that("a new session can be created", {
   expect_error(new_session(), NA)
 })
