@@ -14,3 +14,10 @@ start_server <- function() {
 info <- function() {
   tmux_info()
 }
+
+#' @export
+is_running <- function() {
+  pids <- suppressWarnings(system2("pgrep", c("-x", "tmux"),
+                                   stdout = TRUE, stderr = FALSE))
+  length(pids) > 0
+}
