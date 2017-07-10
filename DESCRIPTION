@@ -23,5 +23,6 @@ Collate:
     window.R
     pane.R
     send.R
+    pipe.R
 RoxygenNote: 6.0.1
 Suggests: testthat

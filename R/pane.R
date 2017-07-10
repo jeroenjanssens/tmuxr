@@ -21,3 +21,4 @@ print.tmuxr_pane <- function(x, ...) {
   status <- lines[grepl(stringr::str_interp("^${x$name}:.*$"), lines)]
   cat("tmuxr pane", status)
 }
+
