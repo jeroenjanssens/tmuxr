@@ -1,5 +1,7 @@
-#' @importFrom magrittr "%>%"
-NULL
+#' @importFrom magrittr %>%
+#' @export
+magrittr::`%>%`
+
 
 #' @keywords internal
 tmux_command <- function(command) {
