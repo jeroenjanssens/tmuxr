@@ -11,6 +11,7 @@ License: GPLv3
 Encoding: UTF-8
 LazyData: true
 BugReports: https://github.com/datascienceworkshops/tmuxr/issues
+SystemRequirements: tmux
 Imports:
     purrr,
     stringr,
