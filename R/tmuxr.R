@@ -13,10 +13,11 @@ tmux_command <- function(command) {
     if (!is.null(status) && (status > 0)) {
       stop(stringr::str_c("tmux: ", result, collapse = " "))
     }
-    invisible(result)
+    result
   }
 }
 
+tmux_capture_pane <- tmux_command("capture-pane")
 tmux_kill_server <- tmux_command("kill-server")
 tmux_kill_session <- tmux_command("kill-session")
 tmux_list_panes <- tmux_command("list-panes")
@@ -28,5 +29,3 @@ tmux_rename_session <- tmux_command("rename-session")
 tmux_send_keys <- tmux_command("send-keys")
 tmux_start_server <- tmux_command("start-server")
 tmux_info <- tmux_command("info")
-
-

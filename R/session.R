@@ -1,11 +1,14 @@
 #' @export
-session_from_name <- function(name) {
-  structure(list(name = name), class = "tmuxr_session")
+session_from_name <- function(name, prompt = prompts$bash) {
+  structure(list(name = name,
+                 prompt = prompt),
+            class = "tmuxr_session")
 }
 
 
 #' @export
 new_session <- function(name = NULL,
+                        prompt = prompts$bash,
                         window_name = NULL,
                         start_directory = NULL,
                         width = NULL,
@@ -23,7 +26,7 @@ new_session <- function(name = NULL,
   if (!is.null(shell_command)) args <- c(args, shQuote(shell_command))
 
   name <- tmux_new_session(args)
-  session_from_name(name)
+  session_from_name(name, prompt)
 }
 
 
@@ -44,6 +47,7 @@ rename_session <- function(session, new_name) {
 #' @export
 kill_session <- function(session) {
   tmux_kill_session("-t", session$name)
+  invisible(NULL)
 }
 
 

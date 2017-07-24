@@ -16,10 +16,39 @@ send_enter <- function(target) {
 
 
 #' @export
-send_lines <- function(target, lines) {
+send_control_c <- function(target) {
+  tmux_send_keys("-t", target$name, "C-c")
+  invisible(target)
+}
+
+
+#' @export
+send_backspace <- function(target) {
+  tmux_send_keys("-t", target$name, "BSpace")
+  invisible(target)
+}
+
+
+#' @export
+send_lines <- function(target, lines, wait = TRUE) {
   for (line in lines) {
     send_keys(target, line, literal = TRUE)
     send_enter(target)
+    if (wait) wait_for_prompt(target)
   }
+  invisible(target)
+}
+
+
+#' @export
+wait_for_prompt <- function(target, time = 0.05) {
+  while (!ends_with_prompt(target)) wait(target, time)
+  invisible(target)
+}
+
+
+#' @export
+wait <- function(target, time = 0.05) {
+  Sys.sleep(time)
   invisible(target)
 }
