@@ -29,9 +29,9 @@ library(tmuxr)
 s <- new_session(shell_command = "PS1='$ ' bash")
 wait_for_prompt(s)
 send_lines(s, c("seq 100 |",
-                "grep 3 |",
-                "wc -l ",
-                "date"))
+               "grep 3 |",
+               "wc -l ",
+               "date"))
 capture_pane(s, trim = TRUE)
 kill_session(s)
 ```
