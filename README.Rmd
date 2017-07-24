@@ -17,6 +17,78 @@ You can install `tmuxr` from GitHub with:
 devtools::install_github("datascienceworkshops/tmuxr")
 ```
 
+### Examples
+
+```{r}
+library(tmuxr)
+```
+
+#### Bash
+
+```{r}
+s <- new_session(shell_command = "PS1='$ ' bash")
+wait_for_prompt(s)
+send_lines(s, c("seq 100 |",
+               "grep 3 |",
+               "wc -l ",
+               "date"))
+capture_pane(s, trim = TRUE)
+kill_session(s)
+```
+
+#### Full screen capture
+
+```{r}
+new_session() %>%
+  send_keys("htop") %>%
+  send_enter() %>%
+  wait(2) %>%
+  capture_pane(as_message = TRUE) %>%
+  send_keys("q") %>%
+  kill_session()
+```
+
+#### Jupyter console
+
+```{r}
+jupyter <- new_session(shell_command = "jupyter console",
+                       prompt = prompts$jupyter)
+
+jupyter$prompt
+
+jupyter %>%
+  wait_for_prompt() %>%
+  send_lines(c("def mysum(a, b):",
+               "return a + b",
+               "",
+               "")) %>%
+  capture_pane(as_message = TRUE, strip_lonely_prompt = FALSE, trim = TRUE)
+```
+
+
+#### Telnet
+
+```{r, cache=TRUE}
+new_session(shell_command = "telnet", prompt = "^telnet>$") %>%
+  send_keys("open towel.blinkenlights.nl") %>%
+  send_enter() %>%
+  wait(26) %>%
+  capture_pane(as_message = TRUE) %>%
+  kill_session()
+```
+
+#### Continue with earlier session
+
+```{r}
+jupyter %>%
+  wait(0.1) %>%
+  send_lines("mysum(41, 1)") %>%
+  wait(0.1) %>%
+  capture_pane(start = 18, as_message = TRUE) %>%
+  kill_session()
+```
+
+
 ### License
 
 The `tmuxr` package is licensed under the GPLv3 (http://www.gnu.org/licenses/gpl.html).
