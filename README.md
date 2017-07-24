@@ -26,15 +26,15 @@ library(tmuxr)
 s <- new_session(shell_command = "PS1='$ ' bash")
 wait_for_prompt(s)
 send_lines(s, c("seq 100 |",
-                "grep 3 |",
-                "wc -l ",
-                "date"))
+               "grep 3 |",
+               "wc -l ",
+               "date"))
 capture_pane(s, trim = TRUE)
 ```
 
     ## [1] "$ seq 100 |"                   "> grep 3 |"                   
     ## [3] "> wc -l"                       "      19"                     
-    ## [5] "$ date"                        "Mon Jul 24 22:43:23 CEST 2017"
+    ## [5] "$ date"                        "Mon Jul 24 22:47:22 CEST 2017"
 
 ``` r
 kill_session(s)
@@ -51,28 +51,28 @@ new_session() %>%
   send_keys("q")
 ```
 
-    ## 1  [||||||                       14.6%] Tasks: 296, 680 thr, 0 kthr; 1 running
-    ## 2  [||                            2.0%] Load average: 1.37 1.88 1.69
-    ## 3  [|||||                        10.7%] Uptime: 1 day, 01:48:20
-    ## 4  [||                            2.0%]
-    ## Mem[||||||||||||||||||||   6.23G/16.0G]
+    ## 1  [|||||                         9.9%] Tasks: 298, 725 thr, 0 kthr; 1 running
+    ## 2  [||                            1.3%] Load average: 1.80 1.67 1.62
+    ## 3  [|||                           7.3%] Uptime: 1 day, 01:52:19
+    ## 4  [||                            1.3%]
+    ## Mem[||||||||||||||||||||   6.42G/16.0G]
     ## Swp[||||                    120M/1.00G]
     ##   PID USER      PRI  NI  VIRT   RES S CPU% MEM%   TIME+  Command
-    ##  3060 jeroen     17   0 4072M  454M ? 10.7  2.8  9:04.43 RStudio /Users/jeroen/r
-    ##   331 jeroen     17   0 2579M 13076 ?  1.7  0.1  0:09.79 Finder
-    ## 13331 jeroen     17   0 2448M 44392 ?  0.7  0.3  0:00.36 mdworker -s mdworker -c
-    ##  6238 jeroen     24   0 2681M  130M ?  0.3  0.8  0:16.09 rsession --config-file
-    ## 14348 jeroen     17   0 5827M  326M ?  0.3  2.0  1:57.53 Chromium Helper --type=
-    ## 13920 jeroen     24   0 2443M 14744 ?  0.2  0.1  0:01.16 syncdefaultsd
-    ##   593 jeroen     24   0 2597M 13856 ?  0.1  0.1  0:42.93 Core Sync
-    ##   597 jeroen     17   0 2411M  1908 ?  0.1  0.0  0:26.15 AdobeCRDaemon 593 Core
-    ## 19047 jeroen     24   0 2387M  1676 R  0.1  0.0  0:00.01 htop
-    ##   590 jeroen     17   0 2411M  1908 ?  0.1  0.0  0:26.19 AdobeCRDaemon 585 Adobe
-    ##   566 jeroen     17   0 4310M  162M ?  0.0  1.0  4:18.30 Chromium Helper --type=
-    ## 19023 jeroen     24   0 2405M  1300 ?  0.0  0.0  0:00.00 tmux new-session -P -F
-    ##   465 jeroen     17   0 2412M  2164 ?  0.0  0.0  0:09.72 karabiner_console_user_
-    ##   962 jeroen     17   0 2687M 44836 ?  0.0  0.3  0:33.20 iTerm2
-    ##   374 jeroen     24   0 2447M 11004 ?  0.0  0.1  0:06.77 sharingd
+    ##  3060 jeroen     17   0 4073M  459M ?  5.4  2.8  9:38.99 RStudio /Users/jeroen/r
+    ##   331 jeroen     17   0 2579M 13116 ?  3.6  0.1  0:09.95 Finder
+    ##   751 jeroen     17   0 3714M  240M ?  0.8  1.5  1:02.40 Chromium Helper --type=
+    ## 13541 jeroen     17   0 2461M 59344 ?  0.6  0.4  0:00.70 mdworker -s mdworker -c
+    ##   549 jeroen     17   0 3947M  273M ?  0.3  1.7 14:31.32 Chromium
+    ##  6238 jeroen     24   0 2681M  130M ?  0.3  0.8  0:17.46 rsession --config-file
+    ##   593 jeroen     24   0 2597M 13864 ?  0.3  0.1  0:43.31 Core Sync
+    ## 13920 jeroen     24   0 2443M 14716 ?  0.3  0.1  0:01.76 syncdefaultsd
+    ## 19633 jeroen     24   0 2395M  1720 R  0.2  0.0  0:00.01 htop
+    ##   522 jeroen     17   0 3923M 75984 ?  0.1  0.5  6:47.41 Evernote
+    ##   597 jeroen     17   0 2411M  1908 ?  0.1  0.0  0:26.40 AdobeCRDaemon 593 Core
+    ##   590 jeroen     17   0 2411M  1912 ?  0.1  0.0  0:26.43 AdobeCRDaemon 585 Adobe
+    ##   962 jeroen     17   0 2687M 44836 ?  0.0  0.3  0:33.22 iTerm2
+    ##   499 jeroen     17   0 2412M  1324 ?  0.0  0.0  0:07.81 SafariCloudHistoryPushA
+    ##   113 jeroen     17   0 2550M 34012 ?  0.0  0.2  0:10.02 loginwindow console
     ## F1Help  F2Setup F3SearchF4FilterF5Tree  F6SortByF7Nice -F8Nice +F9Kill  F10Quit
 
 #### Jupyter console
@@ -165,9 +165,9 @@ list_sessions()
 ```
 
     ## [[1]]
-    ## tmuxr session 0: 1 windows (created Mon Jul 24 22:43:23 2017) [80x23]
+    ## tmuxr session 0: 1 windows (created Mon Jul 24 22:47:22 2017) [80x23]
     ## [[2]]
-    ## tmuxr session python: 1 windows (created Mon Jul 24 22:43:25 2017) [80x23]
+    ## tmuxr session python: 1 windows (created Mon Jul 24 22:47:24 2017) [80x23]
 
 ``` r
 kill_server()
