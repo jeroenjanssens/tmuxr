@@ -22,10 +22,6 @@ capture_pane <- function(target, start = NULL, end = NULL,
                          strip_lonely_prompt = TRUE,
                          as_message = FALSE, in_viewer = FALSE) {
 
-  stopifnot(inherits(session, "tmuxr_pane") ||
-            inherits(session, "tmuxr_window") ||
-            inherits(session, "tmuxr_session"))
-
   args <- c("-p", "-t", target$name)
 
   if (!is.null(start)) args <- c(args, "-S", as.character(start))
@@ -103,8 +99,8 @@ set_prompt <- function(target, prompt) {
 #' @export
 prompts <- list(
   bash = "^(\\$|>)$",
-  ipython = "(^In \\[(0-9+)\\]:| {6,}:)$",
-  jupyter = "(^In \\[(0-9+)\\]:| {6,}:)$",
+  ipython = "^(In \\[[0-9]+\\]| {6,})|$",
+  jupyter = "^(In \\[[0-9]+\\]| {6,})|$",
   python = "^(>>>|\\.\\.\\.)$",
   r = "^(>|\\+)$",
   R = "^(>|\\+)$"
