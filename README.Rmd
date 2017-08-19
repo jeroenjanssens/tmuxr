@@ -36,16 +36,16 @@ capture_pane(s, trim = TRUE)
 kill_session(s)
 ```
 
-#### Full screen capture
+<!-- #### Full screen capture -->
 
-```{r}
-new_session() %>%
-  send_keys("htop") %>%
-  send_enter() %>%
-  wait(2) %>%
-  capture_pane(as_message = TRUE) %>%
-  send_keys("q")
-```
+<!-- ```{r} -->
+<!-- new_session() %>% -->
+<!--   send_keys("htop") %>% -->
+<!--   send_enter() %>% -->
+<!--   wait(2) %>% -->
+<!--   capture_pane(as_message = TRUE) %>% -->
+<!--   send_keys("q") -->
+<!-- ``` -->
 
 #### Jupyter console
 
@@ -66,16 +66,16 @@ jupyter %>%
 ```
 
 
-#### Telnet
+<!-- #### Telnet -->
 
-```{r, cache=TRUE}
-new_session(shell_command = "telnet", prompt = "^telnet>$") %>%
-  send_keys("open towel.blinkenlights.nl") %>%
-  send_enter() %>%
-  wait(26) %>%
-  capture_pane(as_message = TRUE) %>%
-  kill_session()
-```
+<!-- ```{r, cache=TRUE} -->
+<!-- new_session(shell_command = "telnet", prompt = "^telnet>$") %>% -->
+<!--   send_keys("open towel.blinkenlights.nl") %>% -->
+<!--   send_enter() %>% -->
+<!--   wait(26) %>% -->
+<!--   capture_pane(as_message = TRUE) %>% -->
+<!--   kill_session() -->
+<!-- ``` -->
 
 #### Continue with earlier session
 

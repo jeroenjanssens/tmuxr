@@ -1,0 +1,27 @@
+authors:
+  Jeroen Janssens:
+    href: http://jeroenjanssens.com
+  Data Science Workshops:
+    href: https://www.datascienceworkshops.com
+    html: <img class="data-science-workshops-logo" src="https://datascienceworkshops.github.io/tmuxr/data-science-workshops.svg"/>
+
+template:
+  params:
+    bootswatch: cosmo
+
+navbar:
+  title: "tmuxr"
+  type: inverse
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Reference"
+      href: reference/index.html
+  right:
+   - icon: fa-github fa-lg
+     href: https://github.com/datascienceworkshops/tmuxr
+
+reference:
+  - title: Session
+    contents:
+      - new_session

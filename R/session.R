@@ -5,7 +5,7 @@ session_from_name <- function(name, prompt = prompts$bash) {
             class = "tmuxr_session")
 }
 
-
+#' Create a new session
 #' @export
 new_session <- function(name = NULL,
                         prompt = prompts$bash,
