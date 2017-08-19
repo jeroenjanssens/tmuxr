@@ -34,7 +34,7 @@ capture_pane(s, trim = TRUE)
 
     ## [1] "$ seq 100 |"                   "> grep 3 |"                   
     ## [3] "> wc -l"                       "      19"                     
-    ## [5] "$ date"                        "Sat Aug 19 21:22:09 CEST 2017"
+    ## [5] "$ date"                        "Sat Aug 19 21:27:31 CEST 2017"
 
 ``` r
 kill_session(s)
@@ -118,7 +118,7 @@ list_sessions()
 ```
 
     ## [[1]]
-    ## tmuxr session python: 1 windows (created Sat Aug 19 21:22:09 2017) [80x23]
+    ## tmuxr session python: 1 windows (created Sat Aug 19 21:27:31 2017) [80x23]
 
 ``` r
 kill_server()
