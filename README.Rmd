@@ -26,7 +26,8 @@ library(tmuxr)
 #### Bash
 
 ```{r}
-s <- new_session(shell_command = "PS1='$ ' bash")
+s <- new_session(shell_command = "PS1='$ ' bash",
+                 prompt = prompts$bash)
 wait_for_prompt(s)
 send_lines(s, c("seq 100 |",
                "grep 3 |",
