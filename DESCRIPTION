@@ -24,6 +24,7 @@ Collate:
     session.R
     window.R
     pane.R
+    prompt.R
     send.R
 RoxygenNote: 6.0.1
 Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace", "collate"))

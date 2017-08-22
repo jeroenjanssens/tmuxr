@@ -40,11 +40,6 @@ send_lines <- function(target, lines, wait = TRUE) {
 }
 
 
-#' @export
-wait_for_prompt <- function(target, time = 0.05) {
-  while (!ends_with_prompt(target)) wait(target, time)
-  invisible(target)
-}
 
 
 #' @export

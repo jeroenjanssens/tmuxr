@@ -98,33 +98,6 @@ trim_lines <- function(lines, pattern = "", trim_top = FALSE, trim_bottom = FALS
 
 
 #' @export
-ends_with_prompt <- function(target) {
-  args <- c("-p", "-t", target$name)
-  lines <- tmux_capture_pane(args)
-  last_line <- tail(lines[lines != ""], n = 1)
-  (length(last_line) > 0L) && stringr::str_detect(last_line, target$prompt)
-}
-
-
-#' @export
-set_prompt <- function(target, prompt) {
-  target$prompt <- prompt
-  invisible(target)
-}
-
-
-#' @export
-prompts <- list(
-  bash = "^(\\$|>)$",
-  ipython = "^(In \\[[0-9]+\\]| {6,})|$",
-  jupyter = "^(In \\[[0-9]+\\]| {6,})|$",
-  python = "^(>>>|\\.\\.\\.)$",
-  r = "^(>|\\+)$",
-  R = "^(>|\\+)$"
-)
-
-
-#' @export
 print.tmuxr_pane <- function(x, ...) {
   lines <- tmux_list_panes("-a")
   status <- lines[grepl(stringr::str_interp("^${x$name}:.*$"), lines)]
