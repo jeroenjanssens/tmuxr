@@ -1,9 +1,22 @@
+#' Create a `tmuxr_window` from an existing tmux window.
+#'
+#' @param name Numeric or string indicating the name of the existing window.
+#'
+#' @return A `tmuxr_window`.
+#'
 #' @export
 window_from_name <- function(name) {
-  structure(list(name = name), class = "tmuxr_window")
+  structure(list(name = as.character(name)), class = "tmuxr_window")
 }
 
 
+#' List windows.
+#'
+#' @param target Name of parent session. If `NULL` (default), all windows are
+#' listed.
+#'
+#' @return A list of `tmuxr_window`s.
+#'
 #' @export
 list_windows <- function(target = NULL) {
   args <- c("-F", "'#{session_name}:#{window_index}'")

@@ -22,6 +22,28 @@ navbar:
      href: https://github.com/datascienceworkshops/tmuxr
 
 reference:
-  - title: Session
+  - title: Sessions
     contents:
       - new_session
+      - session_from_name
+      - rename_session
+      - kill_session
+      - list_sessions
+  - title: Windows
+    contents:
+      - window_from_name
+      - list_windows
+  - title: Panes
+    contents:
+      - pane_from_name
+      - list_panes
+  - title: Prompt
+    contents:
+      - get_prompt
+      - has_prompt
+      - set_prompt
+      - ends_with_prompt
+      - wait_for_prompt
+  - title: Extra
+    contents:
+      - test_dontshow

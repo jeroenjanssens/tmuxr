@@ -1,9 +1,22 @@
+#' Create a `tmuxr_pane` from an existing tmux pane.
+#'
+#' @param name Numeric or string indicating the name of the existing pane.
+#'
+#' @return A `tmuxr_pane`.
+#'
 #' @export
 pane_from_name <- function(name) {
-  structure(list(name = name), class = "tmuxr_pane")
+  structure(list(name = as.character(name)), class = "tmuxr_pane")
 }
 
 
+#' List panes.
+#'
+#' @param target Name of parent session or window. If `NULL` (default), all windows are
+#' listed.
+#'
+#' @return A list of `tmuxr_pane`s.
+#'
 #' @export
 list_panes <- function(target = NULL) {
   args <- c("-F", "'#{session_name}:#{window_index}.#{pane_index}'")
@@ -16,6 +29,8 @@ list_panes <- function(target = NULL) {
 }
 
 
+#' Capture contents of a pane.
+#'
 #' @export
 capture_pane <- function(target, start = NULL, end = NULL,
                          trim = FALSE, trim_top = trim, trim_bottom = trim,
@@ -47,6 +62,8 @@ capture_pane <- function(target, start = NULL, end = NULL,
 }
 
 
+#' Pipe contents of a pane to a shell command.
+#'
 #' @export
 pipe_pane <- function(target = NULL, shell_command = NULL, open = FALSE) {
   args <- c()

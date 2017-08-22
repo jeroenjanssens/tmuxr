@@ -1,18 +1,39 @@
-#' @export
-session_from_name <- function(name, prompt = prompts$bash) {
-  structure(list(name = name,
-                 prompt = prompt),
-            class = "tmuxr_session")
-}
-
-#' Create a new session
+#' Create a new tmux session.
+#'
+#' @param name String to be used as session name. If `NULL` (default), the
+#' name of the session is determined by `tmux`, which is the next unused
+#' integer (starting at 0).
+#' @param prompt String containing a regular expression that matches all
+#' relevant prompts.
+#' @param window_name String to be used as window name.
+#' @param start_directory String indicating the working directory this
+#' session is run in.
+#' @param width Numeric indicating width of inital window. Default 80
+#' characters.
+#' @param height Numeric indicating height of initial window. Default 24
+#' lines. By default, `tmux` uses one status line, so the effective height
+#' is decreased by one line.
+#' @param detached Logical. Default `TRUE`. If `FALSE`, the `R` interpreter
+#' waits for the session to be killed.
+#' @param shell_command String specifying the system command to be invoked when
+#' creating the session.
+#'
+#' @return A `tmuxr_session`.
+#'
+#' @examples
+#' \dontshow{kill_server()}
+#' new_session()
+#'
+#' # Start a session running Bash
+#' s <- new_session(shell_command = "PS1='$ ' bash",
+#'                  prompt = prompts$bash)
 #' @export
 new_session <- function(name = NULL,
-                        prompt = prompts$bash,
+                        prompt = NULL,
                         window_name = NULL,
                         start_directory = NULL,
-                        width = NULL,
-                        height = NULL,
+                        width = 80,
+                        height = 24,
                         detached = TRUE,
                         shell_command = NULL) {
 
@@ -30,24 +51,65 @@ new_session <- function(name = NULL,
 }
 
 
+#' Create a `tmuxr_session` from an existing tmux session.
+#'
+#' @param name Numeric or string indicating the name of the existing session.
+#' @param prompt String containing a regular expression.
+#'
+#' @return A `tmuxr_session`.
+#'
+#' @examples
+#' \dontshow{kill_server()}
+#' new_session()
+#' s <- session_from_name(0)
 #' @export
-list_sessions <- function() {
-  args <- c("-F", "'#{session_name}'")
-  tmux_list_sessions(args) %>% purrr::map(session_from_name)
+session_from_name <- function(name, prompt = prompts$bash) {
+  structure(list(name = as.character(name),
+                 prompt = prompt),
+            class = "tmuxr_session")
 }
 
 
+#' Rename a session.
+#'
+#' @param session A `tmuxr_session`.
+#' @param new_name String indicating the new name of the session
+#'
+#' @return A `tmuxr_session`.
+#'
 #' @export
 rename_session <- function(session, new_name) {
-  tmux_rename_session("-t", session$name, new_name)
+  tmux_rename_session("-t", session$name, as.character(new_name))
   session_from_name(new_name)
 }
 
 
+#' Kill a session.
+#'
+#' @param session A `tmuxr_session`.
+#'
 #' @export
 kill_session <- function(session) {
   tmux_kill_session("-t", session$name)
   invisible(NULL)
+}
+
+
+#' List sessions.
+#'
+#' @return A list of `tmuxr_session`s.
+#'
+#' @examples
+#' \dontshow{kill_server()}
+#' a <- new_session('first')
+#' b <- new_session('second')
+#' list_sessions()
+#' list_sessions() %>%
+#'   purrr::walk(kill_session)
+#' @export
+list_sessions <- function() {
+  args <- c("-F", "'#{session_name}'")
+  tmux_list_sessions(args) %>% purrr::map(session_from_name)
 }
 
 
