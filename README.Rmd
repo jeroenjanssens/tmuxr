@@ -4,9 +4,14 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+<img width="100px" src="logo.png" style="float: right; margin-top: 50px;" />
+
 # tmuxr
 
 The `tmuxr` package allows you to control [tmux](https://github.com/tmux/tmux/wiki) from R. 
+Using a pipeable API, you can create, control, and record tmux sessions, windows, and panes.
+
+Most functions, such as `new_session`, `list_windows`, and `send_keys` are inspired by the commands `tmux` offers. Other functions, such as `session_from_name`, `wait_for_prompt`, `send_lines` are added for convenience. Please note that not all `tmux` commands have yet been implemented. 
 
 ### Installation
 

@@ -44,6 +44,3 @@ reference:
       - set_prompt
       - ends_with_prompt
       - wait_for_prompt
-  - title: Extra
-    contents:
-      - test_dontshow

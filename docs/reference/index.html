@@ -94,7 +94,7 @@
       <tbody>
         <tr>
           <th colspan="2">
-            <h2 id="section-session" class="hasAnchor"><a href="#section-session" class="anchor"></a>Session</h2>
+            <h2 id="section-sessions" class="hasAnchor"><a href="#section-sessions" class="anchor"></a>Sessions</h2>
             <p class="section-desc"></p>
           </th>
         </tr>
@@ -103,7 +103,109 @@
           <td>
             <p><code><a href="new_session.html">new_session</a></code> </p>
           </td>
-          <td><p>Create a new session</p></td>
+          <td><p>Create a new tmux session.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="session_from_name.html">session_from_name</a></code> </p>
+          </td>
+          <td><p>Create a <code>tmuxr_session</code> from an existing tmux session.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="rename_session.html">rename_session</a></code> </p>
+          </td>
+          <td><p>Rename a session.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="kill_session.html">kill_session</a></code> </p>
+          </td>
+          <td><p>Kill a session.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="list_sessions.html">list_sessions</a></code> </p>
+          </td>
+          <td><p>List sessions.</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-windows" class="hasAnchor"><a href="#section-windows" class="anchor"></a>Windows</h2>
+            <p class="section-desc"></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="window_from_name.html">window_from_name</a></code> </p>
+          </td>
+          <td><p>Create a <code>tmuxr_window</code> from an existing tmux window.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="list_windows.html">list_windows</a></code> </p>
+          </td>
+          <td><p>List windows.</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-panes" class="hasAnchor"><a href="#section-panes" class="anchor"></a>Panes</h2>
+            <p class="section-desc"></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="pane_from_name.html">pane_from_name</a></code> </p>
+          </td>
+          <td><p>Create a <code>tmuxr_pane</code> from an existing tmux pane.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="list_panes.html">list_panes</a></code> </p>
+          </td>
+          <td><p>List panes.</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-prompt" class="hasAnchor"><a href="#section-prompt" class="anchor"></a>Prompt</h2>
+            <p class="section-desc"></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="get_prompt.html">get_prompt</a></code> </p>
+          </td>
+          <td><p>Get the prompt pattern of a session, window or pane.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="has_prompt.html">has_prompt</a></code> </p>
+          </td>
+          <td><p>Is there a prompt pattern associated with a session, window, or pane?</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="set_prompt.html">set_prompt</a></code> </p>
+          </td>
+          <td><p>Set the prompt pattern of a session, window or pane.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="ends_with_prompt.html">ends_with_prompt</a></code> </p>
+          </td>
+          <td><p>Does the contents of a pane end with prompt?</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="wait_for_prompt.html">wait_for_prompt</a></code> </p>
+          </td>
+          <td><p>Wait for prompt to appear in session, window or pane.</p></td>
         </tr>
       </tbody>
       </table>
@@ -113,7 +215,10 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-session">Session</a></li>
+      <li><a href="#section-sessions">Sessions</a></li>
+      <li><a href="#section-windows">Windows</a></li>
+      <li><a href="#section-panes">Panes</a></li>
+      <li><a href="#section-prompt">Prompt</a></li>
     </ul>
   </div>
 </div>

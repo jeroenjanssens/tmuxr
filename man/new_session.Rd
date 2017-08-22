@@ -2,12 +2,49 @@
 % Please edit documentation in R/session.R
 \name{new_session}
 \alias{new_session}
-\title{Create a new session}
+\title{Create a new tmux session.}
 \usage{
-new_session(name = NULL, prompt = prompts$bash, window_name = NULL,
-  start_directory = NULL, width = NULL, height = NULL, detached = TRUE,
+new_session(name = NULL, prompt = NULL, window_name = NULL,
+  start_directory = NULL, width = 80, height = 24, detached = TRUE,
   shell_command = NULL)
 }
+\arguments{
+\item{name}{String to be used as session name. If \code{NULL} (default), the
+name of the session is determined by \code{tmux}, which is the next unused
+integer (starting at 0).}
+
+\item{prompt}{String containing a regular expression that matches all
+relevant prompts.}
+
+\item{window_name}{String to be used as window name.}
+
+\item{start_directory}{String indicating the working directory this
+session is run in.}
+
+\item{width}{Numeric indicating width of inital window. Default 80
+characters.}
+
+\item{height}{Numeric indicating height of initial window. Default 24
+lines. By default, \code{tmux} uses one status line, so the effective height
+is decreased by one line.}
+
+\item{detached}{Logical. Default \code{TRUE}. If \code{FALSE}, the \code{R} interpreter
+waits for the session to be killed.}
+
+\item{shell_command}{String specifying the system command to be invoked when
+creating the session.}
+}
+\value{
+A \code{tmuxr_session}.
+}
 \description{
-Create a new session
+Create a new tmux session.
+}
+\examples{
+\dontshow{kill_server()}
+new_session()
+
+# Start a session running Bash
+s <- new_session(shell_command = "PS1='$ ' bash",
+                 prompt = prompts$bash)
 }

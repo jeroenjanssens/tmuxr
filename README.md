@@ -1,9 +1,13 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<img width="100px" src="logo.png" style="float: right; margin-top: 50px;" />
+
 tmuxr
 =====
 
-The `tmuxr` package allows you to control [tmux](https://github.com/tmux/tmux/wiki) from R.
+The `tmuxr` package allows you to control [tmux](https://github.com/tmux/tmux/wiki) from R. Using a pipeable API, you can create, control, and record tmux sessions, windows, and panes.
+
+Most functions, such as `new_session`, `list_windows`, and `send_keys` are inspired by the commands `tmux` offers. Other functions, such as `session_from_name`, `wait_for_prompt`, `send_lines` are added for convenience. Please note that not all `tmux` commands have yet been implemented.
 
 ### Installation
 
@@ -23,7 +27,8 @@ library(tmuxr)
 #### Bash
 
 ``` r
-s <- new_session(shell_command = "PS1='$ ' bash")
+s <- new_session(shell_command = "PS1='$ ' bash",
+                 prompt = prompts$bash)
 wait_for_prompt(s)
 send_lines(s, c("seq 100 |",
                "grep 3 |",
@@ -34,7 +39,7 @@ capture_pane(s, trim = TRUE)
 
     ## [1] "$ seq 100 |"                   "> grep 3 |"                   
     ## [3] "> wc -l"                       "      19"                     
-    ## [5] "$ date"                        "Sat Aug 19 21:27:31 CEST 2017"
+    ## [5] "$ date"                        "Tue Aug 22 21:22:35 CEST 2017"
 
 ``` r
 kill_session(s)
@@ -118,7 +123,7 @@ list_sessions()
 ```
 
     ## [[1]]
-    ## tmuxr session python: 1 windows (created Sat Aug 19 21:27:31 2017) [80x23]
+    ## tmuxr session python: 1 windows (created Tue Aug 22 21:22:35 2017) [80x23]
 
 ``` r
 kill_server()
