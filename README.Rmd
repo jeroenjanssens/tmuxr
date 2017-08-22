@@ -4,7 +4,7 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<img width="100px" src="logo.png" style="float: right; margin-top: 50px;" />
+<img width="100px" src="https://datascienceworkshops.github.io/tmuxr/reference/figures/tmuxr.png" style="float: right; margin-top: 50px;" />
 
 # tmuxr
 

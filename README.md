@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<img width="100px" src="logo.png" style="float: right; margin-top: 50px;" />
+<img width="100px" src="https://datascienceworkshops.github.io/tmuxr/reference/figures/tmuxr.png" style="float: right; margin-top: 50px;" />
 
 tmuxr
 =====
@@ -39,7 +39,7 @@ capture_pane(s, trim = TRUE)
 
     ## [1] "$ seq 100 |"                   "> grep 3 |"                   
     ## [3] "> wc -l"                       "      19"                     
-    ## [5] "$ date"                        "Tue Aug 22 21:22:35 CEST 2017"
+    ## [5] "$ date"                        "Tue Aug 22 21:43:20 CEST 2017"
 
 ``` r
 kill_session(s)
@@ -123,7 +123,9 @@ list_sessions()
 ```
 
     ## [[1]]
-    ## tmuxr session python: 1 windows (created Tue Aug 22 21:22:35 2017) [80x23]
+    ## tmuxr session 0: 1 windows (created Tue Aug 22 21:32:02 2017) [80x23]
+    ## [[2]]
+    ## tmuxr session python: 1 windows (created Tue Aug 22 21:43:20 2017) [80x23]
 
 ``` r
 kill_server()
