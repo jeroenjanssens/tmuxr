@@ -7,7 +7,7 @@ tmuxr
 
 The `tmuxr` package allows you to control [tmux](https://github.com/tmux/tmux/wiki) from R. Using a pipeable API, you can create, control, and record tmux sessions, windows, and panes.
 
-Most functions, such as `new_session`, `list_windows`, and `send_keys` are inspired by the commands `tmux` offers. Other functions, such as `session_from_name`, `wait_for_prompt`, `send_lines` are added for convenience. Please note that not all `tmux` commands have yet been implemented.
+Most functions, such as `new_session`, `list_windows`, and `send_keys` are inspired by the commands `tmux` offers. Other functions, such as `attach_window`, `wait_for_prompt`, `send_lines` are added for convenience. Please note that not all `tmux` commands have yet been implemented.
 
 ### Installation
 
@@ -39,7 +39,7 @@ capture_pane(s, trim = TRUE)
 
     ## [1] "$ seq 100 |"                   "> grep 3 |"                   
     ## [3] "> wc -l"                       "      19"                     
-    ## [5] "$ date"                        "Tue Aug 22 21:43:20 CEST 2017"
+    ## [5] "$ date"                        "Fri Aug 25 21:37:34 CEST 2017"
 
 ``` r
 kill_session(s)
@@ -106,7 +106,7 @@ jupyter %>%
 #### Continue with earlier session
 
 ``` r
-session_from_name("python", prompt = prompts$jupyter) %>%
+attach_session("python", prompt = prompts$jupyter) %>%
   wait(0.2) %>%
   send_lines("mysum(41, 1)") %>%
   wait(0.2) %>%
@@ -123,9 +123,7 @@ list_sessions()
 ```
 
     ## [[1]]
-    ## tmuxr session 0: 1 windows (created Tue Aug 22 21:32:02 2017) [80x23]
-    ## [[2]]
-    ## tmuxr session python: 1 windows (created Tue Aug 22 21:43:20 2017) [80x23]
+    ## tmuxr session python: 1 windows (created Fri Aug 25 21:37:34 2017) [80x23]
 
 ``` r
 kill_server()

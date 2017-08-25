@@ -11,7 +11,7 @@ output: github_document
 The `tmuxr` package allows you to control [tmux](https://github.com/tmux/tmux/wiki) from R. 
 Using a pipeable API, you can create, control, and record tmux sessions, windows, and panes.
 
-Most functions, such as `new_session`, `list_windows`, and `send_keys` are inspired by the commands `tmux` offers. Other functions, such as `session_from_name`, `wait_for_prompt`, `send_lines` are added for convenience. Please note that not all `tmux` commands have yet been implemented. 
+Most functions, such as `new_session`, `list_windows`, and `send_keys` are inspired by the commands `tmux` offers. Other functions, such as `attach_window`, `wait_for_prompt`, `send_lines` are added for convenience. Please note that not all `tmux` commands have yet been implemented. 
 
 ### Installation
 
@@ -86,7 +86,7 @@ jupyter %>%
 #### Continue with earlier session
 
 ```{r}
-session_from_name("python", prompt = prompts$jupyter) %>%
+attach_session("python", prompt = prompts$jupyter) %>%
   wait(0.2) %>%
   send_lines("mysum(41, 1)") %>%
   wait(0.2) %>%

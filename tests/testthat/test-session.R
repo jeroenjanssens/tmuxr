@@ -20,11 +20,11 @@ test_that("there are now two sessions", {
 })
 
 test_that("an existing session can be referenced", {
-  expect_equal(session_from_name("foo")$name, "foo")
+  expect_equal(attach_session("foo")$name, "foo")
 })
 
 test_that("a session can be renamed", {
-  expect_equal(rename_session(session_from_name("foo"), "bar")$name, "bar")
+  expect_equal(rename_session(attach_session("foo"), "bar")$name, "bar")
 })
 
 try(kill_server(), silent = TRUE)

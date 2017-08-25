@@ -1,11 +1,11 @@
-#' Create a `tmuxr_pane` from an existing tmux pane.
+#' Attach to an existing tmux pane.
 #'
 #' @param name Numeric or string indicating the name of the existing pane.
 #'
 #' @return A `tmuxr_pane`.
 #'
 #' @export
-pane_from_name <- function(name) {
+attach_pane <- function(name) {
   structure(list(name = as.character(name)), class = "tmuxr_pane")
 }
 

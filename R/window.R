@@ -1,11 +1,11 @@
-#' Create a `tmuxr_window` from an existing tmux window.
+#' Attach to an existing tmux window.
 #'
 #' @param name Numeric or string indicating the name of the existing window.
 #'
 #' @return A `tmuxr_window`.
 #'
 #' @export
-window_from_name <- function(name) {
+attach_window <- function(name) {
   structure(list(name = as.character(name)), class = "tmuxr_window")
 }
 

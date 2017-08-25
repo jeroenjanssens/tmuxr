@@ -65,7 +65,7 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#tmuxr" class="anchor"></a>tmuxr</h1></div>
 <p>The <code>tmuxr</code> package allows you to control <a href="https://github.com/tmux/tmux/wiki">tmux</a> from R. Using a pipeable API, you can create, control, and record tmux sessions, windows, and panes.</p>
-<p>Most functions, such as <code>new_session</code>, <code>list_windows</code>, and <code>send_keys</code> are inspired by the commands <code>tmux</code> offers. Other functions, such as <code>session_from_name</code>, <code>wait_for_prompt</code>, <code>send_lines</code> are added for convenience. Please note that not all <code>tmux</code> commands have yet been implemented.</p>
+<p>Most functions, such as <code>new_session</code>, <code>list_windows</code>, and <code>send_keys</code> are inspired by the commands <code>tmux</code> offers. Other functions, such as <code>attach_window</code>, <code>wait_for_prompt</code>, <code>send_lines</code> are added for convenience. Please note that not all <code>tmux</code> commands have yet been implemented.</p>
 <div id="installation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h3>
@@ -90,7 +90,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(s, <span class="dt">trim =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## [1] "$ seq 100 |"                   "&gt; grep 3 |"                   
 ## [3] "&gt; wc -l"                       "      19"                     
-## [5] "$ date"                        "Tue Aug 22 21:43:24 CEST 2017"</code></pre>
+## [5] "$ date"                        "Fri Aug 25 21:37:37 CEST 2017"</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/kill_session.html">kill_session</a></span>(s)</code></pre></div>
 <!-- #### Full screen capture -->
 <!-- ```{r} -->
@@ -148,7 +148,7 @@ jupyter<span class="op">$</span>prompt</code></pre></div>
 <div id="continue-with-earlier-session" class="section level4">
 <h4 class="hasAnchor">
 <a href="#continue-with-earlier-session" class="anchor"></a>Continue with earlier session</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/session_from_name.html">session_from_name</a></span>(<span class="st">"python"</span>, <span class="dt">prompt =</span> prompts<span class="op">$</span>jupyter) <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/attach_session.html">attach_session</a></span>(<span class="st">"python"</span>, <span class="dt">prompt =</span> prompts<span class="op">$</span>jupyter) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">wait</span>(<span class="fl">0.2</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">send_lines</span>(<span class="st">"mysum(41, 1)"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">wait</span>(<span class="fl">0.2</span>) <span class="op">%&gt;%</span>
@@ -159,7 +159,7 @@ jupyter<span class="op">$</span>prompt</code></pre></div>
 ## In [3]:</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/list_sessions.html">list_sessions</a></span>()</code></pre></div>
 <pre><code>## [[1]]
-## tmuxr session python: 1 windows (created Tue Aug 22 21:43:24 2017) [80x23]</code></pre>
+## tmuxr session python: 1 windows (created Fri Aug 25 21:37:37 2017) [80x23]</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kill_server</span>()</code></pre></div>
 <pre><code>## character(0)</code></pre>
 </div>

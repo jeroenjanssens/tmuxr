@@ -24,23 +24,23 @@ navbar:
 reference:
   - title: Sessions
     contents:
-      - new_session
-      - session_from_name
-      - rename_session
+      - attach_session
       - kill_session
       - list_sessions
+      - new_session
+      - rename_session
   - title: Windows
     contents:
-      - window_from_name
+      - attach_window
       - list_windows
   - title: Panes
     contents:
-      - pane_from_name
+      - attach_pane
       - list_panes
   - title: Prompt
     contents:
+      - ends_with_prompt
       - get_prompt
       - has_prompt
       - set_prompt
-      - ends_with_prompt
       - wait_for_prompt

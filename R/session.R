@@ -47,11 +47,11 @@ new_session <- function(name = NULL,
   if (!is.null(shell_command)) args <- c(args, shQuote(shell_command))
 
   name <- tmux_new_session(args)
-  session_from_name(name, prompt)
+  attach_session(name, prompt)
 }
 
 
-#' Create a `tmuxr_session` from an existing tmux session.
+#' Attach to an existing tmux session.
 #'
 #' @param name Numeric or string indicating the name of the existing session.
 #' @param prompt String containing a regular expression.
@@ -61,9 +61,9 @@ new_session <- function(name = NULL,
 #' @examples
 #' \dontshow{kill_server()}
 #' new_session()
-#' s <- session_from_name(0)
+#' s <- attach_session(0)
 #' @export
-session_from_name <- function(name, prompt = prompts$bash) {
+attach_session <- function(name, prompt = NULL) {
   structure(list(name = as.character(name),
                  prompt = prompt),
             class = "tmuxr_session")
@@ -80,7 +80,7 @@ session_from_name <- function(name, prompt = prompts$bash) {
 #' @export
 rename_session <- function(session, new_name) {
   tmux_rename_session("-t", session$name, as.character(new_name))
-  session_from_name(new_name)
+  attach_session(new_name)
 }
 
 
@@ -109,7 +109,7 @@ kill_session <- function(session) {
 #' @export
 list_sessions <- function() {
   args <- c("-F", "'#{session_name}'")
-  tmux_list_sessions(args) %>% purrr::map(session_from_name)
+  tmux_list_sessions(args) %>% purrr::map(attach_session)
 }
 
 
