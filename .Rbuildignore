@@ -3,3 +3,5 @@
 ^docs$
 ^_pkgdown\.yml$
 ^pkgdown$
+^\.travis\.yml$
+^README\.Rmd$
