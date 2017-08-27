@@ -9,5 +9,9 @@ r:
 r_packages:
   - covr
 
+env:
+  global:
+    - TMPDIR=/tmp
+
 after_success:
   - Rscript -e 'library(covr); codecov()'
