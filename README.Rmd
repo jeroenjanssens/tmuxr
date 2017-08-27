@@ -1,34 +1,47 @@
 ---
-output: github_document
+output:
+  github_document:
+    html_preview: false
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<img width="100px" src="https://datascienceworkshops.github.io/tmuxr/reference/figures/tmuxr.png" style="float: right; margin-top: 50px;" />
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
 
-# tmuxr
+# tmuxr  <img src="man/figures/logo.png" align="right" width="100px" />
 
-The `tmuxr` package allows you to control [tmux](https://github.com/tmux/tmux/wiki) from R. 
-Using a pipeable API, you can create, control, and record tmux sessions, windows, and panes.
+[![Build Status](https://travis-ci.org/datascienceworkshops/tmuxr.svg?branch=master)](https://travis-ci.org/datascienceworkshops/tmuxr) 
+[![codecov](https://codecov.io/gh/datascienceworkshops/tmuxr/branch/master/graph/badge.svg)](https://codecov.io/gh/datascienceworkshops/tmuxr)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/tmuxr)](https://cran.r-project.org/package=tmuxr)
+
+## Overview
+
+`tmuxr` is an R package that allows you (1) to manage [tmux](https://github.com/tmux/tmux/wiki) and (2) to interact with the processes it runs.
 
 Most functions, such as `new_session`, `list_windows`, and `send_keys` are inspired by the commands `tmux` offers. Other functions, such as `attach_window`, `wait_for_prompt`, `send_lines` are added for convenience. Please note that not all `tmux` commands have yet been implemented. 
 
-### Installation
+## Installation
 
 You can install `tmuxr` from GitHub with:
 
-```R
+```{r, eval = FALSE}
 # install.packages("devtools")
 devtools::install_github("datascienceworkshops/tmuxr")
 ```
 
-### Examples
+## Examples
 
 ```{r}
 library(tmuxr)
 ```
 
-#### Bash
+### Bash
 
 ```{r}
 s <- new_session(shell_command = "PS1='$ ' bash",
@@ -53,7 +66,7 @@ kill_session(s)
 <!--   send_keys("q") -->
 <!-- ``` -->
 
-#### Jupyter console
+### Jupyter console
 
 ```{r}
 jupyter <- new_session(name = "python",
@@ -83,7 +96,7 @@ jupyter %>%
 <!--   kill_session() -->
 <!-- ``` -->
 
-#### Continue with earlier session
+### Continue with earlier session
 
 ```{r}
 attach_session("python", prompt = prompts$jupyter) %>%
@@ -98,6 +111,6 @@ list_sessions()
 kill_server()
 ```
 
-### License
+## License
 
 The `tmuxr` package is licensed under the GPLv3 (http://www.gnu.org/licenses/gpl.html).

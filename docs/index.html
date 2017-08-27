@@ -60,26 +60,31 @@
     
 <div class="contents">
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<p><img width="100px" src="https://datascienceworkshops.github.io/tmuxr/reference/figures/tmuxr.png" style="float: right; margin-top: 50px;"></p>
 <div id="tmuxr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#tmuxr" class="anchor"></a>tmuxr</h1></div>
-<p>The <code>tmuxr</code> package allows you to control <a href="https://github.com/tmux/tmux/wiki">tmux</a> from R. Using a pipeable API, you can create, control, and record tmux sessions, windows, and panes.</p>
+<a href="#tmuxr" class="anchor"></a>tmuxr <img src="reference/figures/logo.png" align="right" width="100px">
+</h1></div>
+
+<div id="overview" class="section level2">
+<h2 class="hasAnchor">
+<a href="#overview" class="anchor"></a>Overview</h2>
+<p><code>tmuxr</code> is an R package that allows you (1) to manage <a href="https://github.com/tmux/tmux/wiki">tmux</a> and (2) to interact with the processes it runs.</p>
 <p>Most functions, such as <code>new_session</code>, <code>list_windows</code>, and <code>send_keys</code> are inspired by the commands <code>tmux</code> offers. Other functions, such as <code>attach_window</code>, <code>wait_for_prompt</code>, <code>send_lines</code> are added for convenience. Please note that not all <code>tmux</code> commands have yet been implemented.</p>
-<div id="installation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h3>
+</div>
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install <code>tmuxr</code> from GitHub with:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"datascienceworkshops/tmuxr"</span>)</code></pre></div>
 </div>
-<div id="examples" class="section level3">
-<h3 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h3>
+<div id="examples" class="section level2">
+<h2 class="hasAnchor">
+<a href="#examples" class="anchor"></a>Examples</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tmuxr)</code></pre></div>
-<div id="bash" class="section level4">
-<h4 class="hasAnchor">
-<a href="#bash" class="anchor"></a>Bash</h4>
+<div id="bash" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bash" class="anchor"></a>Bash</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">s &lt;-<span class="st"> </span><span class="kw"><a href="reference/new_session.html">new_session</a></span>(<span class="dt">shell_command =</span> <span class="st">"PS1='$ ' bash"</span>,
                  <span class="dt">prompt =</span> prompts<span class="op">$</span>bash)
 <span class="kw"><a href="reference/wait_for_prompt.html">wait_for_prompt</a></span>(s)
@@ -87,11 +92,11 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
                <span class="st">"grep 3 |"</span>,
                <span class="st">"wc -l "</span>,
                <span class="st">"date"</span>))
-<span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(s, <span class="dt">trim =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## [1] "$ seq 100 |"                   "&gt; grep 3 |"                   
-## [3] "&gt; wc -l"                       "      19"                     
-## [5] "$ date"                        "Fri Aug 25 21:37:37 CEST 2017"</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/kill_session.html">kill_session</a></span>(s)</code></pre></div>
+<span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(s, <span class="dt">trim =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; [1] "$ seq 100 |"                   "&gt; grep 3 |"                   </span>
+<span class="co">#&gt; [3] "&gt; wc -l"                       "      19"                     </span>
+<span class="co">#&gt; [5] "$ date"                        "Sun Aug 27 12:46:19 CEST 2017"</span>
+<span class="kw"><a href="reference/kill_session.html">kill_session</a></span>(s)</code></pre></div>
 <!-- #### Full screen capture -->
 <!-- ```{r} -->
 <!-- new_session() %>% -->
@@ -102,39 +107,40 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <!--   send_keys("q") -->
 <!-- ``` -->
 </div>
-<div id="jupyter-console" class="section level4">
-<h4 class="hasAnchor">
-<a href="#jupyter-console" class="anchor"></a>Jupyter console</h4>
+<div id="jupyter-console" class="section level3">
+<h3 class="hasAnchor">
+<a href="#jupyter-console" class="anchor"></a>Jupyter console</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">jupyter &lt;-<span class="st"> </span><span class="kw"><a href="reference/new_session.html">new_session</a></span>(<span class="dt">name =</span> <span class="st">"python"</span>,
                        <span class="dt">shell_command =</span> <span class="st">"jupyter console"</span>,
                        <span class="dt">prompt =</span> prompts<span class="op">$</span>jupyter)
 
-jupyter<span class="op">$</span>prompt</code></pre></div>
-<pre><code>## [1] "^(In \\[[0-9]+\\]| {6,})|$"</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">jupyter <span class="op">%&gt;%</span>
+jupyter<span class="op">$</span>prompt
+<span class="co">#&gt; [1] "^(In \\[[0-9]+\\]| {6,})|$"</span>
+
+jupyter <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/wait_for_prompt.html">wait_for_prompt</a></span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">send_lines</span>(<span class="kw">c</span>(<span class="st">"def mysum(a, b):"</span>,
                <span class="st">"return a + b"</span>,
                <span class="st">""</span>,
                <span class="st">""</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(<span class="dt">as_message =</span> <span class="ot">TRUE</span>, <span class="dt">strip_lonely_prompt =</span> <span class="ot">FALSE</span>, <span class="dt">trim =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## Jupyter console 5.1.0
-## 
-## Python 3.6.1 |Anaconda 4.4.0 (x86_64)| (default, May 11 2017, 13:04:09)
-## Type "copyright", "credits" or "license" for more information.
-## 
-## IPython 5.3.0 -- An enhanced Interactive Python.
-## ?         -&gt; Introduction and overview of IPython's features.
-## %quickref -&gt; Quick reference.
-## help      -&gt; Python's own help system.
-## object?   -&gt; Details about 'object', use 'object??' for extra details.
-## 
-## 
-## 
-## In [1]: def mysum(a, b):
-##       :     return a + b
-##       :
-##       :</code></pre>
+<span class="st">  </span><span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(<span class="dt">as_message =</span> <span class="ot">TRUE</span>, <span class="dt">strip_lonely_prompt =</span> <span class="ot">FALSE</span>, <span class="dt">trim =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; Jupyter console 5.1.0</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Python 3.6.1 |Anaconda 4.4.0 (x86_64)| (default, May 11 2017, 13:04:09)</span>
+<span class="co">#&gt; Type "copyright", "credits" or "license" for more information.</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; IPython 5.3.0 -- An enhanced Interactive Python.</span>
+<span class="co">#&gt; ?         -&gt; Introduction and overview of IPython's features.</span>
+<span class="co">#&gt; %quickref -&gt; Quick reference.</span>
+<span class="co">#&gt; help      -&gt; Python's own help system.</span>
+<span class="co">#&gt; object?   -&gt; Details about 'object', use 'object??' for extra details.</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; In [1]: def mysum(a, b):</span>
+<span class="co">#&gt;       :     return a + b</span>
+<span class="co">#&gt;       :</span>
+<span class="co">#&gt;       :</span></code></pre></div>
 <!-- #### Telnet -->
 <!-- ```{r, cache=TRUE} -->
 <!-- new_session(shell_command = "telnet", prompt = "^telnet>$") %>% -->
@@ -145,28 +151,28 @@ jupyter<span class="op">$</span>prompt</code></pre></div>
 <!--   kill_session() -->
 <!-- ``` -->
 </div>
-<div id="continue-with-earlier-session" class="section level4">
-<h4 class="hasAnchor">
-<a href="#continue-with-earlier-session" class="anchor"></a>Continue with earlier session</h4>
+<div id="continue-with-earlier-session" class="section level3">
+<h3 class="hasAnchor">
+<a href="#continue-with-earlier-session" class="anchor"></a>Continue with earlier session</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/attach_session.html">attach_session</a></span>(<span class="st">"python"</span>, <span class="dt">prompt =</span> prompts<span class="op">$</span>jupyter) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">wait</span>(<span class="fl">0.2</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">send_lines</span>(<span class="st">"mysum(41, 1)"</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">wait</span>(<span class="fl">0.2</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(<span class="dt">start =</span> <span class="dv">18</span>, <span class="dt">as_message =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## In [2]: mysum(41, 1)
-## Out[2]: 42
-## 
-## In [3]:</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/list_sessions.html">list_sessions</a></span>()</code></pre></div>
-<pre><code>## [[1]]
-## tmuxr session python: 1 windows (created Fri Aug 25 21:37:37 2017) [80x23]</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kill_server</span>()</code></pre></div>
-<pre><code>## character(0)</code></pre>
+<span class="st">  </span><span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(<span class="dt">start =</span> <span class="dv">18</span>, <span class="dt">as_message =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; In [2]: mysum(41, 1)</span>
+<span class="co">#&gt; Out[2]: 42</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; In [3]:</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/list_sessions.html">list_sessions</a></span>()
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; tmuxr session python: 1 windows (created Sun Aug 27 12:46:19 2017) [80x23]</span>
+<span class="kw">kill_server</span>()
+<span class="co">#&gt; character(0)</span></code></pre></div>
 </div>
 </div>
-<div id="license" class="section level3">
-<h3 class="hasAnchor">
-<a href="#license" class="anchor"></a>License</h3>
+<div id="license" class="section level2">
+<h2 class="hasAnchor">
+<a href="#license" class="anchor"></a>License</h2>
 <p>The <code>tmuxr</code> package is licensed under the GPLv3 (<a href="http://www.gnu.org/licenses/gpl.html" class="uri">http://www.gnu.org/licenses/gpl.html</a>).</p>
 </div>
 </div>
@@ -190,6 +196,12 @@ jupyter<span class="op">$</span>prompt</code></pre></div>
 <a href="http://jeroenjanssens.com">Jeroen Janssens</a> <br><small class="roles"> Author, maintainer </small> </li>
 <li>
 <a href="https://www.datascienceworkshops.com"><img class="data-science-workshops-logo" src="https://datascienceworkshops.github.io/tmuxr/data-science-workshops.svg"></a> <br><small class="roles"> Copyright holder, funder </small> </li>
+</ul>
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://travis-ci.org/datascienceworkshops/tmuxr"><img src="https://travis-ci.org/datascienceworkshops/tmuxr.svg?branch=master" alt="Build Status"></a></li>
+<li><a href="https://codecov.io/gh/datascienceworkshops/tmuxr"><img src="https://codecov.io/gh/datascienceworkshops/tmuxr/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="https://cran.r-project.org/package=tmuxr"><img src="http://www.r-pkg.org/badges/version/tmuxr" alt="CRAN_Status_Badge"></a></li>
 </ul>
 </div>
 
