@@ -21,7 +21,7 @@
 #' @return A `tmuxr_session`.
 #'
 #' @examples
-#' \dontshow{kill_server()}
+#' \dontshow{try(tmuxr::kill_server(), silent = TRUE)}
 #' new_session()
 #'
 #' # Start a session running Bash
@@ -59,7 +59,7 @@ new_session <- function(name = NULL,
 #' @return A `tmuxr_session`.
 #'
 #' @examples
-#' \dontshow{kill_server()}
+#' \dontshow{try(tmuxr::kill_server(), silent = TRUE)}
 #' new_session()
 #' s <- attach_session(0)
 #' @export
@@ -100,7 +100,7 @@ kill_session <- function(session) {
 #' @return A list of `tmuxr_session`s.
 #'
 #' @examples
-#' \dontshow{kill_server()}
+#' \dontshow{try(tmuxr::kill_server(), silent = TRUE)}
 #' a <- new_session('first')
 #' b <- new_session('second')
 #' list_sessions()
