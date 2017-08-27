@@ -25,7 +25,7 @@ list_panes <- function(target = NULL) {
   } else {
     args <- c(args, "-t", target$name)
   }
-  tmux_list_panes(args) %>% purrr::map(pane_from_name)
+  tmux_list_panes(args) %>% purrr::map(attach_pane)
 }
 
 
