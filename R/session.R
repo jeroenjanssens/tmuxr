@@ -27,6 +27,7 @@
 #' # Start a session running Bash
 #' s <- new_session(shell_command = "PS1='$ ' bash",
 #'                  prompt = prompts$bash)
+#' \dontshow{try(tmuxr::kill_server(), silent = TRUE)}
 #' @export
 new_session <- function(name = NULL,
                         prompt = NULL,
@@ -62,6 +63,7 @@ new_session <- function(name = NULL,
 #' \dontshow{try(tmuxr::kill_server(), silent = TRUE)}
 #' new_session()
 #' s <- attach_session(0)
+#' \dontshow{try(tmuxr::kill_server(), silent = TRUE)}
 #' @export
 attach_session <- function(name, prompt = NULL) {
   structure(list(name = as.character(name),
@@ -106,6 +108,7 @@ kill_session <- function(session) {
 #' list_sessions()
 #' list_sessions() %>%
 #'   purrr::walk(kill_session)
+#' \dontshow{try(tmuxr::kill_server(), silent = TRUE)}
 #' @export
 list_sessions <- function() {
   args <- c("-F", "'#{session_name}'")

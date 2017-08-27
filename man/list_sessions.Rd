@@ -13,10 +13,11 @@ A list of \code{tmuxr_session}s.
 List sessions.
 }
 \examples{
-\dontshow{kill_server()}
+\dontshow{try(tmuxr::kill_server(), silent = TRUE)}
 a <- new_session('first')
 b <- new_session('second')
 list_sessions()
 list_sessions() \%>\%
   purrr::walk(kill_session)
+\dontshow{try(tmuxr::kill_server(), silent = TRUE)}
 }

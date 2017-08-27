@@ -1,4 +1,5 @@
 #' @importFrom magrittr %>%
+#' @importFrom utils head tail
 #' @export
 magrittr::`%>%`
 
