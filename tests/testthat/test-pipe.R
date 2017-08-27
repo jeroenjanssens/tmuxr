@@ -3,7 +3,7 @@ context("pipe")
 if (is_running()) stop("server is already running")
 
 test_that("pane can be piped", {
-  out_file <- tempfile("tmuxr", fileext = as.character(Sys.getpid()))
+  out_file <- tempfile("tmuxr") # , fileext = as.character(Sys.getpid())
 
   s <- new_session(shell_command = "bash")
   Sys.sleep(0.1)
