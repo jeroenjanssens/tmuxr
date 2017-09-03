@@ -8,7 +8,7 @@ tmuxr <img src="man/figures/logo.png" align="right" width="100px" />
 Overview
 --------
 
-`tmuxr` is an R package that allows you (1) to manage [tmux](https://github.com/tmux/tmux/wiki) and (2) to interact with the processes it runs.
+`tmuxr` is an R package that allows you (1) to manage [tmux](https://github.com/tmux/tmux/wiki) and (2) to interact with the processes it runs. It features a pipeable API with which you can create, control, and capture tmux sessions, windows, and panes.
 
 Most functions, such as `new_session`, `list_windows`, and `send_keys` are inspired by the commands `tmux` offers. Other functions, such as `attach_window`, `wait_for_prompt`, `send_lines` are added for convenience. Please note that not all `tmux` commands have yet been implemented.
 
@@ -36,13 +36,13 @@ s <- new_session(shell_command = "PS1='$ ' bash",
                  prompt = prompts$bash)
 wait_for_prompt(s)
 send_lines(s, c("seq 100 |",
-               "grep 3 |",
-               "wc -l ",
-               "date"))
+                "grep 3 |",
+                "wc -l ",
+                "date"))
 capture_pane(s, trim = TRUE)
 #> [1] "$ seq 100 |"                   "> grep 3 |"                   
 #> [3] "> wc -l"                       "      19"                     
-#> [5] "$ date"                        "Sun Aug 27 12:58:08 CEST 2017"
+#> [5] "$ date"                        "Sun Sep  3 13:26:56 CEST 2017"
 kill_session(s)
 ```
 
@@ -55,6 +55,40 @@ kill_session(s)
 <!--   capture_pane(as_message = TRUE) %>% -->
 <!--   send_keys("q") -->
 <!-- ``` -->
+### Run R via Docker
+
+``` r
+new_session(shell_command = "docker run --rm -it rocker/tidyverse R",
+            prompt = prompts$R,
+            name = "docker_R") %>%
+  send_lines(c("library(tidyverse)",
+               "sessionInfo()")) %>%
+  capture_pane(as_message = TRUE)
+#>  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C
+#>  [9] LC_ADDRESS=C               LC_TELEPHONE=C
+#> [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C
+#> 
+#> attached base packages:
+#> [1] stats     graphics  grDevices utils     datasets  methods   base
+#> 
+#> other attached packages:
+#> [1] dplyr_0.7.2     purrr_0.2.2.2   readr_1.1.1     tidyr_0.6.3
+#> [5] tibble_1.3.3    ggplot2_2.2.1   tidyverse_1.1.1
+#> 
+#> loaded via a namespace (and not attached):
+#>  [1] Rcpp_0.12.12     cellranger_1.1.0 compiler_3.4.1   plyr_1.8.4
+#>  [5] bindr_0.1        forcats_0.2.0    tools_3.4.1      jsonlite_1.5
+#>  [9] lubridate_1.6.0  nlme_3.1-131     gtable_0.2.0     lattice_0.20-35
+#> [13] pkgconfig_2.0.1  rlang_0.1.1      psych_1.7.5      parallel_3.4.1
+#> [17] haven_1.1.0      bindrcpp_0.2     xml2_1.1.1       stringr_1.2.0
+#> [21] httr_1.2.1       hms_0.3          grid_3.4.1       glue_1.1.1
+#> [25] R6_2.2.2         readxl_1.0.0     foreign_0.8-69   reshape2_1.4.2
+#> [29] modelr_0.1.1     magrittr_1.5     scales_0.4.1     rvest_0.3.2
+#> [33] assertthat_0.2.0 mnormt_1.5-5     colorspace_1.3-2 stringi_1.1.5
+#> [37] lazyeval_0.2.0   munsell_0.4.3    broom_0.4.2
+#> >
+```
+
 ### Jupyter console
 
 ``` r
@@ -91,16 +125,36 @@ jupyter %>%
 #>       :
 ```
 
-<!-- #### Telnet -->
-<!-- ```{r, cache=TRUE} -->
-<!-- new_session(shell_command = "telnet", prompt = "^telnet>$") %>% -->
-<!--   send_keys("open towel.blinkenlights.nl") %>% -->
-<!--   send_enter() %>% -->
-<!--   wait(26) %>% -->
-<!--   capture_pane(as_message = TRUE) %>% -->
-<!--   kill_session() -->
-<!-- ``` -->
-### Continue with earlier session
+### Capture a telnet session
+
+``` r
+new_session(shell_command = "telnet", prompt = "^telnet>$") %>%
+  send_keys("open towel.blinkenlights.nl") %>%
+  send_enter() %>%
+  wait(26) %>%
+  capture_pane(as_message = TRUE, trim = FALSE) %>%
+  kill_session()
+#> 
+#> 
+#> 
+#> 
+#> 
+#> 
+#> 
+#>                           8888888888  888    88888
+#>                          88     88   88 88   88  88
+#>                           8888  88  88   88  88888
+#>                              88 88 888888888 88   88
+#>                       88888888  88 88     88 88    888888
+#> 
+#>                       88  88  88   888    88888    888888
+#>                       88  88  88  88 88   88  88  88
+#>                       88 8888 88 88   88  88888    8888
+#>                        888  888 888888888 88   88     88
+#>                         88  88  88     88 88    8888888
+```
+
+### Continue with an existing session
 
 ``` r
 attach_session("python", prompt = prompts$jupyter) %>%
@@ -117,11 +171,11 @@ attach_session("python", prompt = prompts$jupyter) %>%
 ``` r
 list_sessions()
 #> [[1]]
-#> tmuxr session 0: 1 windows (created Sun Aug 27 12:54:53 2017) [80x23]
+#> tmuxr session 0: 1 windows (created Sun Sep  3 13:23:30 2017) [80x23]
 #> [[2]]
-#> tmuxr session 1: 1 windows (created Sun Aug 27 12:54:53 2017) [80x23]
+#> tmuxr session docker_R: 1 windows (created Sun Sep  3 13:26:57 2017) [80x23]
 #> [[3]]
-#> tmuxr session python: 1 windows (created Sun Aug 27 12:58:08 2017) [80x23]
+#> tmuxr session python: 1 windows (created Sun Sep  3 13:26:59 2017) [80x23]
 kill_server()
 #> character(0)
 ```
