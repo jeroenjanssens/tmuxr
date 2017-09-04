@@ -97,16 +97,16 @@ jupyter %>%
 ```
 
 
-### Capture a telnet session
+<!-- ### Capture a telnet session -->
 
-```{r, cache=TRUE}
-new_session(shell_command = "telnet", prompt = "^telnet>$") %>%
-  send_keys("open towel.blinkenlights.nl") %>%
-  send_enter() %>%
-  wait(26) %>%
-  capture_pane(as_message = TRUE, trim = FALSE) %>%
-  kill_session()
-```
+<!-- ```{r, cache=TRUE} -->
+<!-- new_session(shell_command = "telnet", prompt = "^telnet>$") %>% -->
+<!--   send_keys("open towel.blinkenlights.nl") %>% -->
+<!--   send_enter() %>% -->
+<!--   wait(26) %>% -->
+<!--   capture_pane(as_message = TRUE, trim = FALSE) %>% -->
+<!--   kill_session() -->
+<!-- ``` -->
 
 
 ### Continue with an existing session
@@ -126,4 +126,4 @@ kill_server()
 
 ## License
 
-The `tmuxr` package is licensed under the GPLv3 (http://www.gnu.org/licenses/gpl.html).
+The `tmuxr` package is licensed under the MIT License.

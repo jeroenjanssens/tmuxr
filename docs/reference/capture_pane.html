@@ -87,12 +87,55 @@
     <pre class="usage"><span class='fu'>capture_pane</span>(<span class='no'>target</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>end</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>trim</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>trim_top</span> <span class='kw'>=</span> <span class='no'>trim</span>, <span class='kw'>trim_bottom</span> <span class='kw'>=</span> <span class='no'>trim</span>, <span class='kw'>strip_lonely_prompt</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>as_message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>in_viewer</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
-        
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>target</th>
+      <td><p>A session, window, or pane.</p></td>
+    </tr>
+    <tr>
+      <th>start</th>
+      <td><p>Numeric. First line to capture.</p></td>
+    </tr>
+    <tr>
+      <th>end</th>
+      <td><p>Numeric. Last line to capture.</p></td>
+    </tr>
+    <tr>
+      <th>trim</th>
+      <td><p>Logical. Should empty lines be removed from the top and bottom?</p></td>
+    </tr>
+    <tr>
+      <th>trim_top</th>
+      <td><p>Logical. Should empty lines be removed from the top?</p></td>
+    </tr>
+    <tr>
+      <th>trim_bottom</th>
+      <td><p>Logical. Should empty lines be removed from the bottom?</p></td>
+    </tr>
+    <tr>
+      <th>strip_lonely_prompt</th>
+      <td><p>Logical. Should lines containing only the prompt
+be removed?</p></td>
+    </tr>
+    <tr>
+      <th>as_message</th>
+      <td><p>Logical. Should the contents be displayed as a message?</p></td>
+    </tr>
+    <tr>
+      <th>in_viewer</th>
+      <td><p>Logical. Should the contents be displayed in the viewer?</p></td>
+    </tr>
+    </table>
+    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
                 </ul>
 
   </div>

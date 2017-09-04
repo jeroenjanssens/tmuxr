@@ -42,7 +42,7 @@ send_lines(s, c("seq 100 |",
 capture_pane(s, trim = TRUE)
 #> [1] "$ seq 100 |"                   "> grep 3 |"                   
 #> [3] "> wc -l"                       "      19"                     
-#> [5] "$ date"                        "Sun Sep  3 13:26:56 CEST 2017"
+#> [5] "$ date"                        "Mon Sep  4 14:18:57 CEST 2017"
 kill_session(s)
 ```
 
@@ -125,35 +125,15 @@ jupyter %>%
 #>       :
 ```
 
-### Capture a telnet session
-
-``` r
-new_session(shell_command = "telnet", prompt = "^telnet>$") %>%
-  send_keys("open towel.blinkenlights.nl") %>%
-  send_enter() %>%
-  wait(26) %>%
-  capture_pane(as_message = TRUE, trim = FALSE) %>%
-  kill_session()
-#> 
-#> 
-#> 
-#> 
-#> 
-#> 
-#> 
-#>                           8888888888  888    88888
-#>                          88     88   88 88   88  88
-#>                           8888  88  88   88  88888
-#>                              88 88 888888888 88   88
-#>                       88888888  88 88     88 88    888888
-#> 
-#>                       88  88  88   888    88888    888888
-#>                       88  88  88  88 88   88  88  88
-#>                       88 8888 88 88   88  88888    8888
-#>                        888  888 888888888 88   88     88
-#>                         88  88  88     88 88    8888888
-```
-
+<!-- ### Capture a telnet session -->
+<!-- ```{r, cache=TRUE} -->
+<!-- new_session(shell_command = "telnet", prompt = "^telnet>$") %>% -->
+<!--   send_keys("open towel.blinkenlights.nl") %>% -->
+<!--   send_enter() %>% -->
+<!--   wait(26) %>% -->
+<!--   capture_pane(as_message = TRUE, trim = FALSE) %>% -->
+<!--   kill_session() -->
+<!-- ``` -->
 ### Continue with an existing session
 
 ``` r
@@ -171,11 +151,9 @@ attach_session("python", prompt = prompts$jupyter) %>%
 ``` r
 list_sessions()
 #> [[1]]
-#> tmuxr session 0: 1 windows (created Sun Sep  3 13:23:30 2017) [80x23]
+#> tmuxr session docker_R: 1 windows (created Mon Sep  4 14:18:57 2017) [80x23]
 #> [[2]]
-#> tmuxr session docker_R: 1 windows (created Sun Sep  3 13:26:57 2017) [80x23]
-#> [[3]]
-#> tmuxr session python: 1 windows (created Sun Sep  3 13:26:59 2017) [80x23]
+#> tmuxr session python: 1 windows (created Mon Sep  4 14:19:00 2017) [80x23]
 kill_server()
 #> character(0)
 ```
@@ -183,4 +161,4 @@ kill_server()
 License
 -------
 
-The `tmuxr` package is licensed under the GPLv3 (<http://www.gnu.org/licenses/gpl.html>).
+The `tmuxr` package is licensed under the MIT License.

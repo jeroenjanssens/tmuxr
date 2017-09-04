@@ -108,17 +108,16 @@ relevant prompts.</p></td>
     </tr>
     <tr>
       <th>start_directory</th>
-      <td><p>String indicating the working directory this
-session is run in.</p></td>
+      <td><p>String. Working directory this session is run in.</p></td>
     </tr>
     <tr>
       <th>width</th>
-      <td><p>Numeric indicating width of inital window. Default 80
+      <td><p>Numeric. Width of inital window. Default 80
 characters.</p></td>
     </tr>
     <tr>
       <th>height</th>
-      <td><p>Numeric indicating height of initial window. Default 24
+      <td><p>Numeric. Height of initial window. Default 24
 lines. By default, <code>tmux</code> uses one status line, so the effective height
 is decreased by one line.</p></td>
     </tr>
@@ -129,8 +128,8 @@ waits for the session to be killed.</p></td>
     </tr>
     <tr>
       <th>shell_command</th>
-      <td><p>String specifying the system command to be invoked when
-creating the session.</p></td>
+      <td><p>String. System command to be invoked when creating the
+session.</p></td>
     </tr>
     </table>
     
@@ -140,7 +139,7 @@ creating the session.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>new_session</span>()</div><div class='output co'>#&gt; tmuxr session 0: 1 windows (created Sun Sep  3 13:28:02 2017) [80x23]</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>new_session</span>()</div><div class='output co'>#&gt; tmuxr session 0: 1 windows (created Mon Sep  4 14:19:12 2017) [80x23]</div><div class='input'>
 <span class='co'># Start a session running Bash</span>
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>new_session</span>(<span class='kw'>shell_command</span> <span class='kw'>=</span> <span class='st'>"PS1='$ ' bash"</span>,
                  <span class='kw'>prompt</span> <span class='kw'>=</span> <span class='no'>prompts</span>$<span class='no'>bash</span>)</div></pre>
