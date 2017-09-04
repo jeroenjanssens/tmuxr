@@ -1,5 +1,5 @@
 Package: tmuxr
-Title: Control tmux from R
+Title: Manage tmux from R
 Version: 0.0.0.9000
 Authors@R: c(
     person("Jeroen", "Janssens", email = "jeroen@datascienceworkshops.com", role = c("aut", "cre")),

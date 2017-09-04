@@ -1,16 +1,26 @@
 language: r
 cache: packages
-sudo: false
-r:
-  - release
-  - devel
 
-r_packages:
-  - covr
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      sudo: false
+      env: R_CODECOV=true
+    - os: osx
+      osx_image: xcode8.3
+      brew_packages: tmux
 
-env:
-  global:
-    - TMPDIR=/tmp
+r_github_packages:
+  - jimhester/covr
+
+warnings_are_errors: true
+#r_check_revdep: true
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
 
 after_success:
-  - Rscript -e 'library(covr); codecov()'
+  - if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi
