@@ -6,10 +6,10 @@ matrix:
     - os: linux
       dist: trusty
       sudo: false
-      env: R_CODECOV=true
     - os: osx
       osx_image: xcode8.3
       brew_packages: tmux
+      env: R_CODECOV=true
 
 r_packages:
   - covr
