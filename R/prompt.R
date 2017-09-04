@@ -49,7 +49,7 @@ has_prompt <- function(target) {
 #' Wait for prompt to appear in session, window or pane.
 #'
 #' @param target A session, window, or pane.
-#' @param time Numerical. Time to wait in seconds.
+#' @param time Numerical. Time to wait in seconds between tries.
 #'
 #' @export
 wait_for_prompt <- function(target, time = 0.05) {
@@ -59,6 +59,8 @@ wait_for_prompt <- function(target, time = 0.05) {
 }
 
 
+#' A list of commonly used prompt patterns.
+#'
 #' @export
 prompts <- list(
   bash = "^(\\$|>)$",

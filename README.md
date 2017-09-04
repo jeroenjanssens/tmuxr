@@ -42,7 +42,7 @@ send_lines(s, c("seq 100 |",
 capture_pane(s, trim = TRUE)
 #> [1] "$ seq 100 |"                   "> grep 3 |"                   
 #> [3] "> wc -l"                       "      19"                     
-#> [5] "$ date"                        "Mon Sep  4 14:18:57 CEST 2017"
+#> [5] "$ date"                        "Mon Sep  4 14:38:01 CEST 2017"
 kill_session(s)
 ```
 
@@ -151,9 +151,9 @@ attach_session("python", prompt = prompts$jupyter) %>%
 ``` r
 list_sessions()
 #> [[1]]
-#> tmuxr session docker_R: 1 windows (created Mon Sep  4 14:18:57 2017) [80x23]
+#> tmuxr session docker_R: 1 windows (created Mon Sep  4 14:38:01 2017) [80x23]
 #> [[2]]
-#> tmuxr session python: 1 windows (created Mon Sep  4 14:19:00 2017) [80x23]
+#> tmuxr session python: 1 windows (created Mon Sep  4 14:38:04 2017) [80x23]
 kill_server()
 #> character(0)
 ```

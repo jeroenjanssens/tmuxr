@@ -88,14 +88,14 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">s &lt;-<span class="st"> </span><span class="kw"><a href="reference/new_session.html">new_session</a></span>(<span class="dt">shell_command =</span> <span class="st">"PS1='$ ' bash"</span>,
                  <span class="dt">prompt =</span> prompts<span class="op">$</span>bash)
 <span class="kw"><a href="reference/wait_for_prompt.html">wait_for_prompt</a></span>(s)
-<span class="kw">send_lines</span>(s, <span class="kw">c</span>(<span class="st">"seq 100 |"</span>,
+<span class="kw"><a href="reference/send_lines.html">send_lines</a></span>(s, <span class="kw">c</span>(<span class="st">"seq 100 |"</span>,
                 <span class="st">"grep 3 |"</span>,
                 <span class="st">"wc -l "</span>,
                 <span class="st">"date"</span>))
 <span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(s, <span class="dt">trim =</span> <span class="ot">TRUE</span>)
 <span class="co">#&gt; [1] "$ seq 100 |"                   "&gt; grep 3 |"                   </span>
 <span class="co">#&gt; [3] "&gt; wc -l"                       "      19"                     </span>
-<span class="co">#&gt; [5] "$ date"                        "Mon Sep  4 14:19:05 CEST 2017"</span>
+<span class="co">#&gt; [5] "$ date"                        "Mon Sep  4 14:38:08 CEST 2017"</span>
 <span class="kw"><a href="reference/kill_session.html">kill_session</a></span>(s)</code></pre></div>
 <!-- #### Full screen capture -->
 <!-- ```{r} -->
@@ -113,7 +113,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/new_session.html">new_session</a></span>(<span class="dt">shell_command =</span> <span class="st">"docker run --rm -it rocker/tidyverse R"</span>,
             <span class="dt">prompt =</span> prompts<span class="op">$</span>R,
             <span class="dt">name =</span> <span class="st">"docker_R"</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">send_lines</span>(<span class="kw">c</span>(<span class="st">"library(tidyverse)"</span>,
+<span class="st">  </span><span class="kw"><a href="reference/send_lines.html">send_lines</a></span>(<span class="kw">c</span>(<span class="st">"library(tidyverse)"</span>,
                <span class="st">"sessionInfo()"</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(<span class="dt">as_message =</span> <span class="ot">TRUE</span>)
 <span class="co">#&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C</span>
@@ -152,7 +152,7 @@ jupyter<span class="op">$</span>prompt
 
 jupyter <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/wait_for_prompt.html">wait_for_prompt</a></span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">send_lines</span>(<span class="kw">c</span>(<span class="st">"def mysum(a, b):"</span>,
+<span class="st">  </span><span class="kw"><a href="reference/send_lines.html">send_lines</a></span>(<span class="kw">c</span>(<span class="st">"def mysum(a, b):"</span>,
                <span class="st">"return a + b"</span>,
                <span class="st">""</span>,
                <span class="st">""</span>)) <span class="op">%&gt;%</span>
@@ -188,9 +188,9 @@ jupyter <span class="op">%&gt;%</span>
 <h3 class="hasAnchor">
 <a href="#continue-with-an-existing-session" class="anchor"></a>Continue with an existing session</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/attach_session.html">attach_session</a></span>(<span class="st">"python"</span>, <span class="dt">prompt =</span> prompts<span class="op">$</span>jupyter) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">wait</span>(<span class="fl">0.2</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">send_lines</span>(<span class="st">"mysum(41, 1)"</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">wait</span>(<span class="fl">0.2</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/wait.html">wait</a></span>(<span class="fl">0.2</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/send_lines.html">send_lines</a></span>(<span class="st">"mysum(41, 1)"</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/wait.html">wait</a></span>(<span class="fl">0.2</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(<span class="dt">start =</span> <span class="dv">18</span>, <span class="dt">as_message =</span> <span class="ot">TRUE</span>)
 <span class="co">#&gt; In [2]: mysum(41, 1)</span>
 <span class="co">#&gt; Out[2]: 42</span>
@@ -198,10 +198,10 @@ jupyter <span class="op">%&gt;%</span>
 <span class="co">#&gt; In [3]:</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/list_sessions.html">list_sessions</a></span>()
 <span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; tmuxr session docker_R: 1 windows (created Mon Sep  4 14:19:05 2017) [80x23]</span>
+<span class="co">#&gt; tmuxr session docker_R: 1 windows (created Mon Sep  4 14:38:08 2017) [80x23]</span>
 <span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; tmuxr session python: 1 windows (created Mon Sep  4 14:19:07 2017) [80x23]</span>
-<span class="kw">kill_server</span>()
+<span class="co">#&gt; tmuxr session python: 1 windows (created Mon Sep  4 14:38:10 2017) [80x23]</span>
+<span class="kw"><a href="reference/kill_server.html">kill_server</a></span>()
 <span class="co">#&gt; character(0)</span></code></pre></div>
 </div>
 </div>

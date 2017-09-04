@@ -36,11 +36,25 @@ reference:
   - title: Panes
     contents:
       - attach_pane
+      - capture_pane
       - list_panes
-  - title: Prompt
+      - pipe_pane
+  - title: Server
+    contents:
+      - is_running
+      - kill_server
+      - start_server
+  - title: Interacting
     contents:
       - ends_with_prompt
       - get_prompt
       - has_prompt
+      - prompts
+      - send_backspace
+      - send_control_c
+      - send_enter
+      - send_keys
+      - send_lines
       - set_prompt
+      - wait
       - wait_for_prompt

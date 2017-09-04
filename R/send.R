@@ -1,3 +1,9 @@
+#' Send keys to a session, window, or pane.
+#'
+#' @param target A session, window, or pane.
+#' @param keys String to send.
+#' @param literal Should the keys be interpreted literally?
+#'
 #' @export
 send_keys <- function(target, keys, literal = FALSE) {
   args <- c("-t", target$name)
@@ -8,6 +14,10 @@ send_keys <- function(target, keys, literal = FALSE) {
 }
 
 
+#' Send the Enter key to a session, window or pane.
+#'
+#' @param target A session, window, or pane.
+#'
 #' @export
 send_enter <- function(target) {
   tmux_send_keys("-t", target$name, "Enter")
@@ -15,6 +25,10 @@ send_enter <- function(target) {
 }
 
 
+#' Send the Control C combination to a session, window or pane.
+#'
+#' @param target A session, window, or pane.
+#'
 #' @export
 send_control_c <- function(target) {
   tmux_send_keys("-t", target$name, "C-c")
@@ -22,6 +36,10 @@ send_control_c <- function(target) {
 }
 
 
+#' Send the Backspace key to a session, window or pane.
+#'
+#' @param target A session, window, or pane.
+#'
 #' @export
 send_backspace <- function(target) {
   tmux_send_keys("-t", target$name, "BSpace")
@@ -29,6 +47,13 @@ send_backspace <- function(target) {
 }
 
 
+#' Send multiple lines to a session, window, or pane.
+#'
+#' @param target A session, window, or pane.
+#'
+#' @param lines A character vector.
+#' @param wait Should there be waited for the prompt after sending each line?
+#'
 #' @export
 send_lines <- function(target, lines, wait = TRUE) {
   for (line in lines) {
@@ -40,7 +65,10 @@ send_lines <- function(target, lines, wait = TRUE) {
 }
 
 
-
+#' Wait.
+#'
+#' @param target A session, window, or pane.
+#' @param time Numerical. Time to wait in seconds between tries.
 
 #' @export
 wait <- function(target, time = 0.05) {

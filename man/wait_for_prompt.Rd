@@ -9,7 +9,7 @@ wait_for_prompt(target, time = 0.05)
 \arguments{
 \item{target}{A session, window, or pane.}
 
-\item{time}{Numerical. Time to wait in seconds.}
+\item{time}{Numerical. Time to wait in seconds between tries.}
 }
 \description{
 Wait for prompt to appear in session, window or pane.
