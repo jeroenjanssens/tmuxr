@@ -6,17 +6,16 @@
 #' @param prompt String containing a regular expression that matches all
 #' relevant prompts.
 #' @param window_name String to be used as window name.
-#' @param start_directory String indicating the working directory this
-#' session is run in.
-#' @param width Numeric indicating width of inital window. Default 80
+#' @param start_directory String. Working directory this session is run in.
+#' @param width Numeric. Width of inital window. Default 80
 #' characters.
-#' @param height Numeric indicating height of initial window. Default 24
+#' @param height Numeric. Height of initial window. Default 24
 #' lines. By default, `tmux` uses one status line, so the effective height
 #' is decreased by one line.
 #' @param detached Logical. Default `TRUE`. If `FALSE`, the `R` interpreter
 #' waits for the session to be killed.
-#' @param shell_command String specifying the system command to be invoked when
-#' creating the session.
+#' @param shell_command String. System command to be invoked when creating the
+#' session.
 #'
 #' @return A `tmuxr_session`.
 #'

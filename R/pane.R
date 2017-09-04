@@ -12,7 +12,7 @@ attach_pane <- function(name) {
 
 #' List panes.
 #'
-#' @param target Name of parent session or window. If `NULL` (default), all windows are
+#' @param target Parent session or window. If `NULL` (default), all windows are
 #' listed.
 #'
 #' @return A list of `tmuxr_pane`s.
@@ -30,6 +30,17 @@ list_panes <- function(target = NULL) {
 
 
 #' Capture contents of a pane.
+#'
+#' @param target A session, window, or pane.
+#' @param start Numeric. First line to capture.
+#' @param end Numeric. Last line to capture.
+#' @param trim Logical. Should empty lines be removed from the top and bottom?
+#' @param trim_top Logical. Should empty lines be removed from the top?
+#' @param trim_bottom Logical. Should empty lines be removed from the bottom?
+#' @param strip_lonely_prompt Logical. Should lines containing only the prompt
+#' be removed?
+#' @param as_message Logical. Should the contents be displayed as a message?
+#' @param in_viewer Logical. Should the contents be displayed in the viewer?
 #'
 #' @export
 capture_pane <- function(target, start = NULL, end = NULL,
@@ -63,6 +74,11 @@ capture_pane <- function(target, start = NULL, end = NULL,
 
 
 #' Pipe contents of a pane to a shell command.
+#'
+#' @param target A session, window, or pane.
+#' @param shell_command String. System command to be invoked when creating the
+#' session.
+#' @param open Logical. Only open a new pipe if no previous pipe exists.
 #'
 #' @export
 pipe_pane <- function(target = NULL, shell_command = NULL, open = FALSE) {

@@ -17,6 +17,7 @@ ends_with_prompt <- function(target) {
 #' @param target A session, window, or pane.
 #' @return String containing a regular expression that matches all relevant
 #' prompts.
+#'
 #' @export
 get_prompt <- function(target) {
   target$prompt
@@ -28,6 +29,7 @@ get_prompt <- function(target) {
 #' @param target A session, window, or pane.
 #' @param prompt String containing a regular expression that matches all
 #' relevant prompts.
+#'
 #' @export
 set_prompt <- function(target, prompt) {
   target$prompt <- prompt
@@ -45,6 +47,9 @@ has_prompt <- function(target) {
 
 
 #' Wait for prompt to appear in session, window or pane.
+#'
+#' @param target A session, window, or pane.
+#' @param time Numerical. Time to wait in seconds.
 #'
 #' @export
 wait_for_prompt <- function(target, time = 0.05) {

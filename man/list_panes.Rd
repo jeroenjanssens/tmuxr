@@ -7,7 +7,7 @@
 list_panes(target = NULL)
 }
 \arguments{
-\item{target}{Name of parent session or window. If \code{NULL} (default), all windows are
+\item{target}{Parent session or window. If \code{NULL} (default), all windows are
 listed.}
 }
 \value{

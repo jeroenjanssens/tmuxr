@@ -8,6 +8,26 @@ capture_pane(target, start = NULL, end = NULL, trim = FALSE,
   trim_top = trim, trim_bottom = trim, strip_lonely_prompt = TRUE,
   as_message = FALSE, in_viewer = FALSE)
 }
+\arguments{
+\item{target}{A session, window, or pane.}
+
+\item{start}{Numeric. First line to capture.}
+
+\item{end}{Numeric. Last line to capture.}
+
+\item{trim}{Logical. Should empty lines be removed from the top and bottom?}
+
+\item{trim_top}{Logical. Should empty lines be removed from the top?}
+
+\item{trim_bottom}{Logical. Should empty lines be removed from the bottom?}
+
+\item{strip_lonely_prompt}{Logical. Should lines containing only the prompt
+be removed?}
+
+\item{as_message}{Logical. Should the contents be displayed as a message?}
+
+\item{in_viewer}{Logical. Should the contents be displayed in the viewer?}
+}
 \description{
 Capture contents of a pane.
 }

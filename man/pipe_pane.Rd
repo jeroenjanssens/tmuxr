@@ -6,6 +6,14 @@
 \usage{
 pipe_pane(target = NULL, shell_command = NULL, open = FALSE)
 }
+\arguments{
+\item{target}{A session, window, or pane.}
+
+\item{shell_command}{String. System command to be invoked when creating the
+session.}
+
+\item{open}{Logical. Only open a new pipe if no previous pipe exists.}
+}
 \description{
 Pipe contents of a pane to a shell command.
 }

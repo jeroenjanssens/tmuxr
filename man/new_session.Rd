@@ -18,21 +18,20 @@ relevant prompts.}
 
 \item{window_name}{String to be used as window name.}
 
-\item{start_directory}{String indicating the working directory this
-session is run in.}
+\item{start_directory}{String. Working directory this session is run in.}
 
-\item{width}{Numeric indicating width of inital window. Default 80
+\item{width}{Numeric. Width of inital window. Default 80
 characters.}
 
-\item{height}{Numeric indicating height of initial window. Default 24
+\item{height}{Numeric. Height of initial window. Default 24
 lines. By default, \code{tmux} uses one status line, so the effective height
 is decreased by one line.}
 
 \item{detached}{Logical. Default \code{TRUE}. If \code{FALSE}, the \code{R} interpreter
 waits for the session to be killed.}
 
-\item{shell_command}{String specifying the system command to be invoked when
-creating the session.}
+\item{shell_command}{String. System command to be invoked when creating the
+session.}
 }
 \value{
 A \code{tmuxr_session}.
