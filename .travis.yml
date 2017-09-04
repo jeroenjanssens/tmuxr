@@ -11,8 +11,8 @@ matrix:
       osx_image: xcode8.3
       brew_packages: tmux
 
-r_github_packages:
-  - jimhester/covr
+r_packages:
+  - covr
 
 warnings_are_errors: true
 #r_check_revdep: true
@@ -23,4 +23,4 @@ notifications:
     on_failure: change
 
 after_success:
-  - if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi
+  - if [[ "${R_CODECOV}" ]]; then Rscript -e 'library(covr); codecov()'; fi
