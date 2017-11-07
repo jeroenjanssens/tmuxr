@@ -17,7 +17,11 @@ start_server <- function() {
 #'
 #' @export
 is_running <- function() {
-  pids <- suppressWarnings(system2("pgrep", c("-x", "tmux"),
-                                   stdout = TRUE, stderr = FALSE))
-  length(pids) > 0
+  if (.Platform$OS.type == "windows") {
+    grepl("tmux", system2("tasklist", c("/FI \"IMAGENAME eq tmux.exe\" /FO CSV /NH"), stdout = TRUE))
+  } else {
+    pids <- suppressWarnings(system2("pgrep", c("-x", "tmux"),
+                                     stdout = TRUE, stderr = FALSE))
+    length(pids) > 0
+  }
 }
