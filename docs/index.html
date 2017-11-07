@@ -93,9 +93,9 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
                 <span class="st">"wc -l "</span>,
                 <span class="st">"date"</span>))
 <span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(s, <span class="dt">trim =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt; [1] "$ seq 100 |"                   "&gt; grep 3 |"                   </span>
-<span class="co">#&gt; [3] "&gt; wc -l"                       "      19"                     </span>
-<span class="co">#&gt; [5] "$ date"                        "Mon Sep  4 15:11:47 CEST 2017"</span>
+<span class="co">#&gt; [1] "$ seq 100 |"                  "&gt; grep 3 |"                  </span>
+<span class="co">#&gt; [3] "&gt; wc -l"                      "      19"                    </span>
+<span class="co">#&gt; [5] "$ date"                       "Tue Nov  7 15:17:52 CET 2017"</span>
 <span class="kw"><a href="reference/kill_session.html">kill_session</a></span>(s)</code></pre></div>
 <!-- #### Full screen capture -->
 <!-- ```{r} -->
@@ -116,6 +116,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <span class="st">  </span><span class="kw"><a href="reference/send_lines.html">send_lines</a></span>(<span class="kw">c</span>(<span class="st">"library(tidyverse)"</span>,
                <span class="st">"sessionInfo()"</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(<span class="dt">as_message =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C</span>
 <span class="co">#&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C</span>
 <span class="co">#&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C</span>
 <span class="co">#&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C</span>
@@ -198,9 +199,9 @@ jupyter <span class="op">%&gt;%</span>
 <span class="co">#&gt; In [3]:</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/list_sessions.html">list_sessions</a></span>()
 <span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; tmuxr session docker_R: 1 windows (created Mon Sep  4 15:11:47 2017) [80x23]</span>
+<span class="co">#&gt; tmuxr session docker_R: 1 windows (created Tue Nov  7 15:17:52 2017) [80x24]</span>
 <span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; tmuxr session python: 1 windows (created Mon Sep  4 15:11:49 2017) [80x23]</span>
+<span class="co">#&gt; tmuxr session python: 1 windows (created Tue Nov  7 15:17:56 2017) [80x24]</span>
 <span class="kw"><a href="reference/kill_server.html">kill_server</a></span>()
 <span class="co">#&gt; character(0)</span></code></pre></div>
 </div>
