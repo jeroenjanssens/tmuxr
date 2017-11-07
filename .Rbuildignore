@@ -4,7 +4,9 @@
 ^_pkgdown\.yml$
 ^pkgdown$
 ^\.travis\.yml$
+^NEWS\.md$
 ^README\.Rmd$
 ^README_cache$
 ^LICENSE\.md$
 ^appveyor\.yml$
+^cran-comments\.md$
