@@ -10,8 +10,9 @@ init:
 
 install:
   - ps: Bootstrap
-  - cmd: 'C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --upgrade-also --packages autoconf,autogen,automake,cygwin-devel,git,gcc-core,gcc-g++,libncurses-devel,libprotobuf-devel,make,openssh,openssl-devel,perl,perl_pods,pkg-config,tmux,zlib-devel,procps-ng'
+  - cmd: 'C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --upgrade-also --packages tmux,procps-ng'
   - cmd: 'SET PATH=C:\cygwin64\bin;%PATH%'
+  - cmd: tmux kill-server
 
 cache:
   - C:\RLibrary
