@@ -17,9 +17,3 @@ A \code{tmuxr_session}.
 \description{
 Attach to an existing tmux session.
 }
-\examples{
-\dontshow{try(tmuxr::kill_server(), silent = TRUE)}
-new_session()
-s <- attach_session(0)
-\dontshow{try(tmuxr::kill_server(), silent = TRUE)}
-}

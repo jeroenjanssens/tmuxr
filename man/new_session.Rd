@@ -39,12 +39,3 @@ A \code{tmuxr_session}.
 \description{
 Create a new tmux session.
 }
-\examples{
-\dontshow{try(tmuxr::kill_server(), silent = TRUE)}
-new_session()
-
-# Start a session running Bash
-s <- new_session(shell_command = "PS1='$ ' bash",
-                 prompt = prompts$bash)
-\dontshow{try(tmuxr::kill_server(), silent = TRUE)}
-}
