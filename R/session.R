@@ -19,14 +19,6 @@
 #'
 #' @return A `tmuxr_session`.
 #'
-#' # @examples
-#' # \dontshow{try(tmuxr::kill_server(), silent = TRUE)}
-#' # new_session()
-#'#
-#' # # Start a session running Bash
-#' # s <- new_session(shell_command = "PS1='$ ' bash",
-#' #                  prompt = prompts$bash)
-#' # \dontshow{try(tmuxr::kill_server(), silent = TRUE)}
 #' @export
 new_session <- function(name = NULL,
                         prompt = NULL,
@@ -58,11 +50,6 @@ new_session <- function(name = NULL,
 #'
 #' @return A `tmuxr_session`.
 #'
-#' # @examples
-#' # \dontshow{try(tmuxr::kill_server(), silent = TRUE)}
-#' # new_session()
-#' # s <- attach_session(0)
-#' # \dontshow{try(tmuxr::kill_server(), silent = TRUE)}
 #' @export
 attach_session <- function(name, prompt = NULL) {
   structure(list(name = as.character(name),
@@ -100,14 +87,6 @@ kill_session <- function(session) {
 #'
 #' @return A list of `tmuxr_session`s.
 #'
-#' # @examples
-#' # \dontshow{try(tmuxr::kill_server(), silent = TRUE)}
-#' # a <- new_session('first')
-#' # b <- new_session('second')
-#' # list_sessions()
-#' # list_sessions() %>%
-#' #   purrr::walk(kill_session)
-#' # \dontshow{try(tmuxr::kill_server(), silent = TRUE)}
 #' @export
 list_sessions <- function() {
   args <- c("-F", "'#{session_name}'")
