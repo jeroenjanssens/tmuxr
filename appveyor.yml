@@ -12,6 +12,7 @@ install:
   - ps: Bootstrap
   - cmd: 'C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --upgrade-also --packages tmux,procps-ng'
   - cmd: 'SET PATH=C:\cygwin64\bin;%PATH%'
+  - cmd: mkdir C:\cygwin64\tmp\tmux-197609
   - cmd: tmux kill-server
 
 cache:
