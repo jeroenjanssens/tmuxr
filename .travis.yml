@@ -7,7 +7,11 @@ matrix:
       dist: trusty
       sudo: false
     - os: osx
-      osx_image: xcode8.3
+      osx_image: xcode9.1
+      before_install:
+        - rvm install "ruby-2.3.4"
+        - export HOMEBREW_RUBY_PATH="/Users/travis/.rvm/rubies/ruby-2.3.4/bin/ruby"
+        - rvm use 2.3
       brew_packages: tmux
       env: R_CODECOV=true
 
