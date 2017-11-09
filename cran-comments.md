@@ -10,10 +10,16 @@ This is a resubmission. In this version I have:
 
 * Added code that checks whether 'tmux' is installed. If 'tmux' is not found,
   tests won't be run. 
+  
+* Removed "OS_type: unix" from DESCRIPTION because the package is now working
+  on Windows (see https://ci.appveyor.com/project/jeroenjanssens/tmuxr). (The
+  package is not yet working on win-builder since it employs 'which' to check
+  whether 'tmux' is installed.)
 
 ## Test environments
 * Local OS X install, R 3.4.2
 * Ubuntu 14.04 (on travis-ci), R 3.4.2
+* Windows (on appveyor), R 3.4.2
 
 ## R CMD check results
 
