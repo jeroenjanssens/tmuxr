@@ -14,7 +14,6 @@ LazyData: true
 URL: https://github.com/datascienceworkshops/tmuxr
 BugReports: https://github.com/datascienceworkshops/tmuxr/issues
 SystemRequirements: tmux
-OS_type: unix
 Imports:
     purrr,
     stringr,
