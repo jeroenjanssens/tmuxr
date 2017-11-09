@@ -6,16 +6,6 @@ matrix:
     - os: linux
       dist: trusty
       sudo: false
-    - os: osx
-      osx_image: xcode9.1
-      before_install:
-        - rvm install "ruby-2.3.4"
-        - export HOMEBREW_RUBY_PATH="/Users/travis/.rvm/rubies/ruby-2.3.4/bin/ruby"
-        - rvm use 2.3
-        - git config --global --unset http.proxy
-        - git config --global --unset https.proxy
-      brew_packages: tmux
-      env: R_CODECOV=true
 
 r_packages:
   - covr
