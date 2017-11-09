@@ -1,5 +1,6 @@
 context("pipe")
 
+if (!is_installed()) stop("tmux not found")
 if (is_running()) stop("server is already running")
 
 # test_that("pane can be piped", {

@@ -17,11 +17,21 @@ start_server <- function() {
 #'
 #' @export
 is_running <- function() {
-  if (.Platform$OS.type == "windows") {
-    grepl("tmux", system2("tasklist", c("/FI \"IMAGENAME eq tmux.exe\" /FO CSV /NH"), stdout = TRUE))
-  } else {
-    pids <- suppressWarnings(system2("pgrep", c("-x", "tmux"),
-                                     stdout = TRUE, stderr = FALSE))
-    length(pids) > 0
-  }
+  result <- suppressWarnings(
+    system2("tmux", "list-sessions", stdout = TRUE, stderr = TRUE)
+  )
+  status <- attr(result, "status")
+  (is.null(status) || (status == 0))
+}
+
+
+#' Is tmux installed?
+#'
+#' @export
+is_installed <- function() {
+  result <- suppressWarnings(
+    system2("which", "tmux", stdout = TRUE, stderr = TRUE)
+  )
+  status <- attr(result, "status")
+  (is.null(status) || (status == 0))
 }

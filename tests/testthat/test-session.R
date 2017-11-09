@@ -1,5 +1,6 @@
 context("session")
 
+if (!is_installed()) stop("tmux not found")
 if (is_running()) stop("server is already running")
 
 test_that("server is not already running", {
