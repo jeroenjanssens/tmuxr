@@ -41,6 +41,7 @@ reference:
       - pipe_pane
   - title: Server
     contents:
+      - is_installed
       - is_running
       - kill_server
       - start_server
