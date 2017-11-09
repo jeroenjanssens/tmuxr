@@ -1,3 +1,16 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Fixed the version number by removing the trailing ".9000".
+
+* Fixed the Title and Description fields by enclosing the software in single
+  quotes and removing the redundant "from R".
+
+* Removed the non-standard directory found at top level.
+
+* Added code that checks whether 'tmux' is installed. If 'tmux' is not found,
+  tests won't be run. 
+
 ## Test environments
 * Local OS X install, R 3.4.2
 * Ubuntu 14.04 (on travis-ci), R 3.4.2
