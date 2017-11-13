@@ -28,7 +28,6 @@ This is a new release, so there are no reverse dependencies.
 
 ## Windows support
 
-So far we have been unable to get this package working on Windows. It has 
-proven difficult to install `tmux` via `Cygwin` through a Remote Desktop
-on AppVeyor (see https://ci.appveyor.com/project/jeroenjanssens/tmuxr).
-We hope to fix this in a future release.
+This package requires 'tmux', which can only be installed on Windows through
+'Cygwin'. It is possible to get this working, but because win-builder does 
+not support 'Cygwin', we have added "OS_type: unix" to DESCRIPTION.

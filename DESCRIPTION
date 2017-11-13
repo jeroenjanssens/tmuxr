@@ -7,7 +7,7 @@ Authors@R: c(
     )                  
 Description: Create, control, and record 'tmux' sessions, windows, and panes
     using a pipeable API.
-Depends: R (>= 3.4.0)
+Depends: R (>= 3.3.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

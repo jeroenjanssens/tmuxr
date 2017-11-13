@@ -29,9 +29,5 @@ is_running <- function() {
 #'
 #' @export
 is_installed <- function() {
-  result <- suppressWarnings(
-    system2("which", "tmux", stdout = TRUE, stderr = TRUE)
-  )
-  status <- attr(result, "status")
-  (is.null(status) || (status == 0))
+  unname(Sys.which("tmux")) != ""
 }
