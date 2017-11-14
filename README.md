@@ -3,7 +3,7 @@
 tmuxr <img src="man/figures/logo.png" align="right" width="100px" />
 ====================================================================
 
-[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/jw0bf2mt65q556ec/branch/master?svg=true)](https://ci.appveyor.com/project/jeroenjanssens/tmuxr/branch/master) [![Travis-CI build status](https://travis-ci.org/datascienceworkshops/tmuxr.svg?branch=master)](https://travis-ci.org/datascienceworkshops/tmuxr) [![codecov](https://codecov.io/gh/datascienceworkshops/tmuxr/branch/master/graph/badge.svg)](https://codecov.io/gh/datascienceworkshops/tmuxr) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/tmuxr)](https://cran.r-project.org/package=tmuxr)
+[![Travis-CI build status](https://travis-ci.org/datascienceworkshops/tmuxr.svg?branch=master)](https://travis-ci.org/datascienceworkshops/tmuxr) [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/jw0bf2mt65q556ec/branch/master?svg=true)](https://ci.appveyor.com/project/jeroenjanssens/tmuxr/branch/master) [![codecov](https://codecov.io/gh/datascienceworkshops/tmuxr/branch/master/graph/badge.svg)](https://codecov.io/gh/datascienceworkshops/tmuxr) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/tmuxr)](https://cran.r-project.org/package=tmuxr)
 
 Overview
 --------
@@ -48,7 +48,7 @@ send_lines(s, c("seq 100 |",
 capture_pane(s, trim = TRUE)
 #> [1] "$ seq 100 |"                  "> grep 3 |"                  
 #> [3] "> wc -l"                      "      19"                    
-#> [5] "$ date"                       "Tue Nov 14 18:33:36 CET 2017"
+#> [5] "$ date"                       "Tue Nov 14 18:35:00 CET 2017"
 kill_session(s)
 ```
 
@@ -158,9 +158,9 @@ attach_session("python", prompt = prompts$jupyter) %>%
 ``` r
 list_sessions()
 #> [[1]]
-#> tmuxr session docker_R: 1 windows (created Tue Nov 14 18:33:36 2017) [80x24]
+#> tmuxr session docker_R: 1 windows (created Tue Nov 14 18:35:00 2017) [80x24]
 #> [[2]]
-#> tmuxr session python: 1 windows (created Tue Nov 14 18:33:38 2017) [80x24]
+#> tmuxr session python: 1 windows (created Tue Nov 14 18:35:02 2017) [80x24]
 kill_server()
 #> character(0)
 ```

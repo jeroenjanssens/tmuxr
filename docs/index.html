@@ -74,7 +74,9 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install <code>tmuxr</code> from GitHub with:</p>
+<p><code>tmuxr</code> is available on CRAN and can be installed with:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"tmuxr"</span>)</code></pre></div>
+<p>Alternatively, the development version of <code>tmuxr</code> from GitHub can be installed with:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"datascienceworkshops/tmuxr"</span>)</code></pre></div>
 </div>
@@ -95,7 +97,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(s, <span class="dt">trim =</span> <span class="ot">TRUE</span>)
 <span class="co">#&gt; [1] "$ seq 100 |"                  "&gt; grep 3 |"                  </span>
 <span class="co">#&gt; [3] "&gt; wc -l"                      "      19"                    </span>
-<span class="co">#&gt; [5] "$ date"                       "Thu Nov  9 13:35:59 CET 2017"</span>
+<span class="co">#&gt; [5] "$ date"                       "Tue Nov 14 18:35:06 CET 2017"</span>
 <span class="kw"><a href="reference/kill_session.html">kill_session</a></span>(s)</code></pre></div>
 <!-- #### Full screen capture -->
 <!-- ```{r} -->
@@ -199,9 +201,9 @@ jupyter <span class="op">%&gt;%</span>
 <span class="co">#&gt; In [3]:</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/list_sessions.html">list_sessions</a></span>()
 <span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; tmuxr session docker_R: 1 windows (created Thu Nov  9 13:35:59 2017) [80x24]</span>
+<span class="co">#&gt; tmuxr session docker_R: 1 windows (created Tue Nov 14 18:35:06 2017) [80x24]</span>
 <span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; tmuxr session python: 1 windows (created Thu Nov  9 13:36:01 2017) [80x24]</span>
+<span class="co">#&gt; tmuxr session python: 1 windows (created Tue Nov 14 18:35:08 2017) [80x24]</span>
 <span class="kw"><a href="reference/kill_server.html">kill_server</a></span>()
 <span class="co">#&gt; character(0)</span></code></pre></div>
 </div>
@@ -219,6 +221,8 @@ jupyter <span class="op">%&gt;%</span>
     <h2 class="hasAnchor">
 <a href="#sidebar" class="anchor"></a>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cran.r-project.org/package=tmuxr">https://​cran.r-project.org/​package=tmuxr</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/datascienceworkshops/tmuxr">https://​github.com/​datascienceworkshops/​tmuxr</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/datascienceworkshops/tmuxr/issues">https://​github.com/​datascienceworkshops/​tmuxr/​issues</a>
@@ -235,8 +239,8 @@ jupyter <span class="op">%&gt;%</span>
 </ul>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://ci.appveyor.com/project/jeroenjanssens/tmuxr/branch/master"><img src="https://ci.appveyor.com/api/projects/status/jw0bf2mt65q556ec/branch/master?svg=true" alt="AppVeyor Build status"></a></li>
 <li><a href="https://travis-ci.org/datascienceworkshops/tmuxr"><img src="https://travis-ci.org/datascienceworkshops/tmuxr.svg?branch=master" alt="Travis-CI build status"></a></li>
+<li><a href="https://ci.appveyor.com/project/jeroenjanssens/tmuxr/branch/master"><img src="https://ci.appveyor.com/api/projects/status/jw0bf2mt65q556ec/branch/master?svg=true" alt="AppVeyor Build status"></a></li>
 <li><a href="https://codecov.io/gh/datascienceworkshops/tmuxr"><img src="https://codecov.io/gh/datascienceworkshops/tmuxr/branch/master/graph/badge.svg" alt="codecov"></a></li>
 <li><a href="https://cran.r-project.org/package=tmuxr"><img src="http://www.r-pkg.org/badges/version/tmuxr" alt="CRAN_Status_Badge"></a></li>
 </ul>
