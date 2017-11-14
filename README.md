@@ -15,7 +15,13 @@ Most functions, such as `new_session`, `list_windows`, and `send_keys` are inspi
 Installation
 ------------
 
-You can install `tmuxr` from GitHub with:
+`tmuxr` is available on CRAN and can be installed with:
+
+``` r
+install.packages("tmuxr")
+```
+
+Alternatively, the development version of `tmuxr` from GitHub can be installed with:
 
 ``` r
 # install.packages("devtools")
@@ -42,7 +48,7 @@ send_lines(s, c("seq 100 |",
 capture_pane(s, trim = TRUE)
 #> [1] "$ seq 100 |"                  "> grep 3 |"                  
 #> [3] "> wc -l"                      "      19"                    
-#> [5] "$ date"                       "Thu Nov  9 13:35:52 CET 2017"
+#> [5] "$ date"                       "Tue Nov 14 18:33:36 CET 2017"
 kill_session(s)
 ```
 
@@ -152,9 +158,9 @@ attach_session("python", prompt = prompts$jupyter) %>%
 ``` r
 list_sessions()
 #> [[1]]
-#> tmuxr session docker_R: 1 windows (created Thu Nov  9 13:35:52 2017) [80x24]
+#> tmuxr session docker_R: 1 windows (created Tue Nov 14 18:33:36 2017) [80x24]
 #> [[2]]
-#> tmuxr session python: 1 windows (created Thu Nov  9 13:35:54 2017) [80x24]
+#> tmuxr session python: 1 windows (created Tue Nov 14 18:33:38 2017) [80x24]
 kill_server()
 #> character(0)
 ```

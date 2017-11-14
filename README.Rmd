@@ -29,7 +29,13 @@ Most functions, such as `new_session`, `list_windows`, and `send_keys` are inspi
 
 ## Installation
 
-You can install `tmuxr` from GitHub with:
+`tmuxr` is available on CRAN and can be installed with:
+
+```{r, eval = FALSE}
+install.packages("tmuxr")
+```
+
+Alternatively, the development version of `tmuxr` from GitHub can be installed with:
 
 ```{r, eval = FALSE}
 # install.packages("devtools")
