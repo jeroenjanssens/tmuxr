@@ -71,6 +71,12 @@
 <p><code>tmuxr</code> is an R package that allows you (1) to manage <a href="https://github.com/tmux/tmux/wiki">tmux</a> and (2) to interact with the processes it runs. It features a pipeable API with which you can create, control, and capture tmux sessions, windows, and panes.</p>
 <p>Most functions, such as <code>new_session</code>, <code>list_windows</code>, and <code>send_keys</code> are inspired by the commands <code>tmux</code> offers. Other functions, such as <code>attach_window</code>, <code>wait_for_prompt</code>, <code>send_lines</code> are added for convenience. Please note that not all <code>tmux</code> commands have yet been implemented.</p>
 </div>
+<div id="rationale" class="section level2">
+<h2 class="hasAnchor">
+<a href="#rationale" class="anchor"></a>Rationale</h2>
+<p>The main reason <code>tmuxr</code> exists is because of the <a href="https://datascienceworkshops.github.io/knitractive/">knitractive</a> package. This package provides a knitr engine that allows you to simulate interactive sessions (e.g., Python console, Bash shell) across multiple code chunks. Interactive sessions are run inside a <code>tmux</code> session. We realized that the functionality for managing <code>tmux</code> could be useful in itself or as a basis for other packages as well, and hence decided to put that functionality into its own package.</p>
+<p>Generally speaking, <code>tmuxr</code> might be of interest to you if you want to automate interacte applications such as <code>bash</code>, <code>ssh</code>, and command-line interfaces. Have a look at the examples below.</p>
+</div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -97,7 +103,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(s, <span class="dt">trim =</span> <span class="ot">TRUE</span>)
 <span class="co">#&gt; [1] "$ seq 100 |"                  "&gt; grep 3 |"                  </span>
 <span class="co">#&gt; [3] "&gt; wc -l"                      "      19"                    </span>
-<span class="co">#&gt; [5] "$ date"                       "Tue Nov 14 18:35:06 CET 2017"</span>
+<span class="co">#&gt; [5] "$ date"                       "Thu Nov 23 19:35:14 CET 2017"</span>
 <span class="kw"><a href="reference/kill_session.html">kill_session</a></span>(s)</code></pre></div>
 <!-- #### Full screen capture -->
 <!-- ```{r} -->
@@ -177,15 +183,34 @@ jupyter <span class="op">%&gt;%</span>
 <span class="co">#&gt;       :     return a + b</span>
 <span class="co">#&gt;       :</span>
 <span class="co">#&gt;       :</span></code></pre></div>
-<!-- ### Capture a telnet session -->
-<!-- ```{r, cache=TRUE} -->
-<!-- new_session(shell_command = "telnet", prompt = "^telnet>$") %>% -->
-<!--   send_keys("open towel.blinkenlights.nl") %>% -->
-<!--   send_enter() %>% -->
-<!--   wait(26) %>% -->
-<!--   capture_pane(as_message = TRUE, trim = FALSE) %>% -->
-<!--   kill_session() -->
-<!-- ``` -->
+</div>
+<div id="capture-a-telnet-session" class="section level3">
+<h3 class="hasAnchor">
+<a href="#capture-a-telnet-session" class="anchor"></a>Capture a telnet session</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/new_session.html">new_session</a></span>(<span class="dt">shell_command =</span> <span class="st">"telnet"</span>, <span class="dt">prompt =</span> <span class="st">"^telnet&gt;$"</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/send_keys.html">send_keys</a></span>(<span class="st">"open towel.blinkenlights.nl"</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/send_enter.html">send_enter</a></span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/wait.html">wait</a></span>(<span class="dv">26</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(<span class="dt">as_message =</span> <span class="ot">TRUE</span>, <span class="dt">trim =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/kill_session.html">kill_session</a></span>()
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;                           8888888888  888    88888</span>
+<span class="co">#&gt;                          88     88   88 88   88  88</span>
+<span class="co">#&gt;                           8888  88  88   88  88888</span>
+<span class="co">#&gt;                              88 88 888888888 88   88</span>
+<span class="co">#&gt;                       88888888  88 88     88 88    888888</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;                       88  88  88   888    88888    888888</span>
+<span class="co">#&gt;                       88  88  88  88 88   88  88  88</span>
+<span class="co">#&gt;                       88 8888 88 88   88  88888    8888</span>
+<span class="co">#&gt;                        888  888 888888888 88   88     88</span>
+<span class="co">#&gt;                         88  88  88     88 88    8888888</span></code></pre></div>
 </div>
 <div id="continue-with-an-existing-session" class="section level3">
 <h3 class="hasAnchor">
@@ -201,9 +226,9 @@ jupyter <span class="op">%&gt;%</span>
 <span class="co">#&gt; In [3]:</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/list_sessions.html">list_sessions</a></span>()
 <span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; tmuxr session docker_R: 1 windows (created Tue Nov 14 18:35:06 2017) [80x24]</span>
+<span class="co">#&gt; tmuxr session docker_R: 1 windows (created Thu Nov 23 19:35:14 2017) [80x24]</span>
 <span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; tmuxr session python: 1 windows (created Tue Nov 14 18:35:08 2017) [80x24]</span>
+<span class="co">#&gt; tmuxr session python: 1 windows (created Thu Nov 23 19:35:16 2017) [80x24]</span>
 <span class="kw"><a href="reference/kill_server.html">kill_server</a></span>()
 <span class="co">#&gt; character(0)</span></code></pre></div>
 </div>

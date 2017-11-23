@@ -12,6 +12,13 @@ Overview
 
 Most functions, such as `new_session`, `list_windows`, and `send_keys` are inspired by the commands `tmux` offers. Other functions, such as `attach_window`, `wait_for_prompt`, `send_lines` are added for convenience. Please note that not all `tmux` commands have yet been implemented.
 
+Rationale
+---------
+
+The main reason `tmuxr` exists is because of the [knitractive](https://datascienceworkshops.github.io/knitractive/) package. This package provides a knitr engine that allows you to simulate interactive sessions (e.g., Python console, Bash shell) across multiple code chunks. Interactive sessions are run inside a `tmux` session. We realized that the functionality for managing `tmux` could be useful in itself or as a basis for other packages as well, and hence decided to put that functionality into its own package.
+
+Generally speaking, `tmuxr` might be of interest to you if you want to automate interacte applications such as `bash`, `ssh`, and command-line interfaces. Have a look at the examples below.
+
 Installation
 ------------
 
@@ -48,7 +55,7 @@ send_lines(s, c("seq 100 |",
 capture_pane(s, trim = TRUE)
 #> [1] "$ seq 100 |"                  "> grep 3 |"                  
 #> [3] "> wc -l"                      "      19"                    
-#> [5] "$ date"                       "Tue Nov 14 18:35:00 CET 2017"
+#> [5] "$ date"                       "Thu Nov 23 19:34:39 CET 2017"
 kill_session(s)
 ```
 
@@ -132,15 +139,35 @@ jupyter %>%
 #>       :
 ```
 
-<!-- ### Capture a telnet session -->
-<!-- ```{r, cache=TRUE} -->
-<!-- new_session(shell_command = "telnet", prompt = "^telnet>$") %>% -->
-<!--   send_keys("open towel.blinkenlights.nl") %>% -->
-<!--   send_enter() %>% -->
-<!--   wait(26) %>% -->
-<!--   capture_pane(as_message = TRUE, trim = FALSE) %>% -->
-<!--   kill_session() -->
-<!-- ``` -->
+### Capture a telnet session
+
+``` r
+new_session(shell_command = "telnet", prompt = "^telnet>$") %>%
+  send_keys("open towel.blinkenlights.nl") %>%
+  send_enter() %>%
+  wait(26) %>%
+  capture_pane(as_message = TRUE, trim = FALSE) %>%
+  kill_session()
+#> 
+#> 
+#> 
+#> 
+#> 
+#> 
+#> 
+#>                           8888888888  888    88888
+#>                          88     88   88 88   88  88
+#>                           8888  88  88   88  88888
+#>                              88 88 888888888 88   88
+#>                       88888888  88 88     88 88    888888
+#> 
+#>                       88  88  88   888    88888    888888
+#>                       88  88  88  88 88   88  88  88
+#>                       88 8888 88 88   88  88888    8888
+#>                        888  888 888888888 88   88     88
+#>                         88  88  88     88 88    8888888
+```
+
 ### Continue with an existing session
 
 ``` r
@@ -158,9 +185,9 @@ attach_session("python", prompt = prompts$jupyter) %>%
 ``` r
 list_sessions()
 #> [[1]]
-#> tmuxr session docker_R: 1 windows (created Tue Nov 14 18:35:00 2017) [80x24]
+#> tmuxr session docker_R: 1 windows (created Thu Nov 23 19:34:39 2017) [80x24]
 #> [[2]]
-#> tmuxr session python: 1 windows (created Tue Nov 14 18:35:02 2017) [80x24]
+#> tmuxr session python: 1 windows (created Thu Nov 23 19:34:43 2017) [80x24]
 kill_server()
 #> character(0)
 ```

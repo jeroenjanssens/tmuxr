@@ -27,6 +27,12 @@ knitr::opts_chunk$set(
 
 Most functions, such as `new_session`, `list_windows`, and `send_keys` are inspired by the commands `tmux` offers. Other functions, such as `attach_window`, `wait_for_prompt`, `send_lines` are added for convenience. Please note that not all `tmux` commands have yet been implemented. 
 
+## Rationale
+
+The main reason `tmuxr` exists is because of the [knitractive](https://datascienceworkshops.github.io/knitractive/) package. This package provides a knitr engine that allows you to simulate interactive sessions (e.g., Python console, Bash shell) across multiple code chunks. Interactive sessions are run inside a `tmux` session. We realized that the functionality for managing `tmux` could be useful in itself or as a basis for other packages as well, and hence decided to put that functionality into its own package.
+
+Generally speaking, `tmuxr` might be of interest to you if you want to automate interacte applications such as `bash`, `ssh`, and command-line interfaces. Have a look at the examples below.
+
 ## Installation
 
 `tmuxr` is available on CRAN and can be installed with:
@@ -104,16 +110,16 @@ jupyter %>%
 ```
 
 
-<!-- ### Capture a telnet session -->
+### Capture a telnet session
 
-<!-- ```{r, cache=TRUE} -->
-<!-- new_session(shell_command = "telnet", prompt = "^telnet>$") %>% -->
-<!--   send_keys("open towel.blinkenlights.nl") %>% -->
-<!--   send_enter() %>% -->
-<!--   wait(26) %>% -->
-<!--   capture_pane(as_message = TRUE, trim = FALSE) %>% -->
-<!--   kill_session() -->
-<!-- ``` -->
+```{r, cache=TRUE}
+new_session(shell_command = "telnet", prompt = "^telnet>$") %>%
+  send_keys("open towel.blinkenlights.nl") %>%
+  send_enter() %>%
+  wait(26) %>%
+  capture_pane(as_message = TRUE, trim = FALSE) %>%
+  kill_session()
+```
 
 
 ### Continue with an existing session
