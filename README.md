@@ -17,7 +17,7 @@ Rationale
 
 The main reason `tmuxr` exists is because of the [knitractive](https://datascienceworkshops.github.io/knitractive/) package. This package provides a knitr engine that allows you to simulate interactive sessions (e.g., Python console, Bash shell) across multiple code chunks. Interactive sessions are run inside a `tmux` session. We realized that the functionality for managing `tmux` could be useful in itself or as a basis for other packages as well, and hence decided to put that functionality into its own package.
 
-Generally speaking, `tmuxr` might be of interest to you if you want to automate interacte applications such as `bash`, `ssh`, and command-line interfaces. Have a look at the examples below.
+Generally speaking, `tmuxr` might be of interest to you if you want to automate interactive applications such as `bash`, `ssh`, and command-line interfaces. Have a look at the examples below.
 
 Installation
 ------------
@@ -55,7 +55,7 @@ send_lines(s, c("seq 100 |",
 capture_pane(s, trim = TRUE)
 #> [1] "$ seq 100 |"                  "> grep 3 |"                  
 #> [3] "> wc -l"                      "      19"                    
-#> [5] "$ date"                       "Thu Nov 23 19:34:39 CET 2017"
+#> [5] "$ date"                       "Thu Nov 23 19:44:50 CET 2017"
 kill_session(s)
 ```
 
@@ -185,9 +185,9 @@ attach_session("python", prompt = prompts$jupyter) %>%
 ``` r
 list_sessions()
 #> [[1]]
-#> tmuxr session docker_R: 1 windows (created Thu Nov 23 19:34:39 2017) [80x24]
+#> tmuxr session docker_R: 1 windows (created Thu Nov 23 19:44:50 2017) [80x24]
 #> [[2]]
-#> tmuxr session python: 1 windows (created Thu Nov 23 19:34:43 2017) [80x24]
+#> tmuxr session python: 1 windows (created Thu Nov 23 19:44:52 2017) [80x24]
 kill_server()
 #> character(0)
 ```

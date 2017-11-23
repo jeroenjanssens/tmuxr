@@ -75,7 +75,7 @@
 <h2 class="hasAnchor">
 <a href="#rationale" class="anchor"></a>Rationale</h2>
 <p>The main reason <code>tmuxr</code> exists is because of the <a href="https://datascienceworkshops.github.io/knitractive/">knitractive</a> package. This package provides a knitr engine that allows you to simulate interactive sessions (e.g., Python console, Bash shell) across multiple code chunks. Interactive sessions are run inside a <code>tmux</code> session. We realized that the functionality for managing <code>tmux</code> could be useful in itself or as a basis for other packages as well, and hence decided to put that functionality into its own package.</p>
-<p>Generally speaking, <code>tmuxr</code> might be of interest to you if you want to automate interacte applications such as <code>bash</code>, <code>ssh</code>, and command-line interfaces. Have a look at the examples below.</p>
+<p>Generally speaking, <code>tmuxr</code> might be of interest to you if you want to automate interactive applications such as <code>bash</code>, <code>ssh</code>, and command-line interfaces. Have a look at the examples below.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -103,7 +103,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(s, <span class="dt">trim =</span> <span class="ot">TRUE</span>)
 <span class="co">#&gt; [1] "$ seq 100 |"                  "&gt; grep 3 |"                  </span>
 <span class="co">#&gt; [3] "&gt; wc -l"                      "      19"                    </span>
-<span class="co">#&gt; [5] "$ date"                       "Thu Nov 23 19:35:14 CET 2017"</span>
+<span class="co">#&gt; [5] "$ date"                       "Thu Nov 23 19:44:56 CET 2017"</span>
 <span class="kw"><a href="reference/kill_session.html">kill_session</a></span>(s)</code></pre></div>
 <!-- #### Full screen capture -->
 <!-- ```{r} -->
@@ -226,9 +226,9 @@ jupyter <span class="op">%&gt;%</span>
 <span class="co">#&gt; In [3]:</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/list_sessions.html">list_sessions</a></span>()
 <span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; tmuxr session docker_R: 1 windows (created Thu Nov 23 19:35:14 2017) [80x24]</span>
+<span class="co">#&gt; tmuxr session docker_R: 1 windows (created Thu Nov 23 19:44:56 2017) [80x24]</span>
 <span class="co">#&gt; [[2]]</span>
-<span class="co">#&gt; tmuxr session python: 1 windows (created Thu Nov 23 19:35:16 2017) [80x24]</span>
+<span class="co">#&gt; tmuxr session python: 1 windows (created Thu Nov 23 19:44:58 2017) [80x24]</span>
 <span class="kw"><a href="reference/kill_server.html">kill_server</a></span>()
 <span class="co">#&gt; character(0)</span></code></pre></div>
 </div>
