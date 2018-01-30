@@ -25,7 +25,7 @@ is_running <- function() {
 }
 
 
-#' Is tmux installed?
+#' Is tmux correctly installed?
 #'
 #' @export
 is_installed <- function() {
