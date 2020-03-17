@@ -19,7 +19,6 @@ knitr::opts_chunk$set(
 [![Travis-CI build status](https://travis-ci.org/datascienceworkshops/tmuxr.svg?branch=master)](https://travis-ci.org/datascienceworkshops/tmuxr) 
 [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/jw0bf2mt65q556ec/branch/master?svg=true)](https://ci.appveyor.com/project/jeroenjanssens/tmuxr/branch/master)
 [![codecov](https://codecov.io/gh/datascienceworkshops/tmuxr/branch/master/graph/badge.svg)](https://codecov.io/gh/datascienceworkshops/tmuxr)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/tmuxr)](https://cran.r-project.org/package=tmuxr)
 
 ## Overview
 
@@ -35,13 +34,7 @@ Generally speaking, `tmuxr` might be of interest to you if you want to automate 
 
 ## Installation
 
-`tmuxr` is available on CRAN and can be installed with:
-
-```{r, eval = FALSE}
-install.packages("tmuxr")
-```
-
-Alternatively, the development version of `tmuxr` from GitHub can be installed with:
+The development version of `tmuxr` from GitHub can be installed with:
 
 ```{r, eval = FALSE}
 # install.packages("devtools")

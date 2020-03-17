@@ -1,42 +1,52 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-tmuxr <img src="man/figures/logo.png" align="right" width="100px" />
-====================================================================
 
-[![Travis-CI build status](https://travis-ci.org/datascienceworkshops/tmuxr.svg?branch=master)](https://travis-ci.org/datascienceworkshops/tmuxr) [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/jw0bf2mt65q556ec/branch/master?svg=true)](https://ci.appveyor.com/project/jeroenjanssens/tmuxr/branch/master) [![codecov](https://codecov.io/gh/datascienceworkshops/tmuxr/branch/master/graph/badge.svg)](https://codecov.io/gh/datascienceworkshops/tmuxr) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/tmuxr)](https://cran.r-project.org/package=tmuxr)
+# tmuxr <img src="man/figures/logo.png" align="right" width="100px" />
 
-Overview
---------
+[![Travis-CI build
+status](https://travis-ci.org/datascienceworkshops/tmuxr.svg?branch=master)](https://travis-ci.org/datascienceworkshops/tmuxr)
+[![AppVeyor Build
+status](https://ci.appveyor.com/api/projects/status/jw0bf2mt65q556ec/branch/master?svg=true)](https://ci.appveyor.com/project/jeroenjanssens/tmuxr/branch/master)
+[![codecov](https://codecov.io/gh/datascienceworkshops/tmuxr/branch/master/graph/badge.svg)](https://codecov.io/gh/datascienceworkshops/tmuxr)
 
-`tmuxr` is an R package that allows you (1) to manage [tmux](https://github.com/tmux/tmux/wiki) and (2) to interact with the processes it runs. It features a pipeable API with which you can create, control, and capture tmux sessions, windows, and panes.
+## Overview
 
-Most functions, such as `new_session`, `list_windows`, and `send_keys` are inspired by the commands `tmux` offers. Other functions, such as `attach_window`, `wait_for_prompt`, `send_lines` are added for convenience. Please note that not all `tmux` commands have yet been implemented.
+`tmuxr` is an R package that allows you (1) to manage
+[tmux](https://github.com/tmux/tmux/wiki) and (2) to interact with the
+processes it runs. It features a pipeable API with which you can create,
+control, and capture tmux sessions, windows, and panes.
 
-Rationale
----------
+Most functions, such as `new_session`, `list_windows`, and `send_keys`
+are inspired by the commands `tmux` offers. Other functions, such as
+`attach_window`, `wait_for_prompt`, `send_lines` are added for
+convenience. Please note that not all `tmux` commands have yet been
+implemented.
 
-The main reason `tmuxr` exists is because of the [knitractive](https://datascienceworkshops.github.io/knitractive/) package. This package provides a knitr engine that allows you to simulate interactive sessions (e.g., Python console, Bash shell) across multiple code chunks. Interactive sessions are run inside a `tmux` session. We realized that the functionality for managing `tmux` could be useful in itself or as a basis for other packages as well, and hence decided to put that functionality into its own package.
+## Rationale
 
-Generally speaking, `tmuxr` might be of interest to you if you want to automate interactive applications such as `bash`, `ssh`, and command-line interfaces. Have a look at the examples below.
+The main reason `tmuxr` exists is because of the
+[knitractive](https://datascienceworkshops.github.io/knitractive/)
+package. This package provides a knitr engine that allows you to
+simulate interactive sessions (e.g., Python console, Bash shell) across
+multiple code chunks. Interactive sessions are run inside a `tmux`
+session. We realized that the functionality for managing `tmux` could be
+useful in itself or as a basis for other packages as well, and hence
+decided to put that functionality into its own package.
 
-Installation
-------------
+Generally speaking, `tmuxr` might be of interest to you if you want to
+automate interactive applications such as `bash`, `ssh`, and
+command-line interfaces. Have a look at the examples below.
 
-`tmuxr` is available on CRAN and can be installed with:
+## Installation
 
-``` r
-install.packages("tmuxr")
-```
-
-Alternatively, the development version of `tmuxr` from GitHub can be installed with:
+The development version of `tmuxr` from GitHub can be installed with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("datascienceworkshops/tmuxr")
 ```
 
-Examples
---------
+## Examples
 
 ``` r
 library(tmuxr)
@@ -55,19 +65,28 @@ send_lines(s, c("seq 100 |",
 capture_pane(s, trim = TRUE)
 #> [1] "$ seq 100 |"                  "> grep 3 |"                  
 #> [3] "> wc -l"                      "      19"                    
-#> [5] "$ date"                       "Thu Nov 23 19:44:50 CET 2017"
+#> [5] "$ date"                       "Tue Mar 17 16:14:04 CET 2020"
 kill_session(s)
 ```
 
 <!-- #### Full screen capture -->
+
 <!-- ```{r} -->
+
 <!-- new_session() %>% -->
+
 <!--   send_keys("htop") %>% -->
+
 <!--   send_enter() %>% -->
+
 <!--   wait(2) %>% -->
+
 <!--   capture_pane(as_message = TRUE) %>% -->
+
 <!--   send_keys("q") -->
+
 <!-- ``` -->
+
 ### Run R via Docker
 
 ``` r
@@ -77,8 +96,6 @@ new_session(shell_command = "docker run --rm -it rocker/tidyverse R",
   send_lines(c("library(tidyverse)",
                "sessionInfo()")) %>%
   capture_pane(as_message = TRUE)
-#>  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C
-#>  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C
 #>  [9] LC_ADDRESS=C               LC_TELEPHONE=C
 #> [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C
 #> 
@@ -86,20 +103,22 @@ new_session(shell_command = "docker run --rm -it rocker/tidyverse R",
 #> [1] stats     graphics  grDevices utils     datasets  methods   base
 #> 
 #> other attached packages:
-#> [1] dplyr_0.7.2     purrr_0.2.2.2   readr_1.1.1     tidyr_0.6.3
-#> [5] tibble_1.3.3    ggplot2_2.2.1   tidyverse_1.1.1
+#> [1] forcats_0.4.0   stringr_1.4.0   dplyr_0.8.3     purrr_0.3.3
+#> [5] readr_1.3.1     tidyr_1.0.2     tibble_2.1.3    ggplot2_3.2.1
+#> [9] tidyverse_1.3.0
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] Rcpp_0.12.12     cellranger_1.1.0 compiler_3.4.1   plyr_1.8.4
-#>  [5] bindr_0.1        forcats_0.2.0    tools_3.4.1      jsonlite_1.5
-#>  [9] lubridate_1.6.0  nlme_3.1-131     gtable_0.2.0     lattice_0.20-35
-#> [13] pkgconfig_2.0.1  rlang_0.1.1      psych_1.7.5      parallel_3.4.1
-#> [17] haven_1.1.0      bindrcpp_0.2     xml2_1.1.1       stringr_1.2.0
-#> [21] httr_1.2.1       hms_0.3          grid_3.4.1       glue_1.1.1
-#> [25] R6_2.2.2         readxl_1.0.0     foreign_0.8-69   reshape2_1.4.2
-#> [29] modelr_0.1.1     magrittr_1.5     scales_0.4.1     rvest_0.3.2
-#> [33] assertthat_0.2.0 mnormt_1.5-5     colorspace_1.3-2 stringi_1.1.5
-#> [37] lazyeval_0.2.0   munsell_0.4.3    broom_0.4.2
+#>  [1] Rcpp_1.0.3       cellranger_1.1.0 pillar_1.4.3     compiler_3.6.2
+#>  [5] dbplyr_1.4.2     tools_3.6.2      jsonlite_1.6     lubridate_1.7.4
+#>  [9] lifecycle_0.1.0  nlme_3.1-142     gtable_0.3.0     lattice_0.20-38
+#> [13] pkgconfig_2.0.3  rlang_0.4.4      reprex_0.3.0     cli_2.0.1
+#> [17] rstudioapi_0.10  DBI_1.1.0        haven_2.2.0      withr_2.1.2
+#> [21] xml2_1.2.2       httr_1.4.1       fs_1.3.1         generics_0.0.2
+#> [25] vctrs_0.2.2      hms_0.5.3        grid_3.6.2       tidyselect_1.0.0
+#> [29] glue_1.3.1       R6_2.4.1         fansi_0.4.1      readxl_1.3.1
+#> [33] modelr_0.1.5     magrittr_1.5     backports_1.1.5  scales_1.1.0
+#> [37] rvest_0.3.5      assertthat_0.2.1 colorspace_1.4-1 stringi_1.4.5
+#> [41] lazyeval_0.2.2   munsell_0.5.0    broom_0.5.4      crayon_1.3.4
 #> >
 ```
 
@@ -120,22 +139,14 @@ jupyter %>%
                "",
                "")) %>%
   capture_pane(as_message = TRUE, strip_lonely_prompt = FALSE, trim = TRUE)
-#> Jupyter console 5.1.0
+#> Jupyter console 6.1.0
 #> 
-#> Python 3.6.1 |Anaconda 4.4.0 (x86_64)| (default, May 11 2017, 13:04:09)
-#> Type "copyright", "credits" or "license" for more information.
-#> 
-#> IPython 5.3.0 -- An enhanced Interactive Python.
-#> ?         -> Introduction and overview of IPython's features.
-#> %quickref -> Quick reference.
-#> help      -> Python's own help system.
-#> object?   -> Details about 'object', use 'object??' for extra details.
-#> 
-#> 
+#> Python 3.7.6 (default, Jan  8 2020, 13:42:34)
+#> Type 'copyright', 'credits' or 'license' for more information
+#> IPython 7.12.0 -- An enhanced Interactive Python. Type '?' for help.
 #> 
 #> In [1]: def mysum(a, b):
 #>       :     return a + b
-#>       :
 #>       :
 ```
 
@@ -176,23 +187,19 @@ attach_session("python", prompt = prompts$jupyter) %>%
   send_lines("mysum(41, 1)") %>%
   wait(0.2) %>%
   capture_pane(start = 18, as_message = TRUE)
-#> In [2]: mysum(41, 1)
-#> Out[2]: 42
 #> 
-#> In [3]:
 ```
 
 ``` r
 list_sessions()
 #> [[1]]
-#> tmuxr session docker_R: 1 windows (created Thu Nov 23 19:44:50 2017) [80x24]
+#> tmuxr session docker_R: 1 windows (created Tue Mar 17 16:14:04 2020)
 #> [[2]]
-#> tmuxr session python: 1 windows (created Thu Nov 23 19:44:52 2017) [80x24]
+#> tmuxr session python: 1 windows (created Tue Mar 17 16:17:02 2020)
 kill_server()
 #> character(0)
 ```
 
-License
--------
+## License
 
 The `tmuxr` package is licensed under the MIT License.
