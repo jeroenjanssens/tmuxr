@@ -37,6 +37,8 @@ reference:
     contents:
       - attach_pane
       - capture_pane
+      - get_height
+      - get_width
       - list_panes
       - pipe_pane
   - title: Server

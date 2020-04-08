@@ -119,3 +119,25 @@ print.tmuxr_pane <- function(x, ...) {
   status <- lines[grepl(stringr::str_interp("^${x$name}:.*$"), lines)]
   cat("tmuxr pane", status)
 }
+
+#' Get height of pane
+#'
+#' @param target A session, window, or pane.
+#'
+#' @export
+get_height <- function(target) {
+  args <- c("-p", "-t", target$name, "'#{pane_height}'")
+  as.numeric(tmux_display(args))
+}
+
+#' Get width of pane
+#'
+#' @param target A session, window, or pane.
+#'
+#' @export
+get_width <- function(target) {
+  args <- c("-p", "-t", target$name, "'#{pane_width}'")
+  as.numeric(tmux_display(args))
+}
+
+

@@ -22,6 +22,9 @@ tmux_command <- function(command) {
 tmux_capture_pane <- tmux_command("capture-pane")
 
 #' @keywords internal
+tmux_display <- tmux_command("display")
+
+#' @keywords internal
 tmux_kill_server <- tmux_command("kill-server")
 
 #' @keywords internal
@@ -50,3 +53,4 @@ tmux_send_keys <- tmux_command("send-keys")
 
 #' @keywords internal
 tmux_start_server <- tmux_command("start-server")
+
