@@ -8,6 +8,8 @@ status](https://travis-ci.org/datascienceworkshops/tmuxr.svg?branch=master)](htt
 [![AppVeyor Build
 status](https://ci.appveyor.com/api/projects/status/jw0bf2mt65q556ec/branch/master?svg=true)](https://ci.appveyor.com/project/jeroenjanssens/tmuxr/branch/master)
 [![codecov](https://codecov.io/gh/datascienceworkshops/tmuxr/branch/master/graph/badge.svg)](https://codecov.io/gh/datascienceworkshops/tmuxr)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 ## Overview
 
@@ -63,9 +65,9 @@ send_lines(s, c("seq 100 |",
                 "wc -l ",
                 "date"))
 capture_pane(s, trim = TRUE)
-#> [1] "$ seq 100 |"                  "> grep 3 |"                  
-#> [3] "> wc -l"                      "      19"                    
-#> [5] "$ date"                       "Tue Mar 17 16:14:04 CET 2020"
+#> [1] "$ seq 100 |"                   "> grep 3 |"                   
+#> [3] "> wc -l"                       "      19"                     
+#> [5] "$ date"                        "Wed Apr  8 14:21:48 CEST 2020"
 kill_session(s)
 ```
 
@@ -146,7 +148,6 @@ jupyter %>%
 #> IPython 7.12.0 -- An enhanced Interactive Python. Type '?' for help.
 #> 
 #> In [1]: def mysum(a, b):
-#>       :     return a + b
 #>       :
 ```
 
@@ -159,24 +160,8 @@ new_session(shell_command = "telnet", prompt = "^telnet>$") %>%
   wait(26) %>%
   capture_pane(as_message = TRUE, trim = FALSE) %>%
   kill_session()
-#> 
-#> 
-#> 
-#> 
-#> 
-#> 
-#> 
-#>                           8888888888  888    88888
-#>                          88     88   88 88   88  88
-#>                           8888  88  88   88  88888
-#>                              88 88 888888888 88   88
-#>                       88888888  88 88     88 88    888888
-#> 
-#>                       88  88  88   888    88888    888888
-#>                       88  88  88  88 88   88  88  88
-#>                       88 8888 88 88   88  88888    8888
-#>                        888  888 888888888 88   88     88
-#>                         88  88  88     88 88    8888888
+#> open towel.blinkenlights.nltelnet>
+#> Trying 94.142.241.111...
 ```
 
 ### Continue with an existing session
@@ -193,9 +178,9 @@ attach_session("python", prompt = prompts$jupyter) %>%
 ``` r
 list_sessions()
 #> [[1]]
-#> tmuxr session docker_R: 1 windows (created Tue Mar 17 16:14:04 2020)
+#> tmuxr session docker_R: 1 windows (created Wed Apr  8 14:21:48 2020)
 #> [[2]]
-#> tmuxr session python: 1 windows (created Tue Mar 17 16:17:02 2020)
+#> tmuxr session python: 1 windows (created Wed Apr  8 14:22:00 2020)
 kill_server()
 #> character(0)
 ```
