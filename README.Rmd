@@ -19,6 +19,7 @@ knitr::opts_chunk$set(
 [![Travis-CI build status](https://travis-ci.org/datascienceworkshops/tmuxr.svg?branch=master)](https://travis-ci.org/datascienceworkshops/tmuxr) 
 [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/jw0bf2mt65q556ec/branch/master?svg=true)](https://ci.appveyor.com/project/jeroenjanssens/tmuxr/branch/master)
 [![codecov](https://codecov.io/gh/datascienceworkshops/tmuxr/branch/master/graph/badge.svg)](https://codecov.io/gh/datascienceworkshops/tmuxr)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 ## Overview
 
