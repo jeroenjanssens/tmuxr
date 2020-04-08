@@ -4,7 +4,7 @@
 \alias{wait_for_prompt}
 \title{Wait for prompt to appear in session, window or pane.}
 \usage{
-wait_for_prompt(target, time = 0.05)
+wait_for_prompt(target, time = 0.1)
 }
 \arguments{
 \item{target}{A session, window, or pane.}

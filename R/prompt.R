@@ -4,7 +4,8 @@
 #'
 #' @export
 ends_with_prompt <- function(target) {
-  stopifnot(has_prompt(target))
+  if (!has_prompt(target)) return(FALSE)
+
   args <- c("-p", "-t", target$name)
   lines <- tmux_capture_pane(args)
   last_line <- tail(lines[lines != ""], n = 1)
@@ -52,9 +53,10 @@ has_prompt <- function(target) {
 #' @param time Numerical. Time to wait in seconds between tries.
 #'
 #' @export
-wait_for_prompt <- function(target, time = 0.05) {
-  stopifnot(has_prompt(target))
-  while (!ends_with_prompt(target)) wait(target, time)
+wait_for_prompt <- function(target, time = 0.1) {
+  if (has_prompt(target)) {
+    while (!ends_with_prompt(target)) wait(target, time)
+  }
   invisible(target)
 }
 
@@ -63,7 +65,7 @@ wait_for_prompt <- function(target, time = 0.05) {
 #'
 #' @export
 prompts <- list(
-  bash = "^(\\$|>)$",
+  bash = "^([^ \\$]*(\\$|#)|>)$",
   ipython = "^(In \\[[0-9]+\\]| {6,})|$",
   jupyter = "^(In \\[[0-9]+\\]| {6,})|$",
   python = "^(>>>|\\.\\.\\.)$",
