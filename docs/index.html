@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manage tmux • tmuxr</title>
+<title>Manage tmux sessions, windows, and panes • tmuxr</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -17,8 +17,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
-<meta property="og:title" content="Manage tmux">
-<meta property="og:description" content="Create, control, and record tmux sessions, windows, and panes
+<meta property="og:title" content="Manage tmux sessions, windows, and panes">
+<meta property="og:description" content="Create, control, and capture tmux sessions, windows, and panes
     using a pipeable API.">
 <meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
@@ -81,13 +81,7 @@
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
 <p><code>tmuxr</code> is an R package that allows you (1) to manage <a href="https://github.com/tmux/tmux/wiki">tmux</a> and (2) to interact with the processes it runs. It features a pipeable API with which you can create, control, and capture tmux sessions, windows, and panes.</p>
-<p>Most functions, such as <code>new_session</code>, <code>list_windows</code>, and <code>send_keys</code> are inspired by the commands <code>tmux</code> offers. Other functions, such as <code>attach_window</code>, <code>wait_for_prompt</code>, <code>send_lines</code> are added for convenience. Please note that not all <code>tmux</code> commands have yet been implemented.</p>
-</div>
-<div id="rationale" class="section level2">
-<h2 class="hasAnchor">
-<a href="#rationale" class="anchor"></a>Rationale</h2>
-<p>The main reason <code>tmuxr</code> exists is because of the <a href="https://datascienceworkshops.github.io/knitractive/">knitractive</a> package. This package provides a knitr engine that allows you to simulate interactive sessions (e.g., Python console, Bash shell) across multiple code chunks. Interactive sessions are run inside a <code>tmux</code> session. We realized that the functionality for managing <code>tmux</code> could be useful in itself or as a basis for other packages as well, and hence decided to put that functionality into its own package.</p>
-<p>Generally speaking, <code>tmuxr</code> might be of interest to you if you want to automate interactive applications such as <code>bash</code>, <code>ssh</code>, and command-line interfaces. Have a look at the examples below.</p>
+<p>Most functions, such as <code>new_session</code>, <code>list_windows</code>, and <code>send_keys</code> are wrappers by the commands <code>tmux</code> offers. Other functions, such as <code>attach_window</code> and <code>send_lines</code> are added for convenience.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -95,142 +89,6 @@
 <p>The development version of <code>tmuxr</code> from GitHub can be installed with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># install.packages("devtools")</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"datascienceworkshops/tmuxr"</span>)</span></code></pre></div>
-</div>
-<div id="examples" class="section level2">
-<h2 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tmuxr)</span></code></pre></div>
-<div id="bash" class="section level3">
-<h3 class="hasAnchor">
-<a href="#bash" class="anchor"></a>Bash</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>s &lt;-<span class="st"> </span><span class="kw"><a href="reference/new_session.html">new_session</a></span>(<span class="dt">shell_command =</span> <span class="st">"PS1='$ ' bash"</span>,</span>
-<span id="cb3-2"><a href="#cb3-2"></a>                 <span class="dt">prompt =</span> prompts<span class="op">$</span>bash)</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="kw"><a href="reference/wait_for_prompt.html">wait_for_prompt</a></span>(s)</span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="kw"><a href="reference/send_lines.html">send_lines</a></span>(s, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"seq 100 |"</span>,</span>
-<span id="cb3-5"><a href="#cb3-5"></a>                <span class="st">"grep 3 |"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6"></a>                <span class="st">"wc -l "</span>,</span>
-<span id="cb3-7"><a href="#cb3-7"></a>                <span class="st">"date"</span>))</span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(s, <span class="dt">trim =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; [1] "$ seq 100 |"                  "&gt; grep 3 |"                  </span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; [3] "&gt; wc -l"                      "      19"                    </span></span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt; [5] "$ date"                       "Tue Mar 17 16:14:04 CET 2020"</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="kw"><a href="reference/kill_session.html">kill_session</a></span>(s)</span></code></pre></div>
-<!-- #### Full screen capture -->
-<!-- ```{r} -->
-<!-- new_session() %>% -->
-<!--   send_keys("htop") %>% -->
-<!--   send_enter() %>% -->
-<!--   wait(2) %>% -->
-<!--   capture_pane(as_message = TRUE) %>% -->
-<!--   send_keys("q") -->
-<!-- ``` -->
-</div>
-<div id="run-r-via-docker" class="section level3">
-<h3 class="hasAnchor">
-<a href="#run-r-via-docker" class="anchor"></a>Run R via Docker</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw"><a href="reference/new_session.html">new_session</a></span>(<span class="dt">shell_command =</span> <span class="st">"docker run --rm -it rocker/tidyverse R"</span>,</span>
-<span id="cb4-2"><a href="#cb4-2"></a>            <span class="dt">prompt =</span> prompts<span class="op">$</span>R,</span>
-<span id="cb4-3"><a href="#cb4-3"></a>            <span class="dt">name =</span> <span class="st">"docker_R"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="st">  </span><span class="kw"><a href="reference/send_lines.html">send_lines</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"library(tidyverse)"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5"></a>               <span class="st">"sessionInfo()"</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="st">  </span><span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(<span class="dt">as_message =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="co">#&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="co">#&gt; </span></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co">#&gt; attached base packages:</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="co">#&gt; </span></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="co">#&gt; other attached packages:</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="co">#&gt; [1] forcats_0.4.0   stringr_1.4.0   dplyr_0.8.3     purrr_0.3.3</span></span>
-<span id="cb4-15"><a href="#cb4-15"></a><span class="co">#&gt; [5] readr_1.3.1     tidyr_1.0.2     tibble_2.1.3    ggplot2_3.2.1</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="co">#&gt; [9] tidyverse_1.3.0</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="co">#&gt; </span></span>
-<span id="cb4-18"><a href="#cb4-18"></a><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span id="cb4-19"><a href="#cb4-19"></a><span class="co">#&gt;  [1] Rcpp_1.0.3       cellranger_1.1.0 pillar_1.4.3     compiler_3.6.2</span></span>
-<span id="cb4-20"><a href="#cb4-20"></a><span class="co">#&gt;  [5] dbplyr_1.4.2     tools_3.6.2      jsonlite_1.6     lubridate_1.7.4</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a><span class="co">#&gt;  [9] lifecycle_0.1.0  nlme_3.1-142     gtable_0.3.0     lattice_0.20-38</span></span>
-<span id="cb4-22"><a href="#cb4-22"></a><span class="co">#&gt; [13] pkgconfig_2.0.3  rlang_0.4.4      reprex_0.3.0     cli_2.0.1</span></span>
-<span id="cb4-23"><a href="#cb4-23"></a><span class="co">#&gt; [17] rstudioapi_0.10  DBI_1.1.0        haven_2.2.0      withr_2.1.2</span></span>
-<span id="cb4-24"><a href="#cb4-24"></a><span class="co">#&gt; [21] xml2_1.2.2       httr_1.4.1       fs_1.3.1         generics_0.0.2</span></span>
-<span id="cb4-25"><a href="#cb4-25"></a><span class="co">#&gt; [25] vctrs_0.2.2      hms_0.5.3        grid_3.6.2       tidyselect_1.0.0</span></span>
-<span id="cb4-26"><a href="#cb4-26"></a><span class="co">#&gt; [29] glue_1.3.1       R6_2.4.1         fansi_0.4.1      readxl_1.3.1</span></span>
-<span id="cb4-27"><a href="#cb4-27"></a><span class="co">#&gt; [33] modelr_0.1.5     magrittr_1.5     backports_1.1.5  scales_1.1.0</span></span>
-<span id="cb4-28"><a href="#cb4-28"></a><span class="co">#&gt; [37] rvest_0.3.5      assertthat_0.2.1 colorspace_1.4-1 stringi_1.4.5</span></span>
-<span id="cb4-29"><a href="#cb4-29"></a><span class="co">#&gt; [41] lazyeval_0.2.2   munsell_0.5.0    broom_0.5.4      crayon_1.3.4</span></span>
-<span id="cb4-30"><a href="#cb4-30"></a><span class="co">#&gt; &gt;</span></span></code></pre></div>
-</div>
-<div id="jupyter-console" class="section level3">
-<h3 class="hasAnchor">
-<a href="#jupyter-console" class="anchor"></a>Jupyter console</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>jupyter &lt;-<span class="st"> </span><span class="kw"><a href="reference/new_session.html">new_session</a></span>(<span class="dt">name =</span> <span class="st">"python"</span>,</span>
-<span id="cb5-2"><a href="#cb5-2"></a>                       <span class="dt">shell_command =</span> <span class="st">"jupyter console"</span>,</span>
-<span id="cb5-3"><a href="#cb5-3"></a>                       <span class="dt">prompt =</span> prompts<span class="op">$</span>jupyter)</span>
-<span id="cb5-4"><a href="#cb5-4"></a></span>
-<span id="cb5-5"><a href="#cb5-5"></a>jupyter<span class="op">$</span>prompt</span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="co">#&gt; [1] "^(In \\[[0-9]+\\]| {6,})|$"</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a></span>
-<span id="cb5-8"><a href="#cb5-8"></a>jupyter <span class="op">%&gt;%</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="st">  </span><span class="kw"><a href="reference/wait_for_prompt.html">wait_for_prompt</a></span>() <span class="op">%&gt;%</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="st">  </span><span class="kw"><a href="reference/send_lines.html">send_lines</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"def mysum(a, b):"</span>,</span>
-<span id="cb5-11"><a href="#cb5-11"></a>               <span class="st">"return a + b"</span>,</span>
-<span id="cb5-12"><a href="#cb5-12"></a>               <span class="st">""</span>,</span>
-<span id="cb5-13"><a href="#cb5-13"></a>               <span class="st">""</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="st">  </span><span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(<span class="dt">as_message =</span> <span class="ot">TRUE</span>, <span class="dt">strip_lonely_prompt =</span> <span class="ot">FALSE</span>, <span class="dt">trim =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt; Jupyter console 6.1.0</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt; </span></span>
-<span id="cb5-17"><a href="#cb5-17"></a><span class="co">#&gt; Python 3.7.6 (default, Jan  8 2020, 13:42:34)</span></span>
-<span id="cb5-18"><a href="#cb5-18"></a><span class="co">#&gt; Type 'copyright', 'credits' or 'license' for more information</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a><span class="co">#&gt; IPython 7.12.0 -- An enhanced Interactive Python. Type '?' for help.</span></span>
-<span id="cb5-20"><a href="#cb5-20"></a><span class="co">#&gt; </span></span>
-<span id="cb5-21"><a href="#cb5-21"></a><span class="co">#&gt; In [1]: def mysum(a, b):</span></span>
-<span id="cb5-22"><a href="#cb5-22"></a><span class="co">#&gt;       :     return a + b</span></span>
-<span id="cb5-23"><a href="#cb5-23"></a><span class="co">#&gt;       :</span></span></code></pre></div>
-</div>
-<div id="capture-a-telnet-session" class="section level3">
-<h3 class="hasAnchor">
-<a href="#capture-a-telnet-session" class="anchor"></a>Capture a telnet session</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw"><a href="reference/new_session.html">new_session</a></span>(<span class="dt">shell_command =</span> <span class="st">"telnet"</span>, <span class="dt">prompt =</span> <span class="st">"^telnet&gt;$"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="st">  </span><span class="kw"><a href="reference/send_keys.html">send_keys</a></span>(<span class="st">"open towel.blinkenlights.nl"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="st">  </span><span class="kw"><a href="reference/send_enter.html">send_enter</a></span>() <span class="op">%&gt;%</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="st">  </span><span class="kw"><a href="reference/wait.html">wait</a></span>(<span class="dv">26</span>) <span class="op">%&gt;%</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="st">  </span><span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(<span class="dt">as_message =</span> <span class="ot">TRUE</span>, <span class="dt">trim =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="st">  </span><span class="kw"><a href="reference/kill_session.html">kill_session</a></span>()</span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt; </span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt; </span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt; </span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt; </span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt; </span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt; </span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt; </span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt;                           8888888888  888    88888</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt;                          88     88   88 88   88  88</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt;                           8888  88  88   88  88888</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt;                              88 88 888888888 88   88</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a><span class="co">#&gt;                       88888888  88 88     88 88    888888</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a><span class="co">#&gt; </span></span>
-<span id="cb6-20"><a href="#cb6-20"></a><span class="co">#&gt;                       88  88  88   888    88888    888888</span></span>
-<span id="cb6-21"><a href="#cb6-21"></a><span class="co">#&gt;                       88  88  88  88 88   88  88  88</span></span>
-<span id="cb6-22"><a href="#cb6-22"></a><span class="co">#&gt;                       88 8888 88 88   88  88888    8888</span></span>
-<span id="cb6-23"><a href="#cb6-23"></a><span class="co">#&gt;                        888  888 888888888 88   88     88</span></span>
-<span id="cb6-24"><a href="#cb6-24"></a><span class="co">#&gt;                         88  88  88     88 88    8888888</span></span></code></pre></div>
-</div>
-<div id="continue-with-an-existing-session" class="section level3">
-<h3 class="hasAnchor">
-<a href="#continue-with-an-existing-session" class="anchor"></a>Continue with an existing session</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw"><a href="reference/attach_session.html">attach_session</a></span>(<span class="st">"python"</span>, <span class="dt">prompt =</span> prompts<span class="op">$</span>jupyter) <span class="op">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="st">  </span><span class="kw"><a href="reference/wait.html">wait</a></span>(<span class="fl">0.2</span>) <span class="op">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="st">  </span><span class="kw"><a href="reference/send_lines.html">send_lines</a></span>(<span class="st">"mysum(41, 1)"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="st">  </span><span class="kw"><a href="reference/wait.html">wait</a></span>(<span class="fl">0.2</span>) <span class="op">%&gt;%</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="st">  </span><span class="kw"><a href="reference/capture_pane.html">capture_pane</a></span>(<span class="dt">start =</span> <span class="dv">18</span>, <span class="dt">as_message =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; </span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw"><a href="reference/list_sessions.html">list_sessions</a></span>()</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="co">#&gt; tmuxr session docker_R: 1 windows (created Tue Mar 17 16:14:04 2020)</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co">#&gt; [[2]]</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="co">#&gt; tmuxr session python: 1 windows (created Tue Mar 17 16:17:02 2020)</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="kw"><a href="reference/kill_server.html">kill_server</a></span>()</span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
-</div>
 </div>
 <div id="license" class="section level2">
 <h2 class="hasAnchor">
@@ -263,9 +121,9 @@
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>
-<a href="http://jeroenjanssens.com">Jeroen Janssens</a> <br><small class="roles"> Author, maintainer </small>  </li>
+<a href="https://jeroenjanssens.com">Jeroen Janssens</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-5878-8924" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID"></a> </li>
 <li>
-<a href="https://www.datascienceworkshops.com"><img class="data-science-workshops-logo" src="https://datascienceworkshops.github.io/tmuxr/data-science-workshops.svg"></a> <br><small class="roles"> Copyright holder, funder </small>  </li>
+<a href="https://www.datascienceworkshops.com"><img class="data-science-workshops-logo" src="https://www.datascienceworkshops.com/assets/img/logo-dsw-flat-light.svg"></a> <br><small class="roles"> Copyright holder, funder </small>  </li>
 </ul>
 </div>
 
@@ -273,8 +131,7 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/datascienceworkshops/tmuxr"><img src="https://travis-ci.org/datascienceworkshops/tmuxr.svg?branch=master" alt="Travis-CI build status"></a></li>
-<li><a href="https://ci.appveyor.com/project/jeroenjanssens/tmuxr/branch/master"><img src="https://ci.appveyor.com/api/projects/status/jw0bf2mt65q556ec/branch/master?svg=true" alt="AppVeyor Build status"></a></li>
-<li><a href="https://codecov.io/gh/datascienceworkshops/tmuxr"><img src="https://codecov.io/gh/datascienceworkshops/tmuxr/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
 </ul>
 </div>
 </div>
@@ -282,7 +139,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="http://jeroenjanssens.com">Jeroen Janssens</a>, <a href="https://www.datascienceworkshops.com"><img class="data-science-workshops-logo" src="https://datascienceworkshops.github.io/tmuxr/data-science-workshops.svg"></a>.</p>
+  <p>Developed by <a href="https://jeroenjanssens.com">Jeroen Janssens</a>, <a href="https://www.datascienceworkshops.com"><img class="data-science-workshops-logo" src="https://www.datascienceworkshops.com/assets/img/logo-dsw-flat-light.svg"></a>.</p>
 </div>
 
 <div class="pkgdown">
