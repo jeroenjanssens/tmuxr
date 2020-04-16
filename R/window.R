@@ -28,6 +28,18 @@ list_windows <- function(target = NULL) {
   tmux_list_windows(args) %>% purrr::map(attach_window)
 }
 
+#' Resize window.
+#'
+#' @param target A session.
+#' @param width Numeric.
+#' @param height Numeric.
+#'
+#' @export
+resize_window <- function(target, width = NULL, height = NULL) {
+
+# TODO Implement resize_window
+}
+
 
 #' @export
 print.tmuxr_window <- function(x, ...) {

@@ -2,11 +2,17 @@
 % Please edit documentation in R/pane.R
 \name{capture_pane}
 \alias{capture_pane}
-\title{Capture contents of a pane.}
+\title{Capture the contents of a pane.}
 \usage{
-capture_pane(target, start = NULL, end = NULL, trim = FALSE,
-  trim_top = trim, trim_bottom = trim, strip_lonely_prompt = TRUE,
-  as_message = FALSE, in_viewer = FALSE)
+capture_pane(
+  target,
+  start = NULL,
+  end = NULL,
+  escape = FALSE,
+  escape_control = FALSE,
+  join = FALSE,
+  cat = FALSE
+)
 }
 \arguments{
 \item{target}{A session, window, or pane.}
@@ -15,19 +21,14 @@ capture_pane(target, start = NULL, end = NULL, trim = FALSE,
 
 \item{end}{Numeric. Last line to capture.}
 
-\item{trim}{Logical. Should empty lines be removed from the top and bottom?}
+\item{escape}{Logical. Include escape sequences for text and background attributes.}
 
-\item{trim_top}{Logical. Should empty lines be removed from the top?}
+\item{escape_control}{Logical. Also escape control characters as octal \\xxx.}
 
-\item{trim_bottom}{Logical. Should empty lines be removed from the bottom?}
+\item{join}{Logical. Join wrapped lines and preserve trailing spaces at each line.}
 
-\item{strip_lonely_prompt}{Logical. Should lines containing only the prompt
-be removed?}
-
-\item{as_message}{Logical. Should the contents be displayed as a message?}
-
-\item{in_viewer}{Logical. Should the contents be displayed in the viewer?}
+\item{cat}{Logical. Concatenate lines into one string.}
 }
 \description{
-Capture contents of a pane.
+Capture the contents of a pane.
 }

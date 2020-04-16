@@ -14,7 +14,7 @@ navbar:
   title: "tmuxr"
   type: inverse
   left:
-    - text: "Home"
+    - icon: fa-home fa-lg
       href: index.html
     - text: "Reference"
       href: reference/index.html
@@ -50,10 +50,6 @@ reference:
       - start_server
   - title: Interacting
     contents:
-      - ends_with_prompt
-      - get_prompt
-      - has_prompt
-      - prompts
       - send_backspace
       - send_control_c
       - send_enter

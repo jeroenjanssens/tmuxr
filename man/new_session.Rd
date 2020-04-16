@@ -4,9 +4,16 @@
 \alias{new_session}
 \title{Create a new tmux session.}
 \usage{
-new_session(name = NULL, prompt = NULL, window_name = NULL,
-  start_directory = NULL, width = 80, height = 24, detached = TRUE,
-  shell_command = NULL)
+new_session(
+  name = NULL,
+  prompt = NULL,
+  window_name = NULL,
+  start_directory = NULL,
+  width = 80,
+  height = 24,
+  detached = TRUE,
+  shell_command = NULL
+)
 }
 \arguments{
 \item{name}{String to be used as session name. If \code{NULL} (default), the

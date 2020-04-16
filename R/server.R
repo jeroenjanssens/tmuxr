@@ -13,6 +13,7 @@ start_server <- function() {
   tmux_start_server()
 }
 
+
 #' Is the tmux server running?
 #'
 #' @export

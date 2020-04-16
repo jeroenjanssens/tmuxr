@@ -1,9 +1,3 @@
-#' @importFrom magrittr %>%
-#' @importFrom utils head tail
-#' @export
-magrittr::`%>%`
-
-
 #' @keywords internal
 tmux_command <- function(command) {
   function(...) {
@@ -53,4 +47,3 @@ tmux_send_keys <- tmux_command("send-keys")
 
 #' @keywords internal
 tmux_start_server <- tmux_command("start-server")
-
