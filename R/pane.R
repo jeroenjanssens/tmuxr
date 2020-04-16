@@ -25,7 +25,7 @@ list_panes <- function(target = NULL) {
   } else {
     args <- c(args, "-t", target$name)
   }
-  tmux_list_panes(args) %>% purrr::map(attach_pane)
+  tmux_command("list-panes", args) %>% purrr::map(attach_pane)
 }
 
 
@@ -50,7 +50,7 @@ capture_pane <- function(target, start = NULL, end = NULL, escape = FALSE,
   if (escape_control) args <- c(args, "-C")
   if (join) args <- c(args, "-J")
 
-  output <- tmux_capture_pane(args)
+  output <- tmux_command("capture-pane", args)
   if (cat) {
     paste0(output, collapse = "\n")
   } else {
@@ -81,7 +81,7 @@ pipe_pane <- function(target = NULL, shell_command = NULL, open = FALSE) {
   if (!is.null(shell_command)) {
     args <- c(args, shQuote(shell_command))
   }
-  tmux_pipe_pane(args)
+  tmux_command("pipe-pane", args)
   invisible(target)
 }
 
@@ -101,7 +101,7 @@ print.tmuxr_pane <- function(x, ...) {
 #' @export
 get_height <- function(target) {
   args <- c("-p", "-t", target$name, "'#{pane_height}'")
-  as.numeric(tmux_display(args))
+  as.numeric(tmux_command("display", args))
 }
 
 
@@ -112,7 +112,7 @@ get_height <- function(target) {
 #' @export
 get_width <- function(target) {
   args <- c("-p", "-t", target$name, "'#{pane_width}'")
-  as.numeric(tmux_display(args))
+  as.numeric(tmux_command("display", args))
 }
 
 

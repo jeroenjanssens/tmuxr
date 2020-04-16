@@ -38,7 +38,7 @@ new_session <- function(name = NULL,
   if (!is.null(height)) args <- c(args, "-y", height)
   if (!is.null(shell_command)) args <- c(args, shQuote(shell_command))
 
-  name <- tmux_new_session(args)
+  name <- tmux_command("new-session", args)
   attach_session(name, prompt)
 }
 
@@ -67,7 +67,7 @@ attach_session <- function(name, prompt = NULL) {
 #'
 #' @export
 rename_session <- function(session, new_name) {
-  tmux_rename_session("-t", session$name, as.character(new_name))
+  tmux_command("rename-session", "-t", session$name, as.character(new_name))
   attach_session(new_name)
 }
 
@@ -78,7 +78,7 @@ rename_session <- function(session, new_name) {
 #'
 #' @export
 kill_session <- function(session) {
-  tmux_kill_session("-t", session$name)
+  tmux_command("kill-session", "-t", session$name)
   invisible(NULL)
 }
 
@@ -90,7 +90,7 @@ kill_session <- function(session) {
 #' @export
 list_sessions <- function() {
   args <- c("-F", "'#{session_name}'")
-  tmux_list_sessions(args) %>% purrr::map(attach_session)
+  tmux_command("list-sessions", args) %>% purrr::map(attach_session)
 }
 
 

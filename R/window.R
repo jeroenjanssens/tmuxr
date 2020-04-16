@@ -25,7 +25,7 @@ list_windows <- function(target = NULL) {
   } else {
     args <- c(args, "-t", target$name)
   }
-  tmux_list_windows(args) %>% purrr::map(attach_window)
+  tmux_command("list-windows", args) %>% purrr::map(attach_window)
 }
 
 #' Resize window.

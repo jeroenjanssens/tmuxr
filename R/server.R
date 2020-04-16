@@ -2,7 +2,7 @@
 #'
 #' @export
 kill_server <- function() {
-  tmux_kill_server()
+  tmux_command("kill-server")
 }
 
 
@@ -10,7 +10,7 @@ kill_server <- function() {
 #'
 #' @export
 start_server <- function() {
-  tmux_start_server()
+  tmux_command("start-server")
 }
 
 
