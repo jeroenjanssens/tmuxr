@@ -6,10 +6,10 @@
 #'
 #' @export
 send_keys <- function(target, keys, literal = FALSE) {
-  args <- c("-t", target$name)
-  if (literal) args <- c(args, "-l")
-  args <- c(args, shQuote(keys))
-  tmux_command("send-keys", args)
+  flags <- c("-t", target$name)
+  if (literal) flags <- c(flags, "-l")
+  flags <- c(flags, shQuote(keys))
+  tmux_command("send-keys", flags)
   invisible(target)
 }
 

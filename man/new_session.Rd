@@ -6,7 +6,6 @@
 \usage{
 new_session(
   name = NULL,
-  prompt = NULL,
   window_name = NULL,
   start_directory = NULL,
   width = 80,
@@ -19,9 +18,6 @@ new_session(
 \item{name}{String to be used as session name. If \code{NULL} (default), the
 name of the session is determined by \code{tmux}, which is the next unused
 integer (starting at 0).}
-
-\item{prompt}{String containing a regular expression that matches all
-relevant prompts.}
 
 \item{window_name}{String to be used as window name.}
 

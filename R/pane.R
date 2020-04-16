@@ -19,13 +19,13 @@ attach_pane <- function(name) {
 #'
 #' @export
 list_panes <- function(target = NULL) {
-  args <- c("-F", "'#{session_name}:#{window_index}.#{pane_index}'")
+  flags <- c("-F", "'#{session_name}:#{window_index}.#{pane_index}'")
   if (is.null(target)) {
-    args <- c(args, "-a")
+    flags <- c(flags, "-a")
   } else {
-    args <- c(args, "-t", target$name)
+    flags <- c(flags, "-t", target$name)
   }
-  tmux_command("list-panes", args) %>% purrr::map(attach_pane)
+  tmux_command("list-panes", flags) %>% purrr::map(attach_pane)
 }
 
 
@@ -42,15 +42,15 @@ list_panes <- function(target = NULL) {
 #' @export
 capture_pane <- function(target, start = NULL, end = NULL, escape = FALSE,
                          escape_control = FALSE, join = FALSE, cat = FALSE) {
-  args <- c("-p", "-t", target$name)
+  flags <- c("-p", "-t", target$name)
 
-  if (!is.null(start)) args <- c(args, "-S", as.character(start))
-  if (!is.null(end)) args <- c(args, "-E", as.character(end))
-  if (escape) args <- c(args, "-e")
-  if (escape_control) args <- c(args, "-C")
-  if (join) args <- c(args, "-J")
+  if (!is.null(start)) flags <- c(flags, "-S", as.character(start))
+  if (!is.null(end)) flags <- c(flags, "-E", as.character(end))
+  if (escape) flags <- c(flags, "-e")
+  if (escape_control) flags <- c(flags, "-C")
+  if (join) flags <- c(flags, "-J")
 
-  output <- tmux_command("capture-pane", args)
+  output <- tmux_command("capture-pane", flags)
   if (cat) {
     paste0(output, collapse = "\n")
   } else {
@@ -68,27 +68,27 @@ capture_pane <- function(target, start = NULL, end = NULL, escape = FALSE,
 #'
 #' @export
 pipe_pane <- function(target = NULL, shell_command = NULL, open = FALSE) {
-  args <- c()
+  flags <- c()
 
   if (!is.null(target)) {
-    args <- c(args, "-t", target$name)
+    flags <- c(flags, "-t", target$name)
   }
 
   if (open) {
-    args <- c(args, "-o")
+    flags <- c(flags, "-o")
   }
 
   if (!is.null(shell_command)) {
-    args <- c(args, shQuote(shell_command))
+    flags <- c(flags, shQuote(shell_command))
   }
-  tmux_command("pipe-pane", args)
+  tmux_command("pipe-pane", flags)
   invisible(target)
 }
 
 
 #' @export
 print.tmuxr_pane <- function(x, ...) {
-  lines <- tmux_list_panes("-a")
+  lines <- tmux_command("list-panes", "-a")
   status <- lines[grepl(stringr::str_interp("^${x$name}:.*$"), lines)]
   cat("tmuxr pane", status)
 }
@@ -100,8 +100,8 @@ print.tmuxr_pane <- function(x, ...) {
 #'
 #' @export
 get_height <- function(target) {
-  args <- c("-p", "-t", target$name, "'#{pane_height}'")
-  as.numeric(tmux_command("display", args))
+  flags <- c("-p", "-t", target$name, "'#{pane_height}'")
+  as.numeric(tmux_command("display", flags))
 }
 
 
@@ -111,8 +111,8 @@ get_height <- function(target) {
 #'
 #' @export
 get_width <- function(target) {
-  args <- c("-p", "-t", target$name, "'#{pane_width}'")
-  as.numeric(tmux_command("display", args))
+  flags <- c("-p", "-t", target$name, "'#{pane_width}'")
+  as.numeric(tmux_command("display", flags))
 }
 
 

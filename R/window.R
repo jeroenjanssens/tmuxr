@@ -19,13 +19,13 @@ attach_window <- function(name) {
 #'
 #' @export
 list_windows <- function(target = NULL) {
-  args <- c("-F", "'#{session_name}:#{window_index}'")
+  flags <- c("-F", "'#{session_name}:#{window_index}'")
   if (is.null(target)) {
-    args <- c(args, "-a")
+    flags <- c(flags, "-a")
   } else {
-    args <- c(args, "-t", target$name)
+    flags <- c(flags, "-t", target$name)
   }
-  tmux_command("list-windows", args) %>% purrr::map(attach_window)
+  tmux_command("list-windows", flags) %>% purrr::map(attach_window)
 }
 
 #' Resize window.
@@ -44,7 +44,7 @@ resize_window <- function(target, width = NULL, height = NULL) {
 
 #' @export
 print.tmuxr_window <- function(x, ...) {
-  lines <- tmux_list_windows("-a")
+  lines <- tmux_command("list-windows", "-a")
   # TODO Maybe replace stringr with glue?
   status <- lines[grepl(stringr::str_interp("^${x$name}:.*$"), lines)]
   cat("tmuxr window", status)

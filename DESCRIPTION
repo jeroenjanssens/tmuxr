@@ -17,6 +17,7 @@ SystemRequirements: tmux
 OS_type: unix
 Imports:
     purrr,
+    rlang,
     stringr,
     magrittr
 Collate:

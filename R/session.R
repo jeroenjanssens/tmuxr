@@ -26,16 +26,16 @@ new_session <- function(name = NULL,
                         detached = TRUE,
                         shell_command = NULL) {
 
-  args <- c("-P", "-F", "\"#{session_name}\"")
-  if (detached) args <- c(args, "-d")
-  if (!is.null(name)) args <- c(args, "-s", name)
-  if (!is.null(window_name)) args <- c(args, "-n", window_name)
-  if (!is.null(start_directory)) args <- c(args, "-n", start_directory)
-  if (!is.null(width)) args <- c(args, "-x", width)
-  if (!is.null(height)) args <- c(args, "-y", height)
-  if (!is.null(shell_command)) args <- c(args, shQuote(shell_command))
+  flags <- c("-P", "-F", "\"#{session_name}\"")
+  if (detached) flags <- c(flags, "-d")
+  if (!is.null(name)) flags <- c(flags, "-s", name)
+  if (!is.null(window_name)) flags <- c(flags, "-n", window_name)
+  if (!is.null(start_directory)) flags <- c(flags, "-n", start_directory)
+  if (!is.null(width)) flags <- c(flags, "-x", width)
+  if (!is.null(height)) flags <- c(flags, "-y", height)
+  if (!is.null(shell_command)) flags <- c(flags, shQuote(shell_command))
 
-  name <- tmux_command("new-session", args)
+  name <- tmux_command("new-session", flags)
   attach_session(name)
 }
 
@@ -84,14 +84,14 @@ kill_session <- function(session) {
 #'
 #' @export
 list_sessions <- function() {
-  args <- c("-F", "'#{session_name}'")
-  tmux_command("list-sessions", args) %>% purrr::map(attach_session)
+  flags <- c("-F", "'#{session_name}'")
+  tmux_command("list-sessions", flags) %>% purrr::map(attach_session)
 }
 
 
 #' @export
 print.tmuxr_session <- function(x, ...) {
-  lines <- tmux_list_sessions()
+  lines <- tmux_command("list-sessions")
   status <- lines[grepl(stringr::str_interp("^${x$name}:.*$"), lines)]
   cat("tmuxr session", status)
 }

@@ -2,6 +2,7 @@
 "_PACKAGE"
 
 #' @importFrom magrittr %>%
+#' @importFrom rlang %||%
 #' @importFrom utils head tail
 #' @export
 magrittr::`%>%`
