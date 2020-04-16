@@ -41,9 +41,11 @@ resize_window <- function(target, width = NULL, height = NULL) {
 }
 
 
+
 #' @export
 print.tmuxr_window <- function(x, ...) {
   lines <- tmux_list_windows("-a")
+  # TODO Maybe replace stringr with glue?
   status <- lines[grepl(stringr::str_interp("^${x$name}:.*$"), lines)]
   cat("tmuxr window", status)
 }

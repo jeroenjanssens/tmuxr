@@ -3,8 +3,6 @@
 #' @param name String to be used as session name. If `NULL` (default), the
 #' name of the session is determined by `tmux`, which is the next unused
 #' integer (starting at 0).
-#' @param prompt String containing a regular expression that matches all
-#' relevant prompts.
 #' @param window_name String to be used as window name.
 #' @param start_directory String. Working directory this session is run in.
 #' @param width Numeric. Width of inital window. Default 80
@@ -21,7 +19,6 @@
 #'
 #' @export
 new_session <- function(name = NULL,
-                        prompt = NULL,
                         window_name = NULL,
                         start_directory = NULL,
                         width = 80,
@@ -39,7 +36,7 @@ new_session <- function(name = NULL,
   if (!is.null(shell_command)) args <- c(args, shQuote(shell_command))
 
   name <- tmux_command("new-session", args)
-  attach_session(name, prompt)
+  attach_session(name)
 }
 
 
@@ -52,9 +49,7 @@ new_session <- function(name = NULL,
 #'
 #' @export
 attach_session <- function(name, prompt = NULL) {
-  structure(list(name = as.character(name),
-                 prompt = prompt),
-            class = "tmuxr_session")
+  structure(list(name = as.character(name)), class = "tmuxr_session")
 }
 
 
