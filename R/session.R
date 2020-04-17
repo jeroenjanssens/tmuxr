@@ -33,7 +33,7 @@ new_session <- function(name = NULL,
   if (!is.null(start_directory)) flags <- c(flags, "-c", start_directory)
   if (!is.null(width)) flags <- c(flags, "-x", width)
   if (!is.null(height)) flags <- c(flags, "-y", height)
-  if (!is.null(shell_command)) flags <- c(flags, shQuote(shell_command))
+  if (!is.null(shell_command)) flags <- c(flags, shell_command)
 
   name <- tmux_command("new-session", flags)
   attach_session(name)

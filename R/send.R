@@ -7,8 +7,11 @@
 #' @export
 send_keys <- function(target, keys, literal = FALSE) {
   flags <- c("-t", target$name)
-  if (literal) flags <- c(flags, "-l")
-  flags <- c(flags, shQuote(keys))
+  if (literal) {
+    flags <- c(flags, "-l", keys)
+  } else {
+    flags <- c(flags, unlist(strsplit(keys, " ")))
+  }
   tmux_command("send-keys", flags)
   invisible(target)
 }

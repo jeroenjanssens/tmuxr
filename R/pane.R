@@ -116,3 +116,13 @@ get_width <- function(target) {
 }
 
 
+#' Display a large clock.
+#'
+#' @param target A session, window, or pane.
+#'
+#' @export
+clock_mode <- function(target = NULL) {
+  flags <- c()
+  if (!is.null(target)) flags <- c(flags, "-t", target$name)
+  invisible(tmux_command("clock-mode", flags))
+}

@@ -4,7 +4,7 @@
 \alias{kill_server}
 \title{Kill the tmux server.}
 \usage{
-kill_server()
+kill_server(silent = TRUE)
 }
 \description{
 Kill the tmux server.

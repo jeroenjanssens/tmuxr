@@ -19,7 +19,4 @@ context("pipe")
 #   expect_equal(output, "\n$ echo hi\nhi\n$ ")
 # })
 
-
-
-
-try(kill_server(), silent = TRUE)
+kill_server()
