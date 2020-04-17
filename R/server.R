@@ -1,8 +1,8 @@
 #' Kill the tmux server.
 #'
 #' @export
-kill_server <- function() {
-  tmux_command("kill-server")
+kill_server <- function(silent = TRUE) {
+  invisible(try(tmux_command("kill-server"), silent = silent))
 }
 
 
@@ -10,7 +10,7 @@ kill_server <- function() {
 #'
 #' @export
 start_server <- function() {
-  tmux_command("start-server")
+  invisible(tmux_command("start-server"))
 }
 
 
@@ -18,7 +18,13 @@ start_server <- function() {
 #'
 #' @export
 is_running <- function() {
-  tryCatch({tmuxr::list_sessions(); TRUE}, error = function(cond) {FALSE})
+  tryCatch(
+    {
+      list_sessions()
+      TRUE
+    },
+    error = function(e) FALSE
+  )
 }
 
 
