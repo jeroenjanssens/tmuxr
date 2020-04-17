@@ -127,9 +127,15 @@
     <p>Create a new tmux session.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>new_session</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prompt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>window_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>start_directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>80</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>24</span>, <span class='kw'>detached</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>shell_command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>new_session</span>(
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>window_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>start_directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>80</span>,
+  <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>24</span>,
+  <span class='kw'>detached</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>shell_command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -139,11 +145,6 @@
       <td><p>String to be used as session name. If <code>NULL</code> (default), the
 name of the session is determined by <code>tmux</code>, which is the next unused
 integer (starting at 0).</p></td>
-    </tr>
-    <tr>
-      <th>prompt</th>
-      <td><p>String containing a regular expression that matches all
-relevant prompts.</p></td>
     </tr>
     <tr>
       <th>window_name</th>

@@ -4,7 +4,7 @@
 \alias{attach_session}
 \title{Attach to an existing tmux session.}
 \usage{
-attach_session(name, prompt = NULL)
+attach_session(name)
 }
 \arguments{
 \item{name}{Numeric or string indicating the name of the existing session.}

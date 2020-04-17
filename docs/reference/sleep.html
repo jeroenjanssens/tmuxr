@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Send the Backspace key to a session, window or pane. — send_backspace • tmuxr</title>
+<title>Sleep. — sleep • tmuxr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Send the Backspace key to a session, window or pane. — send_backspace" />
-<meta property="og:description" content="Send the Backspace key to a session, window or pane." />
+<meta property="og:title" content="Sleep. — sleep" />
+<meta property="og:description" content="Sleep." />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -118,16 +118,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Send the Backspace key to a session, window or pane.</h1>
+    <h1>Sleep.</h1>
     <small class="dont-index">Source: <a href='https://github.com/datascienceworkshops/tmuxr/blob/master/R/send.R'><code>R/send.R</code></a></small>
-    <div class="hidden name"><code>send_backspace.Rd</code></div>
+    <div class="hidden name"><code>sleep.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Send the Backspace key to a session, window or pane.</p>
+    <p>Sleep.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>send_backspace</span>(<span class='no'>target</span>)</pre>
+    <pre class="usage"><span class='fu'>sleep</span>(<span class='no'>target</span>, <span class='no'>time</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -135,6 +135,10 @@
     <tr>
       <th>target</th>
       <td><p>A session, window, or pane.</p></td>
+    </tr>
+    <tr>
+      <th>time</th>
+      <td><p>Numerical. Time to sleep in seconds.</p></td>
     </tr>
     </table>
 

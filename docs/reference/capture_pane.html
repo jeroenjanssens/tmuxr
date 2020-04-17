@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Capture contents of a pane. — capture_pane • tmuxr</title>
+<title>Capture the contents of a pane. — capture_pane • tmuxr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Capture contents of a pane. — capture_pane" />
-<meta property="og:description" content="Capture contents of a pane." />
+<meta property="og:title" content="Capture the contents of a pane. — capture_pane" />
+<meta property="og:description" content="Capture the contents of a pane." />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -118,18 +118,24 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Capture contents of a pane.</h1>
+    <h1>Capture the contents of a pane.</h1>
     <small class="dont-index">Source: <a href='https://github.com/datascienceworkshops/tmuxr/blob/master/R/pane.R'><code>R/pane.R</code></a></small>
     <div class="hidden name"><code>capture_pane.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Capture contents of a pane.</p>
+    <p>Capture the contents of a pane.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>capture_pane</span>(<span class='no'>target</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>end</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>trim</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>trim_top</span> <span class='kw'>=</span> <span class='no'>trim</span>, <span class='kw'>trim_bottom</span> <span class='kw'>=</span> <span class='no'>trim</span>, <span class='kw'>strip_lonely_prompt</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>as_message</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>in_viewer</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>capture_pane</span>(
+  <span class='no'>target</span>,
+  <span class='kw'>start</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>end</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>escape</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>escape_control</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>join</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>cat</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -147,29 +153,20 @@
       <td><p>Numeric. Last line to capture.</p></td>
     </tr>
     <tr>
-      <th>trim</th>
-      <td><p>Logical. Should empty lines be removed from the top and bottom?</p></td>
+      <th>escape</th>
+      <td><p>Logical. Include escape sequences for text and background attributes.</p></td>
     </tr>
     <tr>
-      <th>trim_top</th>
-      <td><p>Logical. Should empty lines be removed from the top?</p></td>
+      <th>escape_control</th>
+      <td><p>Logical. Also escape control characters as octal \xxx.</p></td>
     </tr>
     <tr>
-      <th>trim_bottom</th>
-      <td><p>Logical. Should empty lines be removed from the bottom?</p></td>
+      <th>join</th>
+      <td><p>Logical. Join wrapped lines and preserve trailing spaces at each line.</p></td>
     </tr>
     <tr>
-      <th>strip_lonely_prompt</th>
-      <td><p>Logical. Should lines containing only the prompt
-be removed?</p></td>
-    </tr>
-    <tr>
-      <th>as_message</th>
-      <td><p>Logical. Should the contents be displayed as a message?</p></td>
-    </tr>
-    <tr>
-      <th>in_viewer</th>
-      <td><p>Logical. Should the contents be displayed in the viewer?</p></td>
+      <th>cat</th>
+      <td><p>Logical. Concatenate lines into one string.</p></td>
     </tr>
     </table>
 
