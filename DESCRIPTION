@@ -19,7 +19,8 @@ Imports:
     purrr,
     rlang,
     stringr,
-    magrittr
+    magrittr,
+    processx
 Collate:
     tmuxr-package.R
     tmux.R
