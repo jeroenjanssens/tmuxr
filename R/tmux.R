@@ -13,14 +13,11 @@ tmux_command <- function(command, ...) {
   if (!is.null(getOption("tmux_socket_path")))
     tmux_options <- c(tmux_options, "-S", getOption("tmux_socket_path"))
 
-  suppressWarnings(
-    result <- system2("tmux", c(tmux_options, command, ...),
-                      stdout = TRUE, stderr = TRUE)
-  )
+  result <- processx::run("tmux", args = c(tmux_options, command, ...),
+                          error_on_status = FALSE, stderr_to_stdout = TRUE)
 
-  status <- attr(result, "status")
-  if (!is.null(status) && (status > 0)) {
-    stop(stringr::str_c("tmux: ", result, collapse = " "))
-  }
-  result
+  if (result$status > 0) stop("tmux: ", result$stdout, call. = FALSE)
+
+  # Split standard output into lines and remove last line because it's empty
+  head(stringr::str_split(result$stdout, "\n")[[1]], -1)
 }

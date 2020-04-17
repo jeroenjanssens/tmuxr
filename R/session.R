@@ -26,11 +26,11 @@ new_session <- function(name = NULL,
                         detached = TRUE,
                         shell_command = NULL) {
 
-  flags <- c("-P", "-F", "\"#{session_name}\"")
+  flags <- c("-P", "-F", "#{session_name}")
   if (detached) flags <- c(flags, "-d")
   if (!is.null(name)) flags <- c(flags, "-s", name)
   if (!is.null(window_name)) flags <- c(flags, "-n", window_name)
-  if (!is.null(start_directory)) flags <- c(flags, "-n", start_directory)
+  if (!is.null(start_directory)) flags <- c(flags, "-c", start_directory)
   if (!is.null(width)) flags <- c(flags, "-x", width)
   if (!is.null(height)) flags <- c(flags, "-y", height)
   if (!is.null(shell_command)) flags <- c(flags, shQuote(shell_command))
@@ -48,7 +48,7 @@ new_session <- function(name = NULL,
 #' @return A `tmuxr_session`.
 #'
 #' @export
-attach_session <- function(name, prompt = NULL) {
+attach_session <- function(name) {
   structure(list(name = as.character(name)), class = "tmuxr_session")
 }
 
@@ -84,7 +84,7 @@ kill_session <- function(session) {
 #'
 #' @export
 list_sessions <- function() {
-  flags <- c("-F", "'#{session_name}'")
+  flags <- c("-F", "#{session_name}")
   tmux_command("list-sessions", flags) %>% purrr::map(attach_session)
 }
 
