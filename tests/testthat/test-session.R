@@ -1,8 +1,5 @@
 context("session")
 
-if (!is_installed()) stop("tmux not found")
-if (is_running()) stop("server is already running")
-
 test_that("server is not already running", {
   expect_false(is_running())
 })
@@ -28,4 +25,4 @@ test_that("a session can be renamed", {
   expect_equal(rename_session(attach_session("foo"), "bar")$name, "bar")
 })
 
-try(kill_server(), silent = TRUE)
+kill_server()

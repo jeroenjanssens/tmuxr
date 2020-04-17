@@ -1,12 +1,24 @@
 context("server")
 
-if (!is_installed()) stop("tmux not found")
-if (is_running()) stop("server is already running")
-
-test_that("the server can be killed", {
-  new_session()  # This is the only way to start the server
-  expect_error(kill_server(), NA)
-  expect_error(kill_server())
+test_that("the server is installed", {
+  expect_true(is_installed())
 })
 
-try(kill_server(), silent = TRUE)
+test_that("the server can be started", {
+  expect_null(start_server())
+})
+
+test_that("the server can be killed", {
+  expect_null(kill_server())
+})
+
+test_that("the server is not running", {
+  expect_false(is_running())
+})
+
+test_that("the server is not running", {
+  new_session()
+  expect_true(is_running())
+})
+
+kill_server()

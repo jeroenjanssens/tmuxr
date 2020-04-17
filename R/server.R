@@ -2,7 +2,8 @@
 #'
 #' @export
 kill_server <- function(silent = TRUE) {
-  invisible(try(tmux_command("kill-server"), silent = silent))
+  try(tmux_command("kill-server"), silent = silent)
+  invisible(NULL)
 }
 
 
@@ -10,7 +11,8 @@ kill_server <- function(silent = TRUE) {
 #'
 #' @export
 start_server <- function() {
-  invisible(tmux_command("start-server"))
+  tmux_command("start-server")
+  invisible(NULL)
 }
 
 
