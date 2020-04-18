@@ -36,3 +36,17 @@ is_running <- function() {
 is_installed <- function() {
   unname(Sys.which("tmux")) != ""
 }
+
+
+#' Get tmux version.
+#'
+#' @export
+tmux_version <- function(as_numeric = FALSE) {
+  result <- processx::run("tmux", "-V", error_on_status = FALSE, stderr_to_stdout = TRUE)
+
+  if (as_numeric) {
+    as.numeric(stringr::str_match(result$stdout, "\\d+\\.\\d+"))
+  } else {
+    stringr::str_trim(result$stdout)
+  }
+}
