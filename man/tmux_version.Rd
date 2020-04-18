@@ -6,6 +6,9 @@
 \usage{
 tmux_version(as_numeric = FALSE)
 }
+\arguments{
+\item{as_numeric}{Logical. Should the version number be returned as a numeric (default \code{FALSE})}
+}
 \description{
 Get tmux version.
 }

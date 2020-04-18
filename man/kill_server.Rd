@@ -6,6 +6,9 @@
 \usage{
 kill_server(silent = TRUE)
 }
+\arguments{
+\item{silent}{Logical. Should a possible error be suppressed?}
+}
 \description{
 Kill the tmux server.
 }

@@ -8,8 +8,6 @@ attach_session(name)
 }
 \arguments{
 \item{name}{Numeric or string indicating the name of the existing session.}
-
-\item{prompt}{String containing a regular expression.}
 }
 \value{
 A \code{tmuxr_session}.

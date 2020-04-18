@@ -43,7 +43,6 @@ new_session <- function(name = NULL,
 #' Attach to an existing tmux session.
 #'
 #' @param name Numeric or string indicating the name of the existing session.
-#' @param prompt String containing a regular expression.
 #'
 #' @return A `tmuxr_session`.
 #'

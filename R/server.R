@@ -1,5 +1,7 @@
 #' Kill the tmux server.
 #'
+#' @param silent Logical. Should a possible error be suppressed?
+#'
 #' @export
 kill_server <- function(silent = TRUE) {
   try(tmux_command("kill-server"), silent = silent)
@@ -39,6 +41,8 @@ is_installed <- function() {
 
 
 #' Get tmux version.
+#'
+#' @param as_numeric Logical. Should the version number be returned as a numeric (default `FALSE`)
 #'
 #' @export
 tmux_version <- function(as_numeric = FALSE) {

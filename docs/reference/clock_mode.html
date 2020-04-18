@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Kill the tmux server. — kill_server • tmuxr</title>
+<title>Display a large clock. — clock_mode • tmuxr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Kill the tmux server. — kill_server" />
-<meta property="og:description" content="Kill the tmux server." />
+<meta property="og:title" content="Display a large clock. — clock_mode" />
+<meta property="og:description" content="Display a large clock." />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -118,23 +118,23 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Kill the tmux server.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/datascienceworkshops/tmuxr/blob/master/R/server.R'><code>R/server.R</code></a></small>
-    <div class="hidden name"><code>kill_server.Rd</code></div>
+    <h1>Display a large clock.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/datascienceworkshops/tmuxr/blob/master/R/pane.R'><code>R/pane.R</code></a></small>
+    <div class="hidden name"><code>clock_mode.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Kill the tmux server.</p>
+    <p>Display a large clock.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>kill_server</span>(<span class='kw'>silent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>clock_mode</span>(<span class='kw'>target</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>silent</th>
-      <td><p>Logical. Should a possible error be suppressed?</p></td>
+      <th>target</th>
+      <td><p>A session, window, or pane.</p></td>
     </tr>
     </table>
 
