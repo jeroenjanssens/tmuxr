@@ -27,8 +27,8 @@ integer (starting at 0).}
 characters.}
 
 \item{height}{Numeric. Height of initial window. Default 24
-lines. By default, \code{tmux} uses one status line, so the effective height
-is decreased by one line.}
+lines. Prior to version 2.6, \code{tmux} uses one line for the status line,
+so the effective height is decreased by one line.}
 
 \item{detached}{Logical. Default \code{TRUE}. If \code{FALSE}, the \code{R} interpreter
 waits for the session to be killed.}

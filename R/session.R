@@ -8,8 +8,8 @@
 #' @param width Numeric. Width of inital window. Default 80
 #' characters.
 #' @param height Numeric. Height of initial window. Default 24
-#' lines. By default, `tmux` uses one status line, so the effective height
-#' is decreased by one line.
+#' lines. Prior to version 2.6, `tmux` uses one line for the status line,
+#' so the effective height is decreased by one line.
 #' @param detached Logical. Default `TRUE`. If `FALSE`, the `R` interpreter
 #' waits for the session to be killed.
 #' @param shell_command String. System command to be invoked when creating the

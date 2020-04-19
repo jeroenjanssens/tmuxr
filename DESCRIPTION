@@ -29,6 +29,7 @@ Collate:
     window.R
     pane.R
     send.R
+    props.R
 RoxygenNote: 7.1.0
 Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace", "collate"))
 Suggests: testthat

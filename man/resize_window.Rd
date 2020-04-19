@@ -2,17 +2,17 @@
 % Please edit documentation in R/window.R
 \name{resize_window}
 \alias{resize_window}
-\title{Resize window.}
+\title{Resize a window}
 \usage{
 resize_window(target, width = NULL, height = NULL)
 }
 \arguments{
-\item{target}{A session.}
+\item{target}{A session or window.}
 
 \item{width}{Numeric.}
 
 \item{height}{Numeric.}
 }
 \description{
-Resize window.
+Resize a window
 }

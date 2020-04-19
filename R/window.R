@@ -19,7 +19,7 @@ attach_window <- function(name) {
 #'
 #' @export
 list_windows <- function(target = NULL) {
-  flags <- c("-F", "'#{session_name}:#{window_index}'")
+  flags <- c("-F", "#{session_name}:#{window_index}")
   if (is.null(target)) {
     flags <- c(flags, "-a")
   } else {
@@ -28,18 +28,37 @@ list_windows <- function(target = NULL) {
   tmux_command("list-windows", flags) %>% purrr::map(attach_window)
 }
 
-#' Resize window.
+
+#' Resize a window
 #'
-#' @param target A session.
+#' @param target A session or window.
 #' @param width Numeric.
 #' @param height Numeric.
 #'
 #' @export
 resize_window <- function(target, width = NULL, height = NULL) {
+  flags <- c("-t", target$name)
 
-# TODO Implement resize_window
+  if (!is.null(width)) flags <- c(flags, "-x", as.character(width))
+  if (!is.null(height)) flags <- c(flags, "-y", as.character(height))
+
+  tmux_command("resize-window", flags)
+  target
 }
 
+
+#' Rename a window
+#'
+#' @param target A `tmuxr_window`.
+#' @param new_name String indicating the new name of the session
+#'
+#' @return A `tmuxr_window`.
+#'
+#' @export
+rename_window <- function(target, new_name) {
+  tmux_command("rename-window", "-t", target$name, as.character(new_name))
+  attach_window(new_name)
+}
 
 
 #' @export

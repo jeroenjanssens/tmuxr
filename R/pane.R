@@ -19,7 +19,7 @@ attach_pane <- function(name) {
 #'
 #' @export
 list_panes <- function(target = NULL) {
-  flags <- c("-F", "'#{session_name}:#{window_index}.#{pane_index}'")
+  flags <- c("-F", "#{session_name}:#{window_index}.#{pane_index}")
   if (is.null(target)) {
     flags <- c(flags, "-a")
   } else {
@@ -94,26 +94,26 @@ print.tmuxr_pane <- function(x, ...) {
 }
 
 
-#' Get height of pane
+#' Resize pane.
 #'
-#' @param target A session, window, or pane.
+#' @param target A pane.
+#' @param width Numeric.
+#' @param height Numeric.
 #'
 #' @export
-get_height <- function(target) {
-  flags <- c("-p", "-t", target$name, "'#{pane_height}'")
-  as.numeric(tmux_command("display", flags))
+resize_pane <- function(target, width = NULL, height = NULL) {
+  flags <- c("-t", target$name)
+
+  if (!is.null(width)) flags <- c(flags, "-x", as.character(width))
+  if (!is.null(height)) flags <- c(flags, "-y", as.character(height))
+
+  tmux_command("resize-pane", flags)
+  target
 }
 
 
-#' Get width of pane
-#'
-#' @param target A session, window, or pane.
-#'
-#' @export
-get_width <- function(target) {
-  flags <- c("-p", "-t", target$name, "'#{pane_width}'")
-  as.numeric(tmux_command("display", flags))
-}
+
+
 
 
 #' Display a large clock.
