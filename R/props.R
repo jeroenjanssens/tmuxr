@@ -10,13 +10,23 @@ display_message <- function(target = NULL, message = NULL, verbose = FALSE, stdo
   flags <- c()
   if (verbose) flags <- c(flags, "-v")
   if (stdout) flags <- c(flags, "-p")
-  if (!is.null(target)) flags <- c(flags, "-t", target$name)
+  if (!is.null(target)) flags <- c(flags, "-t", get_target(target))
   if (!is.null(message)) flags <- c(flags, message)
   output <- tmux_command("display-message", flags)
   if (stdout) {
     output
   } else {
     invisible(NULL)
+  }
+}
+
+
+#' @keywords internal
+get_target <- function(x) {
+  if (inherits(x, "tmuxr_object")) {
+    x$id
+  } else {
+    as.character(x)
   }
 }
 

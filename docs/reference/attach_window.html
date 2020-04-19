@@ -127,11 +127,15 @@
     <p>Attach to an existing tmux window.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>attach_window</span>(<span class='no'>name</span>)</pre>
+    <pre class="usage"><span class='fu'>attach_window</span>(<span class='no'>x</span>, <span class='kw'>lookup_id</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>lookup_id</th>
+      <td><p>Logical. Should the actual id be looked up just to be safe?</p></td>
+    </tr>
     <tr>
       <th>name</th>
       <td><p>Numeric or string indicating the name of the existing window.</p></td>

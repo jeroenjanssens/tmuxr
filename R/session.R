@@ -26,7 +26,7 @@ new_session <- function(name = NULL,
                         detached = TRUE,
                         shell_command = NULL) {
 
-  flags <- c("-P", "-F", "#{session_name}")
+  flags <- c("-P", "-F", "#{session_id}")
   if (detached) flags <- c(flags, "-d")
   if (!is.null(name)) flags <- c(flags, "-s", name)
   if (!is.null(window_name)) flags <- c(flags, "-n", window_name)
@@ -35,20 +35,26 @@ new_session <- function(name = NULL,
   if (!is.null(height)) flags <- c(flags, "-y", height)
   if (!is.null(shell_command)) flags <- c(flags, shell_command)
 
-  name <- tmux_command("new-session", flags)
-  attach_session(name)
+  id <- tmux_command("new-session", flags)
+  structure(list(id = id), class = c("tmuxr_object", "tmuxr_session"))
 }
 
 
 #' Attach to an existing tmux session.
 #'
-#' @param name Numeric or string indicating the name of the existing session.
+#' @param name Numeric or string indicating the id or name of the existing session.
+#' @param lookup_id Logical. Should the actual id be looked up just to be safe?
 #'
 #' @return A `tmuxr_session`.
 #'
 #' @export
-attach_session <- function(name) {
-  structure(list(name = as.character(name)), class = "tmuxr_session")
+attach_session <- function(x, lookup_id = TRUE) {
+  if (lookup_id) {
+    id <- prop(x, "session_id")
+  } else {
+    id <- as.character(x)
+  }
+  structure(list(id = id), class = c("tmuxr_object", "tmuxr_session"))
 }
 
 
@@ -60,9 +66,9 @@ attach_session <- function(name) {
 #' @return A `tmuxr_session`.
 #'
 #' @export
-rename_session <- function(session, new_name) {
-  tmux_command("rename-session", "-t", session$name, as.character(new_name))
-  attach_session(new_name)
+rename_session <- function(target, new_name) {
+  tmux_command("rename-session", "-t", get_target(target), as.character(new_name))
+  target
 }
 
 
@@ -71,8 +77,8 @@ rename_session <- function(session, new_name) {
 #' @param session A `tmuxr_session`.
 #'
 #' @export
-kill_session <- function(session) {
-  tmux_command("kill-session", "-t", session$name)
+kill_session <- function(target) {
+  tmux_command("kill-session", "-t", get_target(target))
   invisible(NULL)
 }
 
@@ -83,14 +89,13 @@ kill_session <- function(session) {
 #'
 #' @export
 list_sessions <- function() {
-  flags <- c("-F", "#{session_name}")
-  tmux_command("list-sessions", flags) %>% purrr::map(attach_session)
+  flags <- c("-F", "#{session_id}")
+  tmux_command("list-sessions", flags) %>% purrr::map(attach_session, lookup_id = FALSE)
 }
 
 
 #' @export
 print.tmuxr_session <- function(x, ...) {
-  lines <- tmux_command("list-sessions")
-  status <- lines[grepl(stringr::str_interp("^${x$name}:.*$"), lines)]
+  status <- display_message(x, "#{session_name}: #{session_windows} windows (created #{t:session_created})#{?session_grouped, (group ,}#{session_group}#{?session_grouped,),}#{?session_attached, (attached),}")
   cat("tmuxr session", status)
 }

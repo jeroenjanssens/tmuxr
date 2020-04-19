@@ -4,10 +4,12 @@
 \alias{attach_session}
 \title{Attach to an existing tmux session.}
 \usage{
-attach_session(name)
+attach_session(x, lookup_id = TRUE)
 }
 \arguments{
-\item{name}{Numeric or string indicating the name of the existing session.}
+\item{lookup_id}{Logical. Should the actual id be looked up just to be safe?}
+
+\item{name}{Numeric or string indicating the id or name of the existing session.}
 }
 \value{
 A \code{tmuxr_session}.

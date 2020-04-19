@@ -1,12 +1,18 @@
 #' Attach to an existing tmux window.
 #'
 #' @param name Numeric or string indicating the name of the existing window.
+#' @param lookup_id Logical. Should the actual id be looked up just to be safe?
 #'
 #' @return A `tmuxr_window`.
 #'
 #' @export
-attach_window <- function(name) {
-  structure(list(name = as.character(name)), class = "tmuxr_window")
+attach_window <- function(x, lookup_id = TRUE) {
+  if (lookup_id) {
+    id <- prop(x, "window_id")
+  } else {
+    id <- as.character(x)
+  }
+  structure(list(id = id), class = c("tmuxr_object", "tmuxr_window"))
 }
 
 
@@ -19,13 +25,13 @@ attach_window <- function(name) {
 #'
 #' @export
 list_windows <- function(target = NULL) {
-  flags <- c("-F", "#{session_name}:#{window_index}")
+  flags <- c("-F", "#{window_id}")
   if (is.null(target)) {
     flags <- c(flags, "-a")
   } else {
-    flags <- c(flags, "-t", target$name)
+    flags <- c(flags, "-t", get_target(target))
   }
-  tmux_command("list-windows", flags) %>% purrr::map(attach_window)
+  tmux_command("list-windows", flags) %>% purrr::map(attach_window, lookup_id = FALSE)
 }
 
 
@@ -37,7 +43,7 @@ list_windows <- function(target = NULL) {
 #'
 #' @export
 resize_window <- function(target, width = NULL, height = NULL) {
-  flags <- c("-t", target$name)
+  flags <- c("-t", get_target(target))
 
   if (!is.null(width)) flags <- c(flags, "-x", as.character(width))
   if (!is.null(height)) flags <- c(flags, "-y", as.character(height))
@@ -56,15 +62,14 @@ resize_window <- function(target, width = NULL, height = NULL) {
 #'
 #' @export
 rename_window <- function(target, new_name) {
-  tmux_command("rename-window", "-t", target$name, as.character(new_name))
-  attach_window(new_name)
+  tmux_command("rename-window", "-t", get_target(target),
+               as.character(new_name))
+  target
 }
 
 
 #' @export
 print.tmuxr_window <- function(x, ...) {
-  lines <- tmux_command("list-windows", "-a")
-  # TODO Maybe replace stringr with glue?
-  status <- lines[grepl(stringr::str_interp("^${x$name}:.*$"), lines)]
+  status <- display_message(x, "#{session_name}:#{window_index}: #{window_name}#{window_flags} (#{window_panes} panes) [#{window_width}x#{window_height}] [layout #{window_layout}] #{window_id}#{?window_active, (active),}")
   cat("tmuxr window", status)
 }

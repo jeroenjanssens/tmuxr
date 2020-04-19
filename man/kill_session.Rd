@@ -4,7 +4,7 @@
 \alias{kill_session}
 \title{Kill a session.}
 \usage{
-kill_session(session)
+kill_session(target)
 }
 \arguments{
 \item{session}{A \code{tmuxr_session}.}

@@ -4,12 +4,12 @@
 \alias{rename_session}
 \title{Rename a session.}
 \usage{
-rename_session(session, new_name)
+rename_session(target, new_name)
 }
 \arguments{
-\item{session}{A \code{tmuxr_session}.}
-
 \item{new_name}{String indicating the new name of the session}
+
+\item{session}{A \code{tmuxr_session}.}
 }
 \value{
 A \code{tmuxr_session}.

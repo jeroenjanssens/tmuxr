@@ -1,12 +1,18 @@
 #' Attach to an existing tmux pane.
 #'
 #' @param name Numeric or string indicating the name of the existing pane.
+#' @param lookup_id Logical. Should the actual id be looked up just to be safe?
 #'
 #' @return A `tmuxr_pane`.
 #'
 #' @export
-attach_pane <- function(name) {
-  structure(list(name = as.character(name)), class = "tmuxr_pane")
+attach_pane <- function(x, lookup_id = TRUE) {
+  if (lookup_id) {
+    id <- prop(x, "pane")
+  } else {
+    id <- as.character(x)
+  }
+  structure(list(id = id), class = c("tmuxr_object", "tmuxr_pane"))
 }
 
 
@@ -19,13 +25,13 @@ attach_pane <- function(name) {
 #'
 #' @export
 list_panes <- function(target = NULL) {
-  flags <- c("-F", "#{session_name}:#{window_index}.#{pane_index}")
+  flags <- c("-F", "#{pane_id}")
   if (is.null(target)) {
     flags <- c(flags, "-a")
   } else {
-    flags <- c(flags, "-t", target$name)
+    flags <- c(flags, "-t", get_target(target))
   }
-  tmux_command("list-panes", flags) %>% purrr::map(attach_pane)
+  tmux_command("list-panes", flags) %>% purrr::map(attach_pane, lookup_id = FALSE)
 }
 
 
@@ -42,7 +48,7 @@ list_panes <- function(target = NULL) {
 #' @export
 capture_pane <- function(target, start = NULL, end = NULL, escape = FALSE,
                          escape_control = FALSE, join = FALSE, cat = FALSE) {
-  flags <- c("-p", "-t", target$name)
+  flags <- c("-p", "-t", get_target(target))
 
   if (!is.null(start)) flags <- c(flags, "-S", as.character(start))
   if (!is.null(end)) flags <- c(flags, "-E", as.character(end))
@@ -71,7 +77,7 @@ pipe_pane <- function(target = NULL, shell_command = NULL, open = FALSE) {
   flags <- c()
 
   if (!is.null(target)) {
-    flags <- c(flags, "-t", target$name)
+    flags <- c(flags, "-t", get_target(target))
   }
 
   if (open) {
@@ -88,8 +94,7 @@ pipe_pane <- function(target = NULL, shell_command = NULL, open = FALSE) {
 
 #' @export
 print.tmuxr_pane <- function(x, ...) {
-  lines <- tmux_command("list-panes", "-a")
-  status <- lines[grepl(stringr::str_interp("^${x$name}:.*$"), lines)]
+  status <- display_message(x, "#{session_name}:#{window_index}.#{pane_index}: [#{pane_width}x#{pane_height}] [history #{history_size}/#{history_limit}, #{history_bytes} bytes] #{pane_id}#{?pane_active, (active),}#{?pane_dead, (dead),}")
   cat("tmuxr pane", status)
 }
 
@@ -102,7 +107,7 @@ print.tmuxr_pane <- function(x, ...) {
 #'
 #' @export
 resize_pane <- function(target, width = NULL, height = NULL) {
-  flags <- c("-t", target$name)
+  flags <- c("-t", get_target(target))
 
   if (!is.null(width)) flags <- c(flags, "-x", as.character(width))
   if (!is.null(height)) flags <- c(flags, "-y", as.character(height))
@@ -113,9 +118,6 @@ resize_pane <- function(target, width = NULL, height = NULL) {
 
 
 
-
-
-
 #' Display a large clock.
 #'
 #' @param target A session, window, or pane.
@@ -123,6 +125,6 @@ resize_pane <- function(target, width = NULL, height = NULL) {
 #' @export
 clock_mode <- function(target = NULL) {
   flags <- c()
-  if (!is.null(target)) flags <- c(flags, "-t", target$name)
+  if (!is.null(target)) flags <- c(flags, "-t", get_target(target))
   invisible(tmux_command("clock-mode", flags))
 }

@@ -4,9 +4,11 @@
 \alias{attach_pane}
 \title{Attach to an existing tmux pane.}
 \usage{
-attach_pane(name)
+attach_pane(x, lookup_id = TRUE)
 }
 \arguments{
+\item{lookup_id}{Logical. Should the actual id be looked up just to be safe?}
+
 \item{name}{Numeric or string indicating the name of the existing pane.}
 }
 \value{
