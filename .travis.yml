@@ -4,7 +4,7 @@ cache: packages
 matrix:
   include:
     - os: linux
-      dist: eaon
+      dist: bionic
       sudo: false
 
 r_packages:
