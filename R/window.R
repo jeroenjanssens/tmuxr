@@ -31,7 +31,7 @@ list_windows <- function(target = NULL) {
   } else {
     flags <- c(flags, "-t", get_target(target))
   }
-  tmux_command("list-windows", flags) %>% purrr::map(attach_window, lookup_id = FALSE)
+  lapply(tmux_command("list-windows", flags), attach_window, lookup_id = FALSE)
 }
 
 

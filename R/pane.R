@@ -73,7 +73,7 @@ list_panes <- function(target = NULL) {
   } else {
     flags <- c(flags, "-t", get_target(target))
   }
-  tmux_command("list-panes", flags) %>% purrr::map(attach_pane, lookup_id = FALSE)
+  lapply(tmux_command("list-panes", flags), attach_pane, lookup_id = FALSE)
 }
 
 

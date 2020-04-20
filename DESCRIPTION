@@ -16,10 +16,8 @@ BugReports: https://github.com/datascienceworkshops/tmuxr/issues
 SystemRequirements: tmux
 OS_type: unix
 Imports:
-    purrr,
     rlang,
     stringr,
-    magrittr,
     processx
 Collate:
     tmuxr-package.R

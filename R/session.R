@@ -34,7 +34,7 @@ kill_session <- function(target) {
 #' @export
 list_sessions <- function() {
   flags <- c("-F", "#{session_id}")
-  tmux_command("list-sessions", flags) %>% purrr::map(attach_session, lookup_id = FALSE)
+  lapply(tmux_command("list-sessions", flags), attach_session, lookup_id = FALSE)
 }
 
 
