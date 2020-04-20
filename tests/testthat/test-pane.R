@@ -38,6 +38,7 @@ test_that("stdout of pane can be piped", {
 })
 
 test_that("stdin of pane can be piped", {
+  skip_if_not(tmux_version(as_numeric = TRUE) >= 2.8)
   s <- new_session(shell_command = "cat > /dev/null")
   pipe_pane(s, "seq 5", stdin = TRUE)
   pipe_pane(s)

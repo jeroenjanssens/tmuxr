@@ -74,11 +74,15 @@ capture_pane <- function(target, start = NULL, end = NULL, escape = FALSE,
 #' @param open Logical. Only open a new pipe if no previous pipe exists.
 #'
 #' @export
-pipe_pane <- function(target = NULL, shell_command = NULL, stdout = FALSE, stdin = FALSE, open = FALSE) {
+pipe_pane <- function(target = NULL, shell_command = NULL, stdout = TRUE, stdin = FALSE, open = FALSE) {
   flags <- c()
   if (!is.null(target)) flags <- c(flags, "-t", get_target(target))
-  if (stdout) flags <- c(flags, "-O")
-  if (stdin) flags <- c(flags, "-I")
+
+  if (tmux_version(as_numeric = TRUE) >= 2.8) {
+    if (stdout) flags <- c(flags, "-O")
+    if (stdin) flags <- c(flags, "-I")
+  }
+
   if (open) flags <- c(flags, "-o")
   if (!is.null(shell_command)) {
     if (!(stdout || stdin)) stop("When opening a pipe, stdout and/or stdin must be TRUE", call. = FALSE)
