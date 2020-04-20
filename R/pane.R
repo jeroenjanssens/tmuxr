@@ -68,24 +68,21 @@ capture_pane <- function(target, start = NULL, end = NULL, escape = FALSE,
 #' Pipe contents of a pane to a shell command.
 #'
 #' @param target A session, window, or pane.
-#' @param shell_command String. System command to be invoked when creating the
-#' session.
+#' @param shell_command String. If `NULL`, the current pipe (if any) is closed.
+#' @param stdout Logical. Connect standard input of pane to `shell_command`?
+#' @param stdin Logical. Connect standard output of pane to `shell_command`?
 #' @param open Logical. Only open a new pipe if no previous pipe exists.
 #'
 #' @export
-pipe_pane <- function(target = NULL, shell_command = NULL, open = FALSE) {
+pipe_pane <- function(target = NULL, shell_command = NULL, stdout = FALSE, stdin = FALSE, open = FALSE) {
   flags <- c()
-
-  if (!is.null(target)) {
-    flags <- c(flags, "-t", get_target(target))
-  }
-
-  if (open) {
-    flags <- c(flags, "-o")
-  }
-
+  if (!is.null(target)) flags <- c(flags, "-t", get_target(target))
+  if (stdout) flags <- c(flags, "-O")
+  if (stdin) flags <- c(flags, "-I")
+  if (open) flags <- c(flags, "-o")
   if (!is.null(shell_command)) {
-    flags <- c(flags, shQuote(shell_command))
+    if (!(stdout || stdin)) stop("When opening a pipe, stdout and/or stdin must be TRUE", call. = FALSE)
+    flags <- c(flags, shell_command)
   }
   tmux_command("pipe-pane", flags)
   invisible(target)

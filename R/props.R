@@ -148,6 +148,3 @@ height.tmuxr_pane <- function(x) as.numeric(prop(x, "pane_height"))
 `height<-.tmuxr_window` <- function(x, value) resize_window(x, height = value)
 #' @export
 `height<-.tmuxr_pane` <- function(x, value) resize_pane(x, height = value)
-
-
-

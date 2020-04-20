@@ -22,13 +22,11 @@ start_server <- function() {
 #'
 #' @export
 is_running <- function() {
-  tryCatch(
-    {
-      list_sessions()
-      TRUE
-    },
-    error = function(e) FALSE
-  )
+  tryCatch({
+    list_sessions()
+    TRUE
+  },
+  error = function(e) FALSE)
 }
 
 
@@ -42,11 +40,14 @@ is_installed <- function() {
 
 #' Get tmux version.
 #'
-#' @param as_numeric Logical. Should the version number be returned as a numeric (default `FALSE`)
+#' @param as_numeric Logical. Should the version number be returned as a
+#'   numeric (default `FALSE`)
 #'
 #' @export
 tmux_version <- function(as_numeric = FALSE) {
-  result <- processx::run("tmux", "-V", error_on_status = FALSE, stderr_to_stdout = TRUE)
+  result <- processx::run("tmux", "-V",
+                          error_on_status = FALSE,
+                          stderr_to_stdout = TRUE)
 
   if (as_numeric) {
     as.numeric(stringr::str_match(result$stdout, "\\d+\\.\\d+"))

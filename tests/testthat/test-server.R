@@ -21,4 +21,12 @@ test_that("the server is not running", {
   expect_true(is_running())
 })
 
+test_that("the version is returned as character", {
+  expect_match(tmux_version(), "^tmux ")
+})
+
+test_that("the version is returned as numeric", {
+  expect_true(is.numeric(tmux_version(as_numeric = TRUE)))
+})
+
 kill_server()
