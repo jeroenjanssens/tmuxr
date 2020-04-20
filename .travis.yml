@@ -1,11 +1,7 @@
 language: r
 cache: packages
-
-matrix:
-  include:
-    - os: linux
-      dist: bionic
-      sudo: false
+os: linux
+dist: bionic
 
 r_packages:
   - covr
