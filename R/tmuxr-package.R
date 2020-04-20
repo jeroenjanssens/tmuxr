@@ -1,7 +1,6 @@
 #' @keywords internal
 "_PACKAGE"
 
-#' @importFrom rlang %||%
 #' @importFrom utils head tail
 
 # The following block is used by usethis to automatically manage

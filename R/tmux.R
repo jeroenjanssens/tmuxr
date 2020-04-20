@@ -5,7 +5,7 @@
 #'
 #' @export
 tmux_command <- function(command, ...) {
-  stopifnot(rlang::is_scalar_character(command))
+  stopifnot(is.character(command), length(command) == 1)
 
   tmux_options <- c()
 
@@ -27,5 +27,5 @@ tmux_command <- function(command, ...) {
   if (result$status > 0) stop("tmux: ", result$stdout, call. = FALSE)
 
   # Split standard output into lines and remove last line because it's empty
-  head(stringr::str_split(result$stdout, "\n")[[1]], -1)
+  unlist(strsplit(result$stdout, "\n"))
 }

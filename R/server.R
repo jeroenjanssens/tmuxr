@@ -49,9 +49,12 @@ tmux_version <- function(as_numeric = FALSE) {
                           error_on_status = FALSE,
                           stderr_to_stdout = TRUE)
 
+  version <- result$stdout
+
   if (as_numeric) {
-    as.numeric(stringr::str_match(result$stdout, "\\d+\\.\\d+"))
+    matches <- regexec("\\d+\\.\\d+", version)
+    as.numeric(regmatches(version, matches)[[1]])
   } else {
-    stringr::str_trim(result$stdout)
+    trimws(version)
   }
 }
