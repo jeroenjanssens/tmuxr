@@ -2,7 +2,7 @@
 % Please edit documentation in R/session.R
 \name{new_session}
 \alias{new_session}
-\title{Create a new tmux session.}
+\title{Create a new tmux session}
 \usage{
 new_session(
   name = NULL,
@@ -40,5 +40,5 @@ session.}
 A \code{tmuxr_session}.
 }
 \description{
-Create a new tmux session.
+Create a new tmux session
 }

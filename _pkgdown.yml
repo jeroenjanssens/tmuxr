@@ -23,6 +23,13 @@ navbar:
      href: https://github.com/datascienceworkshops/tmuxr
 
 reference:
+  - title: Server
+    contents:
+      - is_installed
+      - is_running
+      - kill_server
+      - start_server
+      - tmux_version
   - title: Sessions
     contents:
       - attach_session
@@ -34,17 +41,20 @@ reference:
     contents:
       - attach_window
       - list_windows
+      - resize_window
+      - rename_window
   - title: Panes
     contents:
       - attach_pane
       - capture_pane
-      - get_height
-      - get_width
+      - clock_mode
       - list_panes
       - pipe_pane
-  - title: Server
+      - resize_pane
+      - send_keys
+  - title: Utilities
     contents:
-      - is_installed
-      - is_running
-      - kill_server
-      - start_server
+      - object_name
+      - object_size
+      - display_message
+      - tmux_command

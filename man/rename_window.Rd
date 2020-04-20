@@ -2,18 +2,18 @@
 % Please edit documentation in R/window.R
 \name{rename_window}
 \alias{rename_window}
-\title{Rename a window}
+\title{Rename a tmux window}
 \usage{
-rename_window(target, new_name)
+rename_window(target, value)
 }
 \arguments{
 \item{target}{A \code{tmuxr_window}.}
 
-\item{new_name}{String indicating the new name of the session}
+\item{value}{String indicating the new name of the window.}
 }
 \value{
 A \code{tmuxr_window}.
 }
 \description{
-Rename a window
+Rename a tmux window
 }

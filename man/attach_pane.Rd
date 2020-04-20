@@ -2,18 +2,18 @@
 % Please edit documentation in R/pane.R
 \name{attach_pane}
 \alias{attach_pane}
-\title{Attach to an existing tmux pane.}
+\title{Attach to an existing tmux pane}
 \usage{
 attach_pane(x, lookup_id = TRUE)
 }
 \arguments{
-\item{lookup_id}{Logical. Should the actual id be looked up just to be safe?}
+\item{x}{Numeric or string indicating the name of the existing pane.}
 
-\item{name}{Numeric or string indicating the name of the existing pane.}
+\item{lookup_id}{Logical. Should the actual id be looked up just to be safe?}
 }
 \value{
 A \code{tmuxr_pane}.
 }
 \description{
-Attach to an existing tmux pane.
+Attach to an existing tmux pane
 }

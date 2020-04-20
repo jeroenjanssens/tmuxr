@@ -7,7 +7,7 @@
 send_keys(target, keys, literal = FALSE)
 }
 \arguments{
-\item{target}{A session, window, or pane.}
+\item{target}{A \code{tmuxr_session}, \code{tmuxr_window}, or \code{tmuxr_pane}.}
 
 \item{keys}{String to send.}
 

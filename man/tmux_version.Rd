@@ -2,13 +2,14 @@
 % Please edit documentation in R/server.R
 \name{tmux_version}
 \alias{tmux_version}
-\title{Get tmux version.}
+\title{Get tmux version}
 \usage{
 tmux_version(as_numeric = FALSE)
 }
 \arguments{
-\item{as_numeric}{Logical. Should the version number be returned as a numeric (default \code{FALSE})}
+\item{as_numeric}{Logical. Should the version number be returned as a
+numeric (default \code{FALSE})}
 }
 \description{
-Get tmux version.
+Get tmux version
 }

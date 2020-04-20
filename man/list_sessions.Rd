@@ -2,7 +2,7 @@
 % Please edit documentation in R/session.R
 \name{list_sessions}
 \alias{list_sessions}
-\title{List sessions.}
+\title{List sessions}
 \usage{
 list_sessions()
 }
@@ -10,5 +10,5 @@ list_sessions()
 A list of \code{tmuxr_session}s.
 }
 \description{
-List sessions.
+List sessions
 }

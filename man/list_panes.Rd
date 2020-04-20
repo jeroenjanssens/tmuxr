@@ -2,17 +2,17 @@
 % Please edit documentation in R/pane.R
 \name{list_panes}
 \alias{list_panes}
-\title{List panes.}
+\title{List tmux panes}
 \usage{
 list_panes(target = NULL)
 }
 \arguments{
-\item{target}{Parent session or window. If \code{NULL} (default), all windows are
-listed.}
+\item{target}{Parent \code{tmuxr_session} or \code{tmuxr_window}. If \code{NULL} (default),
+all windows of all sessions are listed.}
 }
 \value{
 A list of \code{tmuxr_pane}s.
 }
 \description{
-List panes.
+List tmux panes
 }

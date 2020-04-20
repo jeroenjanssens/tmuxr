@@ -2,17 +2,17 @@
 % Please edit documentation in R/window.R
 \name{list_windows}
 \alias{list_windows}
-\title{List windows.}
+\title{List tmux windows}
 \usage{
 list_windows(target = NULL)
 }
 \arguments{
-\item{target}{Name of parent session. If \code{NULL} (default), all windows are
-listed.}
+\item{target}{Name of parent \code{tmuxr_session}. If \code{NULL} (default), all
+windows of all sessions are listed.}
 }
 \value{
-A list of \code{tmuxr_window}s.
+A \code{list} of \code{tmuxr_window}s.
 }
 \description{
-List windows.
+List tmux windows
 }

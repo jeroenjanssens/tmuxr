@@ -1,6 +1,6 @@
-#' Attach to an existing tmux window.
+#' Attach to an existing tmux window
 #'
-#' @param name Numeric or string indicating the name of the existing window.
+#' @param x Numeric or string indicating the name of the existing window.
 #' @param lookup_id Logical. Should the actual id be looked up just to be safe?
 #'
 #' @return A `tmuxr_window`.
@@ -12,16 +12,16 @@ attach_window <- function(x, lookup_id = TRUE) {
   } else {
     id <- as.character(x)
   }
-  structure(list(id = id), class = c("tmuxr_object", "tmuxr_window"))
+  structure(list(id = id), class = c("tmuxr_window", "tmuxr_object"))
 }
 
 
-#' List windows.
+#' List tmux windows
 #'
-#' @param target Name of parent session. If `NULL` (default), all windows are
-#' listed.
+#' @param target Name of parent `tmuxr_session`. If `NULL` (default), all
+#' windows of all sessions are listed.
 #'
-#' @return A list of `tmuxr_window`s.
+#' @return A `list` of `tmuxr_window`s.
 #'
 #' @export
 list_windows <- function(target = NULL) {
@@ -35,9 +35,31 @@ list_windows <- function(target = NULL) {
 }
 
 
-#' Resize a window
+#' @export
+print.tmuxr_window <- function(x, ...) {
+  status <- display_message(x, "#{session_name}:#{window_index}: #{window_name}#{window_flags} (#{window_panes} panes) [#{window_width}x#{window_height}] [layout #{window_layout}] #{window_id}#{?window_active, (active),}")
+  cat("tmuxr window", status)
+}
+
+
+#' Rename a tmux window
 #'
-#' @param target A session or window.
+#' @param target A `tmuxr_window`.
+#' @param value String indicating the new name of the window.
+#'
+#' @return A `tmuxr_window`.
+#'
+#' @export
+rename_window <- function(target, value) {
+  tmux_command("rename-window", "-t", get_target(target),
+               as.character(value))
+  invisible(target)
+}
+
+
+#' Resize a tmux window
+#'
+#' @param target A `tmuxr_session` or `tmuxr_window`.
 #' @param width Numeric.
 #' @param height Numeric.
 #'
@@ -49,27 +71,5 @@ resize_window <- function(target, width = NULL, height = NULL) {
   if (!is.null(height)) flags <- c(flags, "-y", as.character(height))
 
   tmux_command("resize-window", flags)
-  target
-}
-
-
-#' Rename a window
-#'
-#' @param target A `tmuxr_window`.
-#' @param new_name String indicating the new name of the session
-#'
-#' @return A `tmuxr_window`.
-#'
-#' @export
-rename_window <- function(target, new_name) {
-  tmux_command("rename-window", "-t", get_target(target),
-               as.character(new_name))
-  target
-}
-
-
-#' @export
-print.tmuxr_window <- function(x, ...) {
-  status <- display_message(x, "#{session_name}:#{window_index}: #{window_name}#{window_flags} (#{window_panes} panes) [#{window_width}x#{window_height}] [layout #{window_layout}] #{window_id}#{?window_active, (active),}")
-  cat("tmuxr window", status)
+  invisible(target)
 }

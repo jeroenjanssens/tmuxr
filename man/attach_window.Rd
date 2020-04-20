@@ -2,18 +2,18 @@
 % Please edit documentation in R/window.R
 \name{attach_window}
 \alias{attach_window}
-\title{Attach to an existing tmux window.}
+\title{Attach to an existing tmux window}
 \usage{
 attach_window(x, lookup_id = TRUE)
 }
 \arguments{
-\item{lookup_id}{Logical. Should the actual id be looked up just to be safe?}
+\item{x}{Numeric or string indicating the name of the existing window.}
 
-\item{name}{Numeric or string indicating the name of the existing window.}
+\item{lookup_id}{Logical. Should the actual id be looked up just to be safe?}
 }
 \value{
 A \code{tmuxr_window}.
 }
 \description{
-Attach to an existing tmux window.
+Attach to an existing tmux window
 }

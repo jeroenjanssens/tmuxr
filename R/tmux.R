@@ -1,4 +1,9 @@
-#' @keywords internal
+#' Execute a tmux command
+#'
+#' @param command String.
+#' @param ... Character vector of command flags.
+#'
+#' @export
 tmux_command <- function(command, ...) {
   stopifnot(rlang::is_scalar_character(command))
 

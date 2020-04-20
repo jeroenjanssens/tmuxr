@@ -2,17 +2,17 @@
 % Please edit documentation in R/window.R
 \name{resize_window}
 \alias{resize_window}
-\title{Resize a window}
+\title{Resize a tmux window}
 \usage{
 resize_window(target, width = NULL, height = NULL)
 }
 \arguments{
-\item{target}{A session or window.}
+\item{target}{A \code{tmuxr_session} or \code{tmuxr_window}.}
 
 \item{width}{Numeric.}
 
 \item{height}{Numeric.}
 }
 \description{
-Resize a window
+Resize a tmux window
 }

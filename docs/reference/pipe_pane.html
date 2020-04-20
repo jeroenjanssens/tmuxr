@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pipe contents of a pane to a shell command. — pipe_pane • tmuxr</title>
+<title>Pipe contents of a tmux pane to a shell command — pipe_pane • tmuxr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Pipe contents of a pane to a shell command. — pipe_pane" />
-<meta property="og:description" content="Pipe contents of a pane to a shell command." />
+<meta property="og:title" content="Pipe contents of a tmux pane to a shell command — pipe_pane" />
+<meta property="og:description" content="Pipe contents of a tmux pane to a shell command" />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -118,28 +118,41 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pipe contents of a pane to a shell command.</h1>
+    <h1>Pipe contents of a tmux pane to a shell command</h1>
     <small class="dont-index">Source: <a href='https://github.com/datascienceworkshops/tmuxr/blob/master/R/pane.R'><code>R/pane.R</code></a></small>
     <div class="hidden name"><code>pipe_pane.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Pipe contents of a pane to a shell command.</p>
+    <p>Pipe contents of a tmux pane to a shell command</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pipe_pane</span>(<span class='kw'>target</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>shell_command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>open</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>pipe_pane</span>(
+  <span class='kw'>target</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>shell_command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>stdout</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>stdin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>open</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>target</th>
-      <td><p>A session, window, or pane.</p></td>
+      <td><p>A <code>tmuxr_session</code>, <code>tmuxr_window</code>, or <code>tmuxr_pane</code>.</p></td>
     </tr>
     <tr>
       <th>shell_command</th>
-      <td><p>String. System command to be invoked when creating the
-session.</p></td>
+      <td><p>String. If <code>NULL</code>, the current pipe (if any) is closed.</p></td>
+    </tr>
+    <tr>
+      <th>stdout</th>
+      <td><p>Logical. Connect standard input of pane to <code>shell_command</code>?</p></td>
+    </tr>
+    <tr>
+      <th>stdin</th>
+      <td><p>Logical. Connect standard output of pane to <code>shell_command</code>?</p></td>
     </tr>
     <tr>
       <th>open</th>

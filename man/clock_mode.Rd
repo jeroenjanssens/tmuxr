@@ -2,13 +2,13 @@
 % Please edit documentation in R/pane.R
 \name{clock_mode}
 \alias{clock_mode}
-\title{Display a large clock.}
+\title{Display a large clock}
 \usage{
 clock_mode(target = NULL)
 }
 \arguments{
-\item{target}{A session, window, or pane.}
+\item{target}{A \code{tmuxr_session}, \code{tmuxr_window}, or \code{tmuxr_pane}.}
 }
 \description{
-Display a large clock.
+Display a large clock
 }

@@ -2,17 +2,17 @@
 % Please edit documentation in R/pane.R
 \name{resize_pane}
 \alias{resize_pane}
-\title{Resize pane.}
+\title{Resize a tmux pane}
 \usage{
 resize_pane(target, width = NULL, height = NULL)
 }
 \arguments{
-\item{target}{A pane.}
+\item{target}{A \code{tmuxr_pane}.}
 
 \item{width}{Numeric.}
 
 \item{height}{Numeric.}
 }
 \description{
-Resize pane.
+Resize a tmux pane
 }

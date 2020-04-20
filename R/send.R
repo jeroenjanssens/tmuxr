@@ -1,6 +1,6 @@
 #' Send keys to a session, window, or pane.
 #'
-#' @param target A session, window, or pane.
+#' @param target A `tmuxr_session`, `tmuxr_window`, or `tmuxr_pane`.
 #' @param keys String to send.
 #' @param literal Should the keys be interpreted literally?
 #'

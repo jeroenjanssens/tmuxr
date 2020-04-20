@@ -2,7 +2,7 @@
 % Please edit documentation in R/server.R
 \name{kill_server}
 \alias{kill_server}
-\title{Kill the tmux server.}
+\title{Kill the tmux server}
 \usage{
 kill_server(silent = TRUE)
 }
@@ -10,5 +10,5 @@ kill_server(silent = TRUE)
 \item{silent}{Logical. Should a possible error be suppressed?}
 }
 \description{
-Kill the tmux server.
+Kill the tmux server
 }

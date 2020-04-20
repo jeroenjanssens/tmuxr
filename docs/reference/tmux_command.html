@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rename a tmux session — rename_session • tmuxr</title>
+<title>Execute a tmux command — tmux_command • tmuxr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Rename a tmux session — rename_session" />
-<meta property="og:description" content="Rename a tmux session" />
+<meta property="og:title" content="Execute a tmux command — tmux_command" />
+<meta property="og:description" content="Execute a tmux command" />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -118,33 +118,30 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Rename a tmux session</h1>
-    <small class="dont-index">Source: <a href='https://github.com/datascienceworkshops/tmuxr/blob/master/R/session.R'><code>R/session.R</code></a></small>
-    <div class="hidden name"><code>rename_session.Rd</code></div>
+    <h1>Execute a tmux command</h1>
+    <small class="dont-index">Source: <a href='https://github.com/datascienceworkshops/tmuxr/blob/master/R/tmux.R'><code>R/tmux.R</code></a></small>
+    <div class="hidden name"><code>tmux_command.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Rename a tmux session</p>
+    <p>Execute a tmux command</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rename_session</span>(<span class='no'>target</span>, <span class='no'>value</span>)</pre>
+    <pre class="usage"><span class='fu'>tmux_command</span>(<span class='no'>command</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>target</th>
-      <td><p>A <code>tmuxr_session</code>.</p></td>
+      <th>command</th>
+      <td><p>String.</p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>String indicating the new name of the session.</p></td>
+      <th>...</th>
+      <td><p>Character vector of command flags.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A <code>tmuxr_session</code>.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

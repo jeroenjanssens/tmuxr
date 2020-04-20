@@ -2,10 +2,10 @@
 % Please edit documentation in R/server.R
 \name{is_running}
 \alias{is_running}
-\title{Is the tmux server running?}
+\title{Check whether the tmux server is running}
 \usage{
 is_running()
 }
 \description{
-Is the tmux server running?
+Check whether the tmux server is running
 }

@@ -2,18 +2,18 @@
 % Please edit documentation in R/session.R
 \name{rename_session}
 \alias{rename_session}
-\title{Rename a session.}
+\title{Rename a tmux session}
 \usage{
-rename_session(target, new_name)
+rename_session(target, value)
 }
 \arguments{
-\item{new_name}{String indicating the new name of the session}
+\item{target}{A \code{tmuxr_session}.}
 
-\item{session}{A \code{tmuxr_session}.}
+\item{value}{String indicating the new name of the session.}
 }
 \value{
 A \code{tmuxr_session}.
 }
 \description{
-Rename a session.
+Rename a tmux session
 }

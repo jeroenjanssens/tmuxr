@@ -1,4 +1,44 @@
-#' Create a new tmux session.
+#' Attach to an existing tmux session
+#'
+#' @param x Numeric or string indicating the id or name of the existing session.
+#' @param lookup_id Logical. Should the actual id be looked up just to be safe?
+#'
+#' @return A `tmuxr_session`.
+#'
+#' @export
+attach_session <- function(x, lookup_id = TRUE) {
+  if (lookup_id) {
+    id <- prop(x, "session_id")
+  } else {
+    id <- as.character(x)
+  }
+  structure(list(id = id), class = c("tmuxr_session", "tmuxr_object"))
+}
+
+
+#' Kill a tmux session
+#'
+#' @param target A `tmuxr_session`.
+#'
+#' @export
+kill_session <- function(target) {
+  tmux_command("kill-session", "-t", get_target(target))
+  invisible(NULL)
+}
+
+
+#' List sessions
+#'
+#' @return A list of `tmuxr_session`s.
+#'
+#' @export
+list_sessions <- function() {
+  flags <- c("-F", "#{session_id}")
+  tmux_command("list-sessions", flags) %>% purrr::map(attach_session, lookup_id = FALSE)
+}
+
+
+#' Create a new tmux session
 #'
 #' @param name String to be used as session name. If `NULL` (default), the
 #' name of the session is determined by `tmux`, which is the next unused
@@ -36,61 +76,7 @@ new_session <- function(name = NULL,
   if (!is.null(shell_command)) flags <- c(flags, shell_command)
 
   id <- tmux_command("new-session", flags)
-  structure(list(id = id), class = c("tmuxr_object", "tmuxr_session"))
-}
-
-
-#' Attach to an existing tmux session.
-#'
-#' @param name Numeric or string indicating the id or name of the existing session.
-#' @param lookup_id Logical. Should the actual id be looked up just to be safe?
-#'
-#' @return A `tmuxr_session`.
-#'
-#' @export
-attach_session <- function(x, lookup_id = TRUE) {
-  if (lookup_id) {
-    id <- prop(x, "session_id")
-  } else {
-    id <- as.character(x)
-  }
-  structure(list(id = id), class = c("tmuxr_object", "tmuxr_session"))
-}
-
-
-#' Rename a session.
-#'
-#' @param session A `tmuxr_session`.
-#' @param new_name String indicating the new name of the session
-#'
-#' @return A `tmuxr_session`.
-#'
-#' @export
-rename_session <- function(target, new_name) {
-  tmux_command("rename-session", "-t", get_target(target), as.character(new_name))
-  target
-}
-
-
-#' Kill a session.
-#'
-#' @param session A `tmuxr_session`.
-#'
-#' @export
-kill_session <- function(target) {
-  tmux_command("kill-session", "-t", get_target(target))
-  invisible(NULL)
-}
-
-
-#' List sessions.
-#'
-#' @return A list of `tmuxr_session`s.
-#'
-#' @export
-list_sessions <- function() {
-  flags <- c("-F", "#{session_id}")
-  tmux_command("list-sessions", flags) %>% purrr::map(attach_session, lookup_id = FALSE)
+  structure(list(id = id), class = c("tmuxr_session", "tmuxr_object"))
 }
 
 
@@ -98,4 +84,18 @@ list_sessions <- function() {
 print.tmuxr_session <- function(x, ...) {
   status <- display_message(x, "#{session_name}: #{session_windows} windows (created #{t:session_created})#{?session_grouped, (group ,}#{session_group}#{?session_grouped,),}#{?session_attached, (attached),}")
   cat("tmuxr session", status)
+}
+
+
+#' Rename a tmux session
+#'
+#' @param target A `tmuxr_session`.
+#' @param value String indicating the new name of the session.
+#'
+#' @return A `tmuxr_session`.
+#'
+#' @export
+rename_session <- function(target, value) {
+  tmux_command("rename-session", "-t", get_target(target), as.character(value))
+  invisible(target)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/pane.R
 \name{capture_pane}
 \alias{capture_pane}
-\title{Capture the contents of a pane.}
+\title{Capture the contents of a tmux pane}
 \usage{
 capture_pane(
   target,
@@ -15,7 +15,7 @@ capture_pane(
 )
 }
 \arguments{
-\item{target}{A session, window, or pane.}
+\item{target}{A \code{tmuxr_session}, \code{tmuxr_window}, or \code{tmuxr_pane}.}
 
 \item{start}{Numeric. First line to capture.}
 
@@ -30,5 +30,5 @@ capture_pane(
 \item{cat}{Logical. Concatenate lines into one string.}
 }
 \description{
-Capture the contents of a pane.
+Capture the contents of a tmux pane
 }

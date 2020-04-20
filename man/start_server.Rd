@@ -2,10 +2,10 @@
 % Please edit documentation in R/server.R
 \name{start_server}
 \alias{start_server}
-\title{Start the tmux server.}
+\title{Start the tmux server}
 \usage{
 start_server()
 }
 \description{
-Start the tmux server.
+Start the tmux server
 }

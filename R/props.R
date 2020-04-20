@@ -37,114 +37,102 @@ prop <- function(target = NULL, property) {
   display_message(target, message)
 }
 
-#' @export
-name <- function(x) UseMethod("name")
 
-#' @export
-`name<-` <- function(x, value) UseMethod("name<-")
-
-#' @export
-width <- function(x) UseMethod("width")
-
-#' @export
-`width<-` <- function(x, value) UseMethod("width<-")
-
-#' @export
-height <- function(x) UseMethod("height")
-
-#' @export
-`height<-` <- function(x, value) UseMethod("height<-")
-
-
-#' Get name of session.
+#' Name of a tmux object
 #'
-#' @param target A session.
-#'
+#' @param target A `tmuxr_session`, `tmuxr_window`, or `tmuxr_pane`.
+#' @param value String.
+#' @seealso [rename_session()], [rename_window()]
+#' @name object_name
+NULL
+
+
+#' @rdname object_name
 #' @export
-name.tmuxr_session <- function(x) prop(x, "session_name")
+name <- function(target) UseMethod("name")
 
 
-#' Get name of window.
-#'
-#' @param target A window.
-#'
+#' @rdname object_name
 #' @export
-name.tmuxr_window <- function(x) prop(x, "window_name")
+`name<-` <- function(target, value) UseMethod("name<-")
 
 
-#' Get name of a pane
+#' Width and height of a tmux object
 #'
-#' @param target A `tmux_pane`.
-#'
+#' @param target A `tmuxr_session`, `tmuxr_window`, or `tmuxr_pane`.
+#' @param value Numeric.
+#' @seealso [resize_window()], [resize_pane()]
+#' @name object_size
+NULL
+
+
+#' @rdname object_size
 #' @export
-name.tmuxr_pane <- function(x) prop(x, "pane_title")
+width <- function(target) UseMethod("width")
 
 
-#' Get width of session
-#'
-#' @param target A session.
-#'
+#' @rdname object_size
 #' @export
-width.tmuxr_session <- function(x) as.numeric(prop(x, "window_width"))
+`width<-` <- function(target, value) UseMethod("width<-")
 
 
-#' Get height of session
-#'
-#' @param target A session.
-#'
+#' @rdname object_size
 #' @export
-height.tmuxr_session <- function(x) as.numeric(prop(x, "window_height"))
+height <- function(target) UseMethod("height")
 
 
-#' Get width of window
-#'
-#' @param target A window.
-#'
+#' @rdname object_size
 #' @export
-width.tmuxr_window <- function(x) as.numeric(prop(x, "window_width"))
-
-
-#' Get height of window
-#'
-#' @param target A window.
-#'
-#' @export
-height.tmuxr_window <- function(x) as.numeric(prop(x, "window_height"))
-
-
-#' Get width of pane
-#'
-#' @param target A pane.
-#'
-#' @export
-width.tmuxr_pane <- function(x) as.numeric(prop(x, "pane_width"))
-
-
-#' Get height of pane
-#'
-#' @param target A pane.
-#'
-#' @export
-height.tmuxr_pane <- function(x) as.numeric(prop(x, "pane_height"))
-
+`height<-` <- function(target, value) UseMethod("height<-")
 
 
 #' @export
-`name<-.tmuxr_session` <- function(x, value) rename_session(x, new_name = value)
-#' @export
-`name<-.tmuxr_window` <- function(x, value) rename_window(x, new_name = value)
-
+name.tmuxr_session <- function(target) prop(target, "session_name")
 
 #' @export
-`width<-.tmuxr_session` <- function(x, value) resize_window(x, width = value)
-#' @export
-`width<-.tmuxr_window` <- function(x, value) resize_window(x, width = value)
-#' @export
-`width<-.tmuxr_pane` <- function(x, value) resize_pane(x, width = value)
+name.tmuxr_window <- function(target) prop(target, "window_name")
 
 #' @export
-`height<-.tmuxr_session` <- function(x, value) resize_window(x, height = value)
+name.tmuxr_pane <- function(target) prop(target, "pane_title")
+
 #' @export
-`height<-.tmuxr_window` <- function(x, value) resize_window(x, height = value)
+width.tmuxr_session <- function(target) as.numeric(prop(target, "window_width"))
+
 #' @export
-`height<-.tmuxr_pane` <- function(x, value) resize_pane(x, height = value)
+height.tmuxr_session <- function(target) as.numeric(prop(target, "window_height"))
+
+#' @export
+width.tmuxr_window <- function(target) as.numeric(prop(target, "window_width"))
+
+#' @export
+height.tmuxr_window <- function(target) as.numeric(prop(target, "window_height"))
+
+#' @export
+width.tmuxr_pane <- function(target) as.numeric(prop(target, "pane_width"))
+
+#' @export
+height.tmuxr_pane <- function(target) as.numeric(prop(target, "pane_height"))
+
+#' @export
+`name<-.tmuxr_session` <- function(target, value) rename_session(target, value)
+
+#' @export
+`name<-.tmuxr_window` <- function(target, value) rename_window(target, value)
+
+#' @export
+`width<-.tmuxr_session` <- function(target, value) resize_window(target, value)
+
+#' @export
+`width<-.tmuxr_window` <- function(target, value) resize_window(target, value)
+
+#' @export
+`width<-.tmuxr_pane` <- function(target, value) resize_pane(target, value)
+
+#' @export
+`height<-.tmuxr_session` <- function(target, value) resize_window(target, value)
+
+#' @export
+`height<-.tmuxr_window` <- function(target, value) resize_window(target, value)
+
+#' @export
+`height<-.tmuxr_pane` <- function(target, value) resize_pane(target, value)
