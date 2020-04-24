@@ -21,11 +21,17 @@
 #'
 #' @export
 send_keys <- function(target = NULL, ..., literal = FALSE, count = 1L) {
-  flags <- c("-N", count)
-  if (!is.null(target)) flags <- c(flags, "-t", get_target(target))
+  flags <- c()
   if (literal) flags <- c(flags, "-l")
-  flags <- c(flags, ...)
+  if (!is.null(target)) flags <- c(flags, "-t", get_target(target))
 
-  tmux_command("send-keys", flags)
+  if (tmux_version(as_numeric = TRUE) < 2.4) {
+    flags <- c(flags, ...)
+    for (i in seq(count)) tmux_command("send-keys", flags)
+  } else {
+    flags <- c(flags, "-N", count, ...)
+    tmux_command("send-keys", flags)
+  }
+
   invisible(target)
 }
