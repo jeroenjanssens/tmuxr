@@ -7,12 +7,12 @@
 rename_session(target, value)
 }
 \arguments{
-\item{target}{A \code{tmuxr_session}.}
+\item{target}{A tmuxr_session.}
 
 \item{value}{String indicating the new name of the session.}
 }
 \value{
-A \code{tmuxr_session}.
+A tmuxr_session.
 }
 \description{
 Rename a tmux session

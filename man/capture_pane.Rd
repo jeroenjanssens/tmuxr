@@ -5,7 +5,7 @@
 \title{Capture the contents of a tmux pane}
 \usage{
 capture_pane(
-  target,
+  target = NULL,
   start = NULL,
   end = NULL,
   escape = FALSE,
@@ -15,20 +15,43 @@ capture_pane(
 )
 }
 \arguments{
-\item{target}{A \code{tmuxr_session}, \code{tmuxr_window}, or \code{tmuxr_pane}.}
+\item{target}{A tmuxr_session, tmuxr_window, or tmuxr_pane. If \code{NULL},
+the currently active pane is used. Default: \code{NULL}.}
 
-\item{start}{Numeric. First line to capture.}
+\item{start, end}{An integer or a dash (\code{-}). First and last lines to
+capture. \code{0} is the first line of the visible pane and negative integers
+are lines in the history. A dash (\code{-}) for \code{start} is the start of the
+history and to \code{end} the end of the visible pane. The default is to
+capture only the visible contents of the pane.}
 
-\item{end}{Numeric. Last line to capture.}
+\item{escape}{A logical. If \code{TRUE}, include escape sequences for text and
+background attributes. Default: \code{FALSE}.}
 
-\item{escape}{Logical. Include escape sequences for text and background attributes.}
+\item{escape_control}{A logical. If \code{TRUE}, also escape control characters
+as octal \\xxx. Default: \code{FALSE}.}
 
-\item{escape_control}{Logical. Also escape control characters as octal \\xxx.}
+\item{join}{A logical. If \code{TRUE}, join wrapped lines and preserve trailing
+spaces at each line. Default: \code{FALSE}.}
 
-\item{join}{Logical. Join wrapped lines and preserve trailing spaces at each line.}
-
-\item{cat}{Logical. Concatenate lines into one string.}
+\item{cat}{A logical. If \code{TRUE}, concatenate lines into one string.
+Default: \code{FALSE}.}
+}
+\value{
+A vector of strings or one string when \code{cat} is \code{TRUE}.
 }
 \description{
 Capture the contents of a tmux pane
+}
+\examples{
+s <- new_session(shell_command = "sh")
+send_keys(s, "R --vanilla", "Enter")
+Sys.sleep(0.1)
+send_keys(s, "pi", "Enter")
+send_keys(s, "q(\"no\")", "Enter")
+cat(capture_pane(s, cat = TRUE))
+kill_session(s)
+
+}
+\seealso{
+\code{\link[=send_keys]{send_keys()}}
 }

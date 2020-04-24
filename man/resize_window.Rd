@@ -7,11 +7,11 @@
 resize_window(target, width = NULL, height = NULL)
 }
 \arguments{
-\item{target}{A \code{tmuxr_session} or \code{tmuxr_window}.}
+\item{target}{A tmuxr_session or tmuxr_window.}
 
-\item{width}{Numeric.}
+\item{width}{An integer. Default: \code{NULL}.}
 
-\item{height}{Numeric.}
+\item{height}{An integer. Default: \code{NULL}.}
 }
 \description{
 Resize a tmux window

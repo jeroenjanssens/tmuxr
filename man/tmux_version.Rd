@@ -7,9 +7,17 @@
 tmux_version(as_numeric = FALSE)
 }
 \arguments{
-\item{as_numeric}{Logical. Should the version number be returned as a
-numeric (default \code{FALSE})}
+\item{as_numeric}{A logical. If \code{TRUE}, the version number is returned as a
+numeric. Default: \code{FALSE}.}
+}
+\value{
+A string or numeric.
 }
 \description{
-Get tmux version
+Get the version of tmux.
+}
+\examples{
+tmux_version()
+tmux_version(as_numeric = TRUE) >= 2.8
+
 }

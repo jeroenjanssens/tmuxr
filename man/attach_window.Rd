@@ -7,12 +7,13 @@
 attach_window(x, lookup_id = TRUE)
 }
 \arguments{
-\item{x}{Numeric or string indicating the name of the existing window.}
+\item{x}{An integer or string indicating the name of an existing window.}
 
-\item{lookup_id}{Logical. Should the actual id be looked up just to be safe?}
+\item{lookup_id}{A logical. If \code{FALSE}, \code{x} is assumed to be a window id.
+Default: \code{TRUE}.}
 }
 \value{
-A \code{tmuxr_window}.
+A tmuxr_window.
 }
 \description{
 Attach to an existing tmux window

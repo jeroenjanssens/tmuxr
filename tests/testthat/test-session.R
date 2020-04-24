@@ -56,7 +56,15 @@ test_that("sessions are printed correctly", {
   kill_server()
   s <- new_session("foobarbaz")
   expect_output(print(s), "^tmuxr session foobarbaz: 1 windows ")
+  kill_session(s)
 })
 
+test_that("all other sessions can be killed", {
+  s1 <- new_session()
+  s2 <- new_session()
+
+  kill_session(s1, inverse = TRUE)
+  expect_identical(list_sessions()[[1]], s1)
+})
 
 kill_server()

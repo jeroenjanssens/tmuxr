@@ -7,11 +7,11 @@
 list_windows(target = NULL)
 }
 \arguments{
-\item{target}{Name of parent \code{tmuxr_session}. If \code{NULL} (default), all
+\item{target}{Name of parent tmuxr_session. If \code{NULL} (default), all
 windows of all sessions are listed.}
 }
 \value{
-A \code{list} of \code{tmuxr_window}s.
+A list of tmuxr_windows.
 }
 \description{
 List tmux windows

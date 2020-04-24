@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sleep. — sleep • tmuxr</title>
+<title>Split a tmux window — split_window • tmuxr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Sleep. — sleep" />
-<meta property="og:description" content="Sleep." />
+<meta property="og:title" content="Split a tmux window — split_window" />
+<meta property="og:description" content="Create a new pane by splitting target." />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -118,30 +118,68 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Sleep.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/datascienceworkshops/tmuxr/blob/master/R/send.R'><code>R/send.R</code></a></small>
-    <div class="hidden name"><code>sleep.Rd</code></div>
+    <h1>Split a tmux window</h1>
+    <small class="dont-index">Source: <a href='https://github.com/datascienceworkshops/tmuxr/blob/master/R/window.R'><code>R/window.R</code></a></small>
+    <div class="hidden name"><code>split_window.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Sleep.</p>
+    <p>Create a new pane by splitting <code>target</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sleep</span>(<span class='no'>target</span>, <span class='no'>time</span>)</pre>
+    <pre class="usage"><span class='fu'>split_window</span>(
+  <span class='kw'>target</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>vertical</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>before</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>full</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>start_directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>shell_command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>target</th>
-      <td><p>A session, window, or pane.</p></td>
+      <td><p>A tmuxr_session, tmuxr_window, or tmuxr_pane.</p></td>
     </tr>
     <tr>
-      <th>time</th>
-      <td><p>Numerical. Time to sleep in seconds.</p></td>
+      <th>vertical</th>
+      <td><p>A logical. If <code>TRUE</code> split <code>target</code> vertically, otherwise
+horizontally. Default: <code>TRUE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>size</th>
+      <td><p>A numeric. The size of the new pane in lines (for vertical
+splits) or characters (for horizontal splits). If less than <code>0</code>, <code>size</code> is
+interpreted as a percentage. Default: <code>NULL</code>.</p></td>
+    </tr>
+    <tr>
+      <th>before</th>
+      <td><p>A logical. If <code>TRUE</code>, create the new pane to the left of or
+above the active pane. Default: <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>full</th>
+      <td><p>A logical. If <code>TRUE</code>, create a new pane spanning the full window
+width (for vertical splits) or full window height (for horizontal splits),
+instead of splitting the active pane. Default: <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>start_directory</th>
+      <td><p>A string. Working directory this pane is run in.</p></td>
+    </tr>
+    <tr>
+      <th>shell_command</th>
+      <td><p>A string. Shell command to be invoked when creating the
+pane. If <code>NULL</code>, the default shell is used.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A tmuxr_pane.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

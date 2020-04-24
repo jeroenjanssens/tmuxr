@@ -7,11 +7,11 @@
 list_panes(target = NULL)
 }
 \arguments{
-\item{target}{Parent \code{tmuxr_session} or \code{tmuxr_window}. If \code{NULL} (default),
-all windows of all sessions are listed.}
+\item{target}{A tmuxr_session or tmuxr_window. The parent session or
+window. If \code{NULL} all panes of all sessions are listed. Default: \code{NULL}.}
 }
 \value{
-A list of \code{tmuxr_pane}s.
+A list of tmuxr_panes.
 }
 \description{
 List tmux panes

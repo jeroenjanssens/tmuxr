@@ -40,20 +40,30 @@ reference:
   - title: Windows
     contents:
       - attach_window
+      - kill_window
       - list_windows
+      - new_window
       - resize_window
       - rename_window
+      - split_window
   - title: Panes
     contents:
       - attach_pane
       - capture_pane
       - clock_mode
+      - kill_pane
       - list_panes
       - pipe_pane
       - resize_pane
       - send_keys
+  - title: Selecting
+    contents:
+      - select_pane
+      - select_window
   - title: Utilities
     contents:
+      - index
+      - is_active
       - object_name
       - object_size
       - display_message

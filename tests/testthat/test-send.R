@@ -19,7 +19,7 @@ test_that("keys can be sent", {
                             "",
                             ""))
 
-  send_keys(s, "Space world? BSpace !")
+  send_keys(s, c("Space", "world?", "BSpace", "!"))
   expect_identical(cp(s), c("hello world!",
                             "",
                             "",
@@ -35,7 +35,7 @@ test_that("keys can be sent", {
                             "",
                             ""))
 
-  send_keys(s, "Speak Friend and Enter")
+  send_keys(s, "Speak", "Friend", "and", "Enter")
   expect_identical(cp(s), c("hello world!",
                             "hello world!",
                             "SpeakFriendand",
@@ -43,12 +43,12 @@ test_that("keys can be sent", {
                             "",
                             ""))
 
-  send_keys(s, "Speak Friend and Enter", literal = TRUE)
+  send_keys(s, "Speak", "Friend", "and", "Enter", literal = TRUE)
   expect_identical(cp(s), c("hello world!",
                             "hello world!",
                             "SpeakFriendand",
                             "SpeakFriendand",
-                            "Speak Friend and Enter",
+                            "SpeakFriendandEnter",
                             ""))
 
   send_keys(s, "C-c") # exits cat and closes the session

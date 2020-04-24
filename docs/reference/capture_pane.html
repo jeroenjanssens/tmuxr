@@ -128,7 +128,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>capture_pane</span>(
-  <span class='no'>target</span>,
+  <span class='kw'>target</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>start</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>end</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>escape</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -142,35 +142,75 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>target</th>
-      <td><p>A <code>tmuxr_session</code>, <code>tmuxr_window</code>, or <code>tmuxr_pane</code>.</p></td>
+      <td><p>A tmuxr_session, tmuxr_window, or tmuxr_pane. If <code>NULL</code>,
+the currently active pane is used. Default: <code>NULL</code>.</p></td>
     </tr>
     <tr>
-      <th>start</th>
-      <td><p>Numeric. First line to capture.</p></td>
-    </tr>
-    <tr>
-      <th>end</th>
-      <td><p>Numeric. Last line to capture.</p></td>
+      <th>start, end</th>
+      <td><p>An integer or a dash (<code>-</code>). First and last lines to
+capture. <code>0</code> is the first line of the visible pane and negative integers
+are lines in the history. A dash (<code>-</code>) for <code>start</code> is the start of the
+history and to <code>end</code> the end of the visible pane. The default is to
+capture only the visible contents of the pane.</p></td>
     </tr>
     <tr>
       <th>escape</th>
-      <td><p>Logical. Include escape sequences for text and background attributes.</p></td>
+      <td><p>A logical. If <code>TRUE</code>, include escape sequences for text and
+background attributes. Default: <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>escape_control</th>
-      <td><p>Logical. Also escape control characters as octal \xxx.</p></td>
+      <td><p>A logical. If <code>TRUE</code>, also escape control characters
+as octal \xxx. Default: <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>join</th>
-      <td><p>Logical. Join wrapped lines and preserve trailing spaces at each line.</p></td>
+      <td><p>A logical. If <code>TRUE</code>, join wrapped lines and preserve trailing
+spaces at each line. Default: <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>cat</th>
-      <td><p>Logical. Concatenate lines into one string.</p></td>
+      <td><p>A logical. If <code>TRUE</code>, concatenate lines into one string.
+Default: <code>FALSE</code>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>A vector of strings or one string when <code>cat</code> is <code>TRUE</code>.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='send_keys.html'>send_keys()</a></code></p></div>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='new_session.html'>new_session</a></span>(<span class='kw'>shell_command</span> <span class='kw'>=</span> <span class='st'>"sh"</span>)
+<span class='fu'><a href='send_keys.html'>send_keys</a></span>(<span class='no'>s</span>, <span class='st'>"R --vanilla"</span>, <span class='st'>"Enter"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span>(<span class='fl'>0.1</span>)
+<span class='fu'><a href='send_keys.html'>send_keys</a></span>(<span class='no'>s</span>, <span class='st'>"pi"</span>, <span class='st'>"Enter"</span>)
+<span class='fu'><a href='send_keys.html'>send_keys</a></span>(<span class='no'>s</span>, <span class='st'>"q(\"no\")"</span>, <span class='st'>"Enter"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'>capture_pane</span>(<span class='no'>s</span>, <span class='kw'>cat</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; sh-3.2$ R --vanilla
+#&gt; 
+#&gt; R version 3.6.1 (2019-07-05) -- "Action of the Toes"
+#&gt; Copyright (C) 2019 The R Foundation for Statistical Computing
+#&gt; Platform: x86_64-apple-darwin15.6.0 (64-bit)
+#&gt; 
+#&gt; R is free software and comes with ABSOLUTELY NO WARRANTY.
+#&gt; You are welcome to redistribute it under certain conditions.
+#&gt; Type 'license()' or 'licence()' for distribution details.
+#&gt; 
+#&gt;   Natural language support but running in an English locale
+#&gt; 
+#&gt; R is a collaborative project with many contributors.
+#&gt; Type 'contributors()' for more information and
+#&gt; 'citation()' on how to cite R or R packages in publications.
+#&gt; 
+#&gt; Type 'demo()' for some demos, 'help()' for on-line help, or
+#&gt; 'help.start()' for an HTML browser interface to help.
+#&gt; Type 'q()' to quit R.
+#&gt; 
+#&gt; pi
+#&gt; q("no")
+#&gt; </div><div class='input'><span class='fu'><a href='kill_session.html'>kill_session</a></span>(<span class='no'>s</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

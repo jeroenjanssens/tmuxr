@@ -7,11 +7,11 @@
 resize_pane(target, width = NULL, height = NULL)
 }
 \arguments{
-\item{target}{A \code{tmuxr_pane}.}
+\item{target}{A tmuxr_pane.}
 
-\item{width}{Numeric.}
+\item{width}{An integer. Default: \code{NULL}.}
 
-\item{height}{Numeric.}
+\item{height}{An integer. Default: \code{NULL}.}
 }
 \description{
 Resize a tmux pane

@@ -1,5 +1,44 @@
 context("pane")
 
+test_that("an existing pane can be referenced", {
+  s <- new_session()
+  expect_identical(attach_pane(0), list_panes(s)[[1]])
+  kill_session(s)
+})
+
+test_that("pane can be killed", {
+  s <- new_session()
+  p1 <- list_panes(s)[[1]]
+  p2 <- split_window()
+
+  kill_pane(p1)
+  expect_identical(list_panes(s)[[1]], p2)
+
+  kill_session(s)
+})
+
+test_that("other panes can be killed", {
+  s <- new_session()
+  p1 <- list_panes(s)[[1]]
+  split_window()
+  split_window()
+  split_window()
+
+  kill_pane(p1, inverse = TRUE)
+
+  expect_length(list_panes(s), 1)
+  expect_identical(list_panes(s)[[1]], p1)
+
+  kill_session(s)
+})
+
+
+test_that("clock_mode works", {
+  s <- new_session()
+  expect_identical(s, clock_mode(s))
+  kill_session(s)
+})
+
 test_that("contents can be captured", {
 
   specified_height <- 10
@@ -19,14 +58,24 @@ test_that("contents can be captured", {
                capture_pane(s, cat = TRUE), fixed = TRUE)
 
   expect_length(capture_pane(s, start = 0, end = 1), 2)
+  kill_session(s)
 
+  s <- new_session(shell_command = "echo 'I like \033[35mcolor\033[39m.\n'; cat")
+  Sys.sleep(0.1)
+  expect_identical(capture_pane(s, start = 0, end = 0), "I like color.")
+  expect_identical(capture_pane(s, start = 0, end = 0, escape = TRUE), "I like \033[35mcolor\033[39m.")
+  expect_identical(capture_pane(s, start = 0, end = 0, escape = TRUE, escape_control = TRUE), "I like \\033[35mcolor\\033[39m.")
+  expect_identical(capture_pane(s, start = 0, end = 0, join = TRUE), "I like color.       ")
   kill_session(s)
 })
+
+
+
 
 test_that("stdout of pane can be piped", {
   out_file <- tempfile("tmuxr")
   s <- new_session(shell_command = "cat > /dev/null")
-  pipe_pane(s, paste0("cat >> ", out_file), stdout = TRUE)
+  pipe_pane(s, paste0("cat >> ", out_file), stdout = TRUE, open = TRUE)
   send_keys(s, "Hello there!", literal = TRUE)
   send_keys(s, "Enter")
   pipe_pane(s)
@@ -45,6 +94,10 @@ test_that("stdin of pane can be piped", {
   Sys.sleep(0.1)
   expect_identical(head(capture_pane(s), 5),
                    as.character(seq(5)))
+  kill_session(s)
+
+  s <- new_session(shell_command = "cat > /dev/null")
+  expect_error(pipe_pane(s, "seq 5", stdin = FALSE, stdout = FALSE))
   kill_session(s)
 })
 

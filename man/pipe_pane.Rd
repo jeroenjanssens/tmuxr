@@ -13,15 +13,19 @@ pipe_pane(
 )
 }
 \arguments{
-\item{target}{A \code{tmuxr_session}, \code{tmuxr_window}, or \code{tmuxr_pane}.}
+\item{target}{A tmuxr_session, tmuxr_window, or tmuxr_pane.}
 
-\item{shell_command}{String. If \code{NULL}, the current pipe (if any) is closed.}
+\item{shell_command}{String. If \code{NULL}, the current pipe (if any) is closed.
+Default: \code{NULL}.}
 
-\item{stdout}{Logical. Connect standard input of pane to \code{shell_command}?}
+\item{stdout}{Logical. Connect standard input of pane to \code{shell_command}?
+Default: \code{TRUE}.}
 
-\item{stdin}{Logical. Connect standard output of pane to \code{shell_command}?}
+\item{stdin}{Logical. Connect standard output of pane to \code{shell_command}?
+Default: \code{FALSE}.}
 
-\item{open}{Logical. Only open a new pipe if no previous pipe exists.}
+\item{open}{Logical. Only open a new pipe if no previous pipe exists.
+Default: \code{FALSE}.}
 }
 \description{
 Pipe contents of a tmux pane to a shell command

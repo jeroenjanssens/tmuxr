@@ -127,14 +127,19 @@
     <p>Kill a tmux session</p>
     </div>
 
-    <pre class="usage"><span class='fu'>kill_session</span>(<span class='no'>target</span>)</pre>
+    <pre class="usage"><span class='fu'>kill_session</span>(<span class='no'>target</span>, <span class='kw'>inverse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>target</th>
-      <td><p>A <code>tmuxr_session</code>.</p></td>
+      <td><p>A tmuxr_session.</p></td>
+    </tr>
+    <tr>
+      <th>inverse</th>
+      <td><p>A logical. If <code>TRUE</code>, kills all but the <code>target</code> session.
+Default: <code>FALSE</code>.</p></td>
     </tr>
     </table>
 

@@ -1,4 +1,8 @@
-#' Check whether the tmux server is running
+#' Is the tmux server running?
+#'
+#' Check whether the tmux server is running.
+#'
+#' @return A logical.
 #'
 #' @export
 is_running <- function() {
@@ -10,7 +14,11 @@ is_running <- function() {
 }
 
 
+#' Is tmux installed correctly?
+#'
 #' Check whether tmux is installed correctly
+#'
+#' @return A logical.
 #'
 #' @export
 is_installed <- function() {
@@ -20,7 +28,8 @@ is_installed <- function() {
 
 #' Kill the tmux server
 #'
-#' @param silent Logical. Should a possible error be suppressed?
+#' @param silent A logical. Should a possible error be suppressed?
+#'   Default: `TRUE`.
 #'
 #' @export
 kill_server <- function(silent = TRUE) {
@@ -40,8 +49,16 @@ start_server <- function() {
 
 #' Get tmux version
 #'
-#' @param as_numeric Logical. Should the version number be returned as a
-#'   numeric (default `FALSE`)
+#' Get the version of tmux.
+#'
+#' @param as_numeric A logical. If `TRUE`, the version number is returned as a
+#'   numeric. Default: `FALSE`.
+#'
+#' @return A string or numeric.
+#'
+#' @examples
+#' tmux_version()
+#' tmux_version(as_numeric = TRUE) >= 2.8
 #'
 #' @export
 tmux_version <- function(as_numeric = FALSE) {

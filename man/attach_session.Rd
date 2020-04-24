@@ -7,12 +7,13 @@
 attach_session(x, lookup_id = TRUE)
 }
 \arguments{
-\item{x}{Numeric or string indicating the id or name of the existing session.}
+\item{x}{An integer or string indicating the name of an existing window.}
 
-\item{lookup_id}{Logical. Should the actual id be looked up just to be safe?}
+\item{lookup_id}{A logical. If \code{FALSE}, \code{x} is assumed to be a session id.
+Default: \code{TRUE}.}
 }
 \value{
-A \code{tmuxr_session}.
+A tmuxr_session.
 }
 \description{
 Attach to an existing tmux session

@@ -7,7 +7,8 @@
 clock_mode(target = NULL)
 }
 \arguments{
-\item{target}{A \code{tmuxr_session}, \code{tmuxr_window}, or \code{tmuxr_pane}.}
+\item{target}{A tmuxr_session, tmuxr_window, or tmuxr_pane. If \code{NULL}, the
+currently active pane is used. Default: \code{NULL}.}
 }
 \description{
 Display a large clock

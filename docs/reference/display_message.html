@@ -49,7 +49,7 @@
   
 
 <meta property="og:title" content="Display a message — display_message" />
-<meta property="og:description" content="Display a message" />
+<meta property="og:description" content="Display a message." />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -119,12 +119,12 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Display a message</h1>
-    <small class="dont-index">Source: <a href='https://github.com/datascienceworkshops/tmuxr/blob/master/R/props.R'><code>R/props.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/datascienceworkshops/tmuxr/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
     <div class="hidden name"><code>display_message.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Display a message</p>
+    <p>Display a message.</p>
     </div>
 
     <pre class="usage"><span class='fu'>display_message</span>(<span class='kw'>target</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>message</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>stdout</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
@@ -138,19 +138,37 @@
     </tr>
     <tr>
       <th>message</th>
-      <td><p>The message to display. Refer to the FORMATS section of the tmux man page for the format.</p></td>
+      <td><p>A string. The message to display. Refer to the FORMATS
+section of the tmux man page for the format.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>Logical. Print verbose logging as the format is parsed?</p></td>
+      <td><p>A logical. Print verbose logging as the format is parsed?
+Default: <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>stdout</th>
-      <td><p>Logical. Print message to stardard output?</p></td>
+      <td><p>A logical. If <code>TRUE</code>, the message is printed to standard
+output. If <code>FALSE</code>, the message is sent to <code>target</code>. Default: <code>TRUE</code>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>A string if <code>stdout</code> is <code>TRUE</code>, otherwise <code>NULL</code>.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='new_session.html'>new_session</a></span>(<span class='st'>"jazz"</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>12</span>)
+<span class='fu'>display_message</span>(<span class='no'>s</span>, <span class='st'>"#{window_active}"</span>)</div><div class='output co'>#&gt; [1] "1"</div><div class='input'><span class='fu'>display_message</span>(<span class='no'>s</span>, <span class='st'>"session '#{session_name}' has height #{window_height}."</span>,
+                <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] "# expanding format: session '#{session_name}' has height #{window_height}."
+#&gt; [2] "# found #{}: session_name"                                                 
+#&gt; [3] "# format 'session_name' found: jazz"                                       
+#&gt; [4] "# replaced 'session_name' with 'jazz'"                                     
+#&gt; [5] "# found #{}: window_height"                                                
+#&gt; [6] "# format 'window_height' found: 12"                                        
+#&gt; [7] "# replaced 'window_height' with '12'"                                      
+#&gt; [8] "# result is: session 'jazz' has height 12."                                
+#&gt; [9] "session 'jazz' has height 12."                                             </div><div class='input'><span class='fu'><a href='kill_session.html'>kill_session</a></span>(<span class='no'>s</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

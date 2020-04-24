@@ -15,30 +15,36 @@ new_session(
 )
 }
 \arguments{
-\item{name}{String to be used as session name. If \code{NULL} (default), the
-name of the session is determined by \code{tmux}, which is the next unused
-integer (starting at 0).}
+\item{name}{A string. Name of the session. If \code{NULL}, the
+name determined by \code{tmux}, which is the next unused integer
+(by default starting at 0). Default: \code{NULL}.}
 
-\item{window_name}{String to be used as window name.}
+\item{window_name}{A string. Name of initial window.}
 
-\item{start_directory}{String. Working directory this session is run in.}
+\item{start_directory}{A string. Working directory this session is run in.}
 
-\item{width}{Numeric. Width of inital window. Default 80
-characters.}
+\item{width}{An integer. Width of inital window. Default: 80.}
 
-\item{height}{Numeric. Height of initial window. Default 24
-lines. Prior to version 2.6, \code{tmux} uses one line for the status line,
-so the effective height is decreased by one line.}
+\item{height}{An integer. Height of initial window. Default: 24.}
 
-\item{detached}{Logical. Default \code{TRUE}. If \code{FALSE}, the \code{R} interpreter
-waits for the session to be killed.}
+\item{detached}{A logical. If \code{FALSE}, the \code{R} interpreter
+waits for the session to be killed. Default: \code{TRUE}.}
 
-\item{shell_command}{String. System command to be invoked when creating the
+\item{shell_command}{A string. Shell command to be invoked when creating the
 session.}
 }
 \value{
-A \code{tmuxr_session}.
+A tmuxr_session.
 }
 \description{
-Create a new tmux session
+Create a new tmux session with name \code{name}.
+}
+\note{
+Prior to tmux version 2.6, the actual height is one line less than \code{height}.
+}
+\examples{
+s <- new_session("foo", shell_command = "bash", height = 10)
+list_sessions()
+kill_session(s)
+
 }

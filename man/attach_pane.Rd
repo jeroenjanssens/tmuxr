@@ -7,12 +7,13 @@
 attach_pane(x, lookup_id = TRUE)
 }
 \arguments{
-\item{x}{Numeric or string indicating the name of the existing pane.}
+\item{x}{An integer or string indicating the name of an existing pane.}
 
-\item{lookup_id}{Logical. Should the actual id be looked up just to be safe?}
+\item{lookup_id}{A logical. If \code{FALSE}, \code{x} is assumed to be a pane id.
+Default: \code{TRUE}.}
 }
 \value{
-A \code{tmuxr_pane}.
+A tmuxr_pane.
 }
 \description{
 Attach to an existing tmux pane

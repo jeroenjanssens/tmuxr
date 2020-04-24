@@ -2,17 +2,35 @@
 % Please edit documentation in R/send.R
 \name{send_keys}
 \alias{send_keys}
-\title{Send keys to a session, window, or pane.}
+\title{Send keys to a tmux pane}
 \usage{
-send_keys(target, keys, literal = FALSE)
+send_keys(target = NULL, ..., literal = FALSE, count = 1L)
 }
 \arguments{
-\item{target}{A \code{tmuxr_session}, \code{tmuxr_window}, or \code{tmuxr_pane}.}
+\item{target}{A tmuxr_session, tmuxr_window, or tmuxr_pane. If \code{NULL},
+the currently active pane is used. Default: \code{NULL}.}
 
-\item{keys}{String to send.}
+\item{...}{Strings. Keys to send.}
 
-\item{literal}{Should the keys be interpreted literally?}
+\item{literal}{A logical. If \code{TRUE}, key name lookup is disabled and the keys
+are processed as literal UTF-8 characters. Default: \code{FALSE}.}
+
+\item{count}{An integer. Number of times the keys are sent. Default: \code{1L}.}
 }
 \description{
-Send keys to a session, window, or pane.
+Send keys to a tmux pane
+}
+\examples{
+s <- new_session(shell_command = "cat")
+send_keys(s, "Speak", "Space", "friend")
+send_keys(s, "BSpace", count = 6L)
+send_keys(s, "mellon and ")
+send_keys(s, "enter", "!", literal = TRUE)
+send_keys(s, "enter", literal = FALSE)
+capture_pane(s, start = 0L, end = 1L)
+kill_session(s)
+
+}
+\seealso{
+\code{\link[=capture_pane]{capture_pane()}}
 }

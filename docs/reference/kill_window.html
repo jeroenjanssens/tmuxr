@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get width of session — width.tmuxr_session • tmuxr</title>
+<title>Kill a tmux window — kill_window • tmuxr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Get width of session — width.tmuxr_session" />
-<meta property="og:description" content="Get width of session" />
+<meta property="og:title" content="Kill a tmux window — kill_window" />
+<meta property="og:description" content="Kill a tmux window" />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -118,24 +118,28 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get width of session</h1>
-    <small class="dont-index">Source: <a href='https://github.com/datascienceworkshops/tmuxr/blob/master/R/props.R'><code>R/props.R</code></a></small>
-    <div class="hidden name"><code>width.tmuxr_session.Rd</code></div>
+    <h1>Kill a tmux window</h1>
+    <small class="dont-index">Source: <a href='https://github.com/datascienceworkshops/tmuxr/blob/master/R/window.R'><code>R/window.R</code></a></small>
+    <div class="hidden name"><code>kill_window.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get width of session</p>
+    <p>Kill a tmux window</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for tmuxr_session</span>
-<span class='fu'><a href='object_size.html'>width</a></span>(<span class='no'>target</span>)</pre>
+    <pre class="usage"><span class='fu'>kill_window</span>(<span class='no'>target</span>, <span class='kw'>inverse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>target</th>
-      <td><p>A session.</p></td>
+      <td><p>A tmuxr_window.</p></td>
+    </tr>
+    <tr>
+      <th>inverse</th>
+      <td><p>A logical. If <code>TRUE</code>, kills all but the <code>target</code> window.
+Default: <code>FALSE</code>.</p></td>
     </tr>
     </table>
 

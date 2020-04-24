@@ -7,12 +7,9 @@
 rename_window(target, value)
 }
 \arguments{
-\item{target}{A \code{tmuxr_window}.}
+\item{target}{A tmuxr_window.}
 
 \item{value}{String indicating the new name of the window.}
-}
-\value{
-A \code{tmuxr_window}.
 }
 \description{
 Rename a tmux window

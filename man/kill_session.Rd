@@ -4,10 +4,13 @@
 \alias{kill_session}
 \title{Kill a tmux session}
 \usage{
-kill_session(target)
+kill_session(target, inverse = FALSE)
 }
 \arguments{
-\item{target}{A \code{tmuxr_session}.}
+\item{target}{A tmuxr_session.}
+
+\item{inverse}{A logical. If \code{TRUE}, kills all but the \code{target} session.
+Default: \code{FALSE}.}
 }
 \description{
 Kill a tmux session

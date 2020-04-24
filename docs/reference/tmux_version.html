@@ -49,7 +49,7 @@
   
 
 <meta property="og:title" content="Get tmux version — tmux_version" />
-<meta property="og:description" content="Get tmux version" />
+<meta property="og:description" content="Get the version of tmux." />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -124,7 +124,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Get tmux version</p>
+    <p>Get the version of tmux.</p>
     </div>
 
     <pre class="usage"><span class='fu'>tmux_version</span>(<span class='kw'>as_numeric</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
@@ -134,12 +134,18 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>as_numeric</th>
-      <td><p>Logical. Should the version number be returned as a
-numeric (default <code>FALSE</code>)</p></td>
+      <td><p>A logical. If <code>TRUE</code>, the version number is returned as a
+numeric. Default: <code>FALSE</code>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>A string or numeric.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>tmux_version</span>()</div><div class='output co'>#&gt; [1] "tmux 3.0a"</div><div class='input'><span class='fu'>tmux_version</span>(<span class='kw'>as_numeric</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>&gt;=</span> <span class='fl'>2.8</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
