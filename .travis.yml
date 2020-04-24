@@ -1,16 +1,14 @@
-language: r
-cache: packages
-os: linux
 dist: bionic
+language: r
+r: release
 
 r_packages:
   - covr
 
-r_github_packages:
-  - datascienceworkshops/tmuxr
+apt_packages:
+  - tmux
 
 warnings_are_errors: true
-#r_check_revdep: true
 
 notifications:
   email:
@@ -18,4 +16,4 @@ notifications:
     on_failure: change
 
 after_success:
-  - if [[ "${R_CODECOV}" ]]; then Rscript -e 'library(covr); codecov()'; fi
+  - Rscript -e 'library(covr); codecov()'
