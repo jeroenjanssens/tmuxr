@@ -1,7 +1,7 @@
 context("select")
 
 test_that("selecting panes works", {
-  skip_on_travis()
+  # skip_on_travis()
 
   sc <- function(n) paste0("echo ", as.character(n), "; cat")
 
@@ -61,7 +61,7 @@ test_that("selecting panes works", {
 
 
 test_that("selecting windows works", {
-  skip_on_travis()
+  # skip_on_travis()
   sc <- function(n) paste0("echo ", as.character(n), "; cat")
   nw <- function(n, ...) {
     w <- new_window(shell_command = sc(n), ...)

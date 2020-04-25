@@ -1,7 +1,7 @@
 context("utils")
 
 test_that("display_message works", {
-  skip_on_travis()
+  # skip_on_travis()
   s <- new_session()
 
   # Q: When was verbose introduced?
@@ -60,7 +60,7 @@ test_that("the width and height of a window can be changed", {
 })
 
 test_that("the width and height of a pane can be changed", {
-  skip_on_travis()
+  # skip_on_travis()
   split_window(vertical = TRUE)
   split_window(vertical = FALSE)
 
@@ -77,7 +77,7 @@ test_that("the width and height of a pane can be changed", {
 })
 
 test_that("index works", {
-  skip_on_travis()
+  # skip_on_travis()
   s <- new_session()
   w1 <- select_window(s)
   expect_identical(index(w1), 0)
