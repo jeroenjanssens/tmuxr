@@ -1,6 +1,14 @@
-dist: bionic
 language: r
-r: release
+cache: packages
+latex: false
+fortran: false
+
+matrix:
+  include:
+    - os: osx
+      brew_packages: tmux
+      r: release
+      env: R_CODECOV=true
 
 r_packages:
   - covr
@@ -16,4 +24,4 @@ notifications:
     on_failure: change
 
 after_success:
-  - Rscript -e 'library(covr); codecov()'
+  - if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi
