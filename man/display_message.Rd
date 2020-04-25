@@ -27,8 +27,7 @@ Display a message.
 \examples{
 s <- new_session("jazz", height = 12)
 display_message(s, "#{window_active}")
-display_message(s, "session '#{session_name}' has height #{window_height}.",
-                verbose = TRUE)
+display_message(s, "session '#{session_name}' has height #{window_height}.")
 kill_session(s)
 
 }
