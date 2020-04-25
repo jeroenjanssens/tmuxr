@@ -13,7 +13,7 @@ test_that("selecting panes works", {
   kill_server()
 
   s1 <- new_session("foo", shell_command = sc("a"), width = 90, height = 30)
-  resize_window(s1, width = 90, height = 30)
+  # resize_window(s1, width = 90, height = 30) # Is this needed?
   w1 <- list_windows(s1)[[1]]
   pa <- list_panes(w1)[[1]]
   name(pa) <- "a"

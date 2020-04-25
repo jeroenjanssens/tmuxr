@@ -90,8 +90,10 @@ test_that("windows can be split", {
   expect_true(is_active(p1))
   p2 <- split_window(s, size = 5)
   expect_length(list_panes(s), 2)
-  expect_identical(tmuxr:::prop(p1, "pane_at_top"), "1")
-  expect_identical(tmuxr:::prop(p2, "pane_at_bottom"), "1")
+  if (tmux_version() >= 2.6) {
+    expect_identical(tmuxr:::prop(p1, "pane_at_top"), "1")
+    expect_identical(tmuxr:::prop(p2, "pane_at_bottom"), "1")
+  }
   expect_identical(height(p2), 5)
 
   s <- new_session()
@@ -104,8 +106,27 @@ test_that("windows can be split", {
   s <- new_session()
   p1 <- list_panes(s)[[1]]
   p2 <- split_window(s, before = TRUE)
-  expect_identical(tmuxr:::prop(p1, "pane_at_bottom"), "1")
-  expect_identical(tmuxr:::prop(p2, "pane_at_top"), "1")
+  if (tmux_version() >= 2.6) {
+    expect_identical(tmuxr:::prop(p1, "pane_at_bottom"), "1")
+    expect_identical(tmuxr:::prop(p2, "pane_at_top"), "1")
+  }
+
+
+
+
+
+
+
+
+  s <- new_session(width = 80)
+  p1 <- list_panes(s)[[1]]
+  p2 <- split_window(s, size = 0.25, vertical = FALSE)
+  expect_identical(width(p1), 59)
+  expect_identical(width(p2), 20)
+})
+
+test_that("windows can be split with full", {
+  skip_if(tmux_version() < 2.3)
 
   s <- new_session()
   p1 <- list_panes(s)[[1]]
@@ -118,14 +139,7 @@ test_that("windows can be split", {
   p2 <- split_window(s, vertical = FALSE)
   p3 <- split_window(p2, full = TRUE)
   expect_identical(width(p3), width(s))
-
-  s <- new_session(width = 80)
-  p1 <- list_panes(s)[[1]]
-  p2 <- split_window(s, size = 0.25, vertical = FALSE)
-  expect_identical(width(p1), 59)
-  expect_identical(width(p2), 20)
 })
-
 
 test_that("the start directory can be set when splitting a window", {
   start_dir <- "/"
