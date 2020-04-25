@@ -6,7 +6,7 @@ test_that("selecting panes works", {
 
   sw <- function(target, n, ...) {
     p <- split_window(target, shell_command = sc(n), ...)
-    name(p) <- n
+    # name(p) <- n
     p
   }
 
@@ -16,7 +16,7 @@ test_that("selecting panes works", {
   # resize_window(s1, width = 90, height = 30) # Is this needed?
   w1 <- list_windows(s1)[[1]]
   pa <- list_panes(w1)[[1]]
-  name(pa) <- "a"
+  # name(pa) <- "a"
 
   expect_identical(select_pane(), pa)
 

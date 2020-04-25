@@ -1,13 +1,14 @@
 context("utils")
 
 test_that("display_message works", {
+  skip_on_travis()
   s <- new_session()
 
   # Q: When was verbose introduced?
-  # expect_identical(display_message(s, "foo", verbose = TRUE),
-  #                  c("# expanding format: foo",
-  #                    "# result is: foo",
-  #                    "foo"))
+  expect_identical(display_message(s, "foo", verbose = TRUE),
+                   c("# expanding format: foo",
+                     "# result is: foo",
+                     "foo"))
 
   expect_null(display_message(s, "bar", stdout = FALSE))
   kill_session(s)
