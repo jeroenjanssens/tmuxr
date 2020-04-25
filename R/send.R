@@ -25,7 +25,7 @@ send_keys <- function(target = NULL, ..., literal = FALSE, count = 1L) {
   if (literal) flags <- c(flags, "-l")
   if (!is.null(target)) flags <- c(flags, "-t", get_target(target))
 
-  if (tmux_version(as_numeric = TRUE) < 2.4) {
+  if (tmux_version() < 2.4) {
     flags <- c(flags, ...)
     for (i in seq(count)) tmux_command("send-keys", flags)
   } else {

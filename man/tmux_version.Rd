@@ -4,20 +4,21 @@
 \alias{tmux_version}
 \title{Get tmux version}
 \usage{
-tmux_version(as_numeric = FALSE)
+tmux_version(as_numeric = TRUE)
 }
 \arguments{
 \item{as_numeric}{A logical. If \code{TRUE}, the version number is returned as a
-numeric. Default: \code{FALSE}.}
+numeric. Default: \code{TRUE}.}
 }
 \value{
-A string or numeric.
+A numeric or string.
 }
 \description{
 Get the version of tmux.
 }
 \examples{
 tmux_version()
-tmux_version(as_numeric = TRUE) >= 2.8
+tmux_version() >= 2.8
+tmux_version(as_numeric = FALSE)
 
 }

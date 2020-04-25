@@ -52,16 +52,17 @@ start_server <- function() {
 #' Get the version of tmux.
 #'
 #' @param as_numeric A logical. If `TRUE`, the version number is returned as a
-#'   numeric. Default: `FALSE`.
+#'   numeric. Default: `TRUE`.
 #'
-#' @return A string or numeric.
+#' @return A numeric or string.
 #'
 #' @examples
 #' tmux_version()
-#' tmux_version(as_numeric = TRUE) >= 2.8
+#' tmux_version() >= 2.8
+#' tmux_version(as_numeric = FALSE)
 #'
 #' @export
-tmux_version <- function(as_numeric = FALSE) {
+tmux_version <- function(as_numeric = TRUE) {
   result <- processx::run("tmux", "-V",
                           error_on_status = FALSE,
                           stderr_to_stdout = TRUE)

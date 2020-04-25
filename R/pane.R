@@ -151,7 +151,7 @@ pipe_pane <- function(target = NULL,
   flags <- c()
   if (!is.null(target)) flags <- c(flags, "-t", get_target(target))
 
-  if (tmux_version(as_numeric = TRUE) >= 2.8) {
+  if (tmux_version() >= 2.8) {
     if (stdout) flags <- c(flags, "-O")
     if (stdin) flags <- c(flags, "-I")
   }
