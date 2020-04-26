@@ -53,6 +53,10 @@ tmux_command <- function(command, ...) {
 #'
 #' @return A string if `stdout` is `TRUE`, otherwise `NULL`.
 #'
+#' @note
+#' The `verbose` argument is not supported for tmux version < 2.9 and will be
+#'   ignored. If `verbose` is `TRUE` a warning will be given.
+#'
 #' @examples
 #' s <- new_session("jazz", height = 12)
 #' display_message(s, "#{window_active}")
@@ -65,7 +69,14 @@ display_message <- function(target = NULL,
                             verbose = FALSE,
                             stdout = TRUE) {
   flags <- c()
-  if (verbose) flags <- c(flags, "-v")
+  if (verbose) {
+    if (tmux_version() < 2.9) {
+      warning("The verbose argument is not supported for tmux version < 3.0 ",
+              "and will be ignored.", call. = FALSE)
+    } else {
+      flags <- c(flags, "-v")
+    }
+  }
   if (stdout) flags <- c(flags, "-p")
   if (!is.null(target)) flags <- c(flags, "-t", get_target(target))
   if (!is.null(message)) flags <- c(flags, message)

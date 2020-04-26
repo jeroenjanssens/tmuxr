@@ -24,6 +24,10 @@ A string if \code{stdout} is \code{TRUE}, otherwise \code{NULL}.
 \description{
 Display a message.
 }
+\note{
+The \code{verbose} argument is not supported for tmux version < 2.9 and will be
+ignored. If \code{verbose} is \code{TRUE} a warning will be given.
+}
 \examples{
 s <- new_session("jazz", height = 12)
 display_message(s, "#{window_active}")

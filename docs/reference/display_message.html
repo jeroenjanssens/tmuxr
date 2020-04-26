@@ -156,19 +156,14 @@ output. If <code>FALSE</code>, the message is sent to <code>target</code>. Defau
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A string if <code>stdout</code> is <code>TRUE</code>, otherwise <code>NULL</code>.</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>The <code>verbose</code> argument is not supported for tmux version &lt; 2.9 and will be
+ignored. If <code>verbose</code> is <code>TRUE</code> a warning will be given.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='new_session.html'>new_session</a></span>(<span class='st'>"jazz"</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>12</span>)
-<span class='fu'>display_message</span>(<span class='no'>s</span>, <span class='st'>"#{window_active}"</span>)</div><div class='output co'>#&gt; [1] "1"</div><div class='input'><span class='fu'>display_message</span>(<span class='no'>s</span>, <span class='st'>"session '#{session_name}' has height #{window_height}."</span>,
-                <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] "# expanding format: session '#{session_name}' has height #{window_height}."
-#&gt; [2] "# found #{}: session_name"                                                 
-#&gt; [3] "# format 'session_name' found: jazz"                                       
-#&gt; [4] "# replaced 'session_name' with 'jazz'"                                     
-#&gt; [5] "# found #{}: window_height"                                                
-#&gt; [6] "# format 'window_height' found: 12"                                        
-#&gt; [7] "# replaced 'window_height' with '12'"                                      
-#&gt; [8] "# result is: session 'jazz' has height 12."                                
-#&gt; [9] "session 'jazz' has height 12."                                             </div><div class='input'><span class='fu'><a href='kill_session.html'>kill_session</a></span>(<span class='no'>s</span>)</div></pre>
+<span class='fu'>display_message</span>(<span class='no'>s</span>, <span class='st'>"#{window_active}"</span>)</div><div class='output co'>#&gt; [1] "1"</div><div class='input'><span class='fu'>display_message</span>(<span class='no'>s</span>, <span class='st'>"session '#{session_name}' has height #{window_height}."</span>)</div><div class='output co'>#&gt; [1] "session 'jazz' has height 12."</div><div class='input'><span class='fu'><a href='kill_session.html'>kill_session</a></span>(<span class='no'>s</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
