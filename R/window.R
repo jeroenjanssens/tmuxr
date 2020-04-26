@@ -121,6 +121,11 @@ rename_window <- function(target, value) {
 #'
 #' @export
 resize_window <- function(target, width = NULL, height = NULL) {
+  if (tmux_version() < 2.9) {
+    stop("Resizing a window is not supported for tmux version < 2.9.",
+         call. = FALSE)
+  }
+
   flags <- c("-t", get_target(target))
   if (!is.null(width)) flags <- c(flags, "-x", as.character(width))
   if (!is.null(height)) flags <- c(flags, "-y", as.character(height))

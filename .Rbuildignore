@@ -4,6 +4,7 @@
 ^_pkgdown\.yml$
 ^pkgdown$
 ^\.travis\.yml$
+^\.travis-tmux\.sh$
 ^NEWS\.md$
 ^README\.Rmd$
 ^README_cache$

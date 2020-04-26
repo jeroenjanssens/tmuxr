@@ -22,7 +22,7 @@ is_running <- function() {
 #'
 #' @export
 is_installed <- function() {
-  unname(Sys.which("tmux")) != ""
+  unname(Sys.which(getOption("tmux_binary", "tmux"))) != ""
 }
 
 
@@ -63,11 +63,7 @@ start_server <- function() {
 #'
 #' @export
 tmux_version <- function(as_numeric = TRUE) {
-  result <- processx::run("tmux", "-V",
-                          error_on_status = FALSE,
-                          stderr_to_stdout = TRUE)
-
-  version <- result$stdout
+  version <- tmux_command("-V")
 
   if (as_numeric) {
     matches <- regexec("\\d+\\.\\d+", version)

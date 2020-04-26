@@ -26,7 +26,7 @@ tmux_command <- function(command, ...) {
   if (!is.null(getOption("tmux_socket_path")))
     tmux_options <- c(tmux_options, "-S", getOption("tmux_socket_path"))
 
-  result <- processx::run("tmux",
+  result <- processx::run(getOption("tmux_binary", "tmux"),
                           args = c(tmux_options, command, ...),
                           error_on_status = FALSE,
                           stderr_to_stdout = TRUE,
