@@ -1,7 +1,6 @@
 context("utils")
 
 test_that("display_message works", {
-  # skip_on_travis()
   s <- new_session()
 
   expect_identical(display_message(s, "foo"), "foo")
@@ -41,31 +40,56 @@ test_that("the name of an object can be changed", {
 })
 
 test_that("the width and height of a session can be changed", {
-  skip_if(tmux_version() < 2.9)
-  o <- new_session("foo")
-  v <- width(o)
-  width(o) <- width(o) + 1
-  expect_false(v == width(o))
+  s <- new_session()
 
-  v <- height(o)
-  height(o) <- height(o) + 1
-  expect_false(v == height(o))
+  v <- width(s)
+
+  if (tmux_version() < 2.9) {
+    expect_error(width(s) <- width(s) + 1)
+  } else {
+    width(s) <- width(s) + 1
+    expect_false(v == width(s))
+  }
+
+  v <- height(s)
+
+  if (tmux_version() < 2.9) {
+    expect_error(height(s) <- height(s) + 1)
+  } else {
+    height(s) <- height(s) + 1
+    expect_false(v == height(s))
+  }
+
+  kill_session(s)
 })
 
 test_that("the width and height of a window can be changed", {
-  skip_if(tmux_version() < 2.9)
-  o <- list_windows()[[1]]
-  v <- width(o)
-  width(o) <- width(o) + 1
-  expect_false(v == width(o))
+  s <- new_session()
+  w <- list_windows()[[1]]
 
-  v <- height(o)
-  height(o) <- height(o) + 1
-  expect_false(v == height(o))
+  v <- width(w)
+
+  if (tmux_version() < 2.9) {
+    expect_error(width(w) <- width(w) + 1)
+  } else {
+    width(w) <- width(w) + 1
+    expect_false(v == width(w))
+  }
+
+  v <- height(w)
+
+  if (tmux_version() < 2.9) {
+    expect_error(height(w) <- height(w) + 1)
+  } else {
+    height(w) <- height(w) + 1
+    expect_false(v == height(w))
+  }
+
+  kill_session(s)
 })
 
 test_that("the width and height of a pane can be changed", {
-  # skip_on_travis()
+  s <- new_session()
   split_window(vertical = TRUE)
   split_window(vertical = FALSE)
 

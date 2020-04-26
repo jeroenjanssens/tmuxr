@@ -71,7 +71,7 @@ display_message <- function(target = NULL,
   flags <- c()
   if (verbose) {
     if (tmux_version() < 2.9) {
-      warning("The verbose argument is not supported for tmux version < 3.0 ",
+      warning("The verbose argument is not supported for tmux version < 2.9 ",
               "and will be ignored.", call. = FALSE)
     } else {
       flags <- c(flags, "-v")
