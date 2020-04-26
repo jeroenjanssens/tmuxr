@@ -5,6 +5,8 @@ fortran: false
 
 matrix:
   include:
+    - os: linux
+      dist: bionic
     - os: osx
       brew_packages: tmux
       r: release
