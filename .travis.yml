@@ -1,29 +1,35 @@
 language: r
 cache: packages
 latex: false
-fortran: false
 
-matrix:
-  include:
-    - os: linux
-      dist: bionic
-    - os: osx
-      brew_packages: tmux
-      r: release
-      env: R_CODECOV=true
+jobs:
+- env: TMUX_VERSION=3.1
+- env: TMUX_VERSION=3.0
+- os: osx
+  r: release
+  env: R_CODECOV=true
+
+addons:
+  apt:
+    packages:
+    - gcc
+    - libevent-dev
+    - ncurses-dev 
+  homebrew:
+    packages:
+    - tmux
 
 r_packages:
-  - covr
-
-apt_packages:
-  - tmux
+- covr
 
 warnings_are_errors: true
+
+before_install: ./.travis-tmux.sh
+
+after_success: if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi
 
 notifications:
   email:
     on_success: change
     on_failure: change
 
-after_success:
-  - if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi
