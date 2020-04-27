@@ -1,23 +1,20 @@
 context("select")
 
 test_that("selecting panes works", {
-  # skip_on_travis()
+  skip_if(tmux_version() < 2.3)
 
   sc <- function(n) paste0("echo ", as.character(n), "; cat")
 
   sw <- function(target, n, ...) {
     p <- split_window(target, shell_command = sc(n), ...)
-    # name(p) <- n
     p
   }
 
   kill_server()
 
   s1 <- new_session("foo", shell_command = sc("a"), width = 90, height = 30)
-  # resize_window(s1, width = 90, height = 30) # Is this needed?
   w1 <- list_windows(s1)[[1]]
   pa <- list_panes(w1)[[1]]
-  # name(pa) <- "a"
 
   expect_identical(select_pane(), pa)
 

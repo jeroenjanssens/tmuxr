@@ -135,9 +135,9 @@ list_panes <- function(target = NULL) {
 #' @param target A tmuxr_session, tmuxr_window, or tmuxr_pane.
 #' @param shell_command String. If `NULL`, the current pipe (if any) is closed.
 #'   Default: `NULL`.
-#' @param stdout Logical. Connect standard input of pane to `shell_command`?
+#' @param stdout Logical. Connect standard output of pane to `shell_command`?
 #'   Default: `TRUE`.
-#' @param stdin Logical. Connect standard output of pane to `shell_command`?
+#' @param stdin Logical. Connect standard input of pane to `shell_command`?
 #'   Default: `FALSE`.
 #' @param open Logical. Only open a new pipe if no previous pipe exists.
 #'   Default: `FALSE`.
@@ -151,7 +151,12 @@ pipe_pane <- function(target = NULL,
   flags <- c()
   if (!is.null(target)) flags <- c(flags, "-t", get_target(target))
 
-  if (tmux_version() >= 2.8) {
+  if (tmux_version() < 2.8) {
+    if (stdin) {
+      stop("Connecting standard input of a pane is not supported ",
+           "for tmux version < 2.8.", call. = FALSE)
+    }
+  } else {
     if (stdout) flags <- c(flags, "-O")
     if (stdin) flags <- c(flags, "-I")
   }

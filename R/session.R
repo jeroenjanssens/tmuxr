@@ -110,6 +110,9 @@ print.tmuxr_session <- function(x, ...) {
 #'
 #' @export
 rename_session <- function(target, value) {
-  tmux_command("rename-session", "-t", get_target(target), as.character(value))
+  # For some reason, tmux version 2.7 returns an error regardless of whether
+  # the session gets renamed successfully, so set .silent to TRUE.
+  tmux_command("rename-session", "-t", get_target(target),
+               as.character(value), .silent = tmux_version() == 2.7)
   invisible(target)
 }

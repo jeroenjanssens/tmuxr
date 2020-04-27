@@ -32,7 +32,7 @@ test_that("an existing session can be referenced", {
 test_that("a session can be renamed", {
   kill_server()
   s <- new_session("foo")
-  name(s) <- "bar"
+  rename_session(s, "bar")
   expect_equal(name(s), "bar")
 })
 

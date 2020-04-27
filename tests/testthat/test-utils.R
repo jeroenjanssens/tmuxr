@@ -4,7 +4,7 @@ test_that("display_message works", {
   s <- new_session()
 
   expect_identical(display_message(s, "foo"), "foo")
-  # Q: When was verbose introduced?
+
   if (tmux_version() < 2.9) {
     expect_warning(display_message(s, "foo", verbose = TRUE))
   } else {
@@ -14,7 +14,9 @@ test_that("display_message works", {
                        "foo"))
   }
 
-  expect_null(display_message(s, "bar", stdout = FALSE))
+  if (tmux_version() >= 2.3) {
+    expect_null(display_message(s, "bar", stdout = FALSE))
+  }
   kill_session(s)
 })
 

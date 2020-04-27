@@ -2,6 +2,7 @@
 #'
 #' @param command A string.
 #' @param ... Strings. Command flags.
+#' @param .silent A Logical. Default: `FALSE`.
 #'
 #' @return A vector of strings.
 #'
@@ -12,7 +13,7 @@
 #' kill_session(s)
 #'
 #' @export
-tmux_command <- function(command, ...) {
+tmux_command <- function(command, ..., .silent = FALSE) {
   stopifnot(is.character(command), length(command) == 1)
 
   tmux_options <- c()
@@ -32,9 +33,10 @@ tmux_command <- function(command, ...) {
                           stderr_to_stdout = TRUE,
                           echo_cmd = getOption("tmux_echo", default = FALSE))
 
-  if (result$status > 0) stop("tmux: ", result$stdout, call. = FALSE)
+  if ((result$status > 0) && (!.silent)) {
+    stop("tmux: ", result$stdout, call. = FALSE)
+  }
 
-  # Split standard output into lines
   unlist(strsplit(result$stdout, "\n"))
 }
 

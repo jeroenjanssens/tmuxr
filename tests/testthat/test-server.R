@@ -26,7 +26,7 @@ test_that("the version is returned as numeric", {
 })
 
 test_that("the version is returned as character", {
-  expect_match(tmux_version(as_numeric = FALSE), "^tmux ")
+  expect_true(is.character(tmux_version(as_numeric = FALSE)))
 })
 
 kill_server()

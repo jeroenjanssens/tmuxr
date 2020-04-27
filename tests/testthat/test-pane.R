@@ -72,7 +72,7 @@ test_that("contents can be captured", {
 
 
 
-test_that("stdout of pane can be piped", {
+test_that("stdout of pane can be connected", {
   out_file <- tempfile("tmuxr")
   s <- new_session(shell_command = "cat > /dev/null")
   pipe_pane(s, paste0("cat >> ", out_file), stdout = TRUE, open = TRUE)
@@ -86,16 +86,21 @@ test_that("stdout of pane can be piped", {
   expect_identical(output, "Hello there!")
 })
 
-test_that("stdin of pane can be piped", {
-  skip_if(tmux_version() < 2.8)
+test_that("stdin of pane can be connected", {
   s <- new_session(shell_command = "cat > /dev/null")
-  pipe_pane(s, "seq 5", stdin = TRUE)
-  pipe_pane(s)
-  Sys.sleep(0.1)
-  expect_identical(head(capture_pane(s), 5),
-                   as.character(seq(5)))
+  if (tmux_version() < 2.8) {
+    expect_error(pipe_pane(s, "seq 5", stdin = TRUE))
+  } else {
+    pipe_pane(s, "seq 5", stdin = TRUE)
+    pipe_pane(s)
+    Sys.sleep(0.1)
+    expect_identical(head(capture_pane(s), 5),
+                     as.character(seq(5)))
+  }
   kill_session(s)
+})
 
+test_that("stdin and stdout cannot both be FALSE for pipe_pane", {
   s <- new_session(shell_command = "cat > /dev/null")
   expect_error(pipe_pane(s, "seq 5", stdin = FALSE, stdout = FALSE))
   kill_session(s)
@@ -107,7 +112,5 @@ test_that("panes are printed correctly", {
   p <- list_panes(s)[[1]]
   expect_output(print(p), "^tmuxr pane foobarbaz:0.0: ")
 })
-
-
 
 kill_server()
