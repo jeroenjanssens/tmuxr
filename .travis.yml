@@ -5,10 +5,16 @@ cache:
 latex: false
 
 jobs:
+- env: TMUX_VERSION=3.1
 - env: TMUX_VERSION=3.0
 - env: TMUX_VERSION=2.9
 - env: TMUX_VERSION=2.8
 - env: TMUX_VERSION=2.7
+- env: TMUX_VERSION=2.6
+- env: TMUX_VERSION=2.5
+- env: TMUX_VERSION=2.4
+- env: TMUX_VERSION=2.3
+- env: TMUX_VERSION=2.2
 - os: osx
   r: release
   env: R_CODECOV=true
@@ -18,7 +24,7 @@ addons:
     packages:
     - gcc
     - libevent-dev
-    - ncurses-dev 
+    - ncurses-dev
   homebrew:
     packages:
     - tmux
