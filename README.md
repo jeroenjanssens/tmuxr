@@ -129,8 +129,9 @@ kill_session(s)
 
 That concludes the demonstration. Note that tmux (and, as a result
 `tmuxr`) can run any process that runs in a terminal, not just R. Please
-have a look at [the reference](reference/) to learn more about what
-`tmuxr` has to offer.
+have a look at [the
+reference](https://datascienceworkshops.github.io/tmuxr/reference/) to
+learn more about what `tmuxr` has to offer.
 
 ## Compatibility
 
