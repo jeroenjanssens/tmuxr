@@ -31,9 +31,9 @@ remotes::install_github("datascienceworkshops/tmuxr")
 To get an idea of what `tmuxr` has to offer, consider the following
 example, where we run two different versions of R in order to compare
 the output of the function `t.test()`. It’s perhaps a bit contrived, but
-it allows us to demonstrate the various capabilities of `tmuxr`.
-
-Let’s create a tmux session that runs a local version of R.
+it allows us to demonstrate the various capabilities of `tmuxr`. Let’s
+start by creating a tmux session that runs a recent version of R
+locally.
 
 ``` r
 library(tmuxr)
@@ -72,8 +72,9 @@ cat(capture_pane(p, cat = TRUE))
 ```
 
 That seems to work, so let’s continue by creating a new pane that runs a
-different version of R using Docker. Notice that both panes now have a
-height of 6 lines because the window was split vertically.
+different version of [R using
+Docker](https://github.com/rocker-org/rocker). Notice that both panes
+now have a height of 6 lines because the window was split vertically.
 
 ``` r
 p2 <- split_window(s, shell_command = "docker run --rm -it rocker/r-ver:3.1.0")
@@ -86,9 +87,9 @@ list_panes()
 #> tmuxr pane demo:0.1: [80x6] [history 0/2000, 0 bytes] %1 (active)
 ```
 
-With `purrr::map`, we can interact with multiple panes in parallel.
+With `purrr::map`, we can interact with multiple processes in parallel.
 Here, we run the `t.test()` function with some dummy data and inspect
-the standard error of the mean.
+the result.
 
 ``` r
 purrr::map(list_panes(), send_keys,
@@ -118,15 +119,15 @@ cat(capture_pane(p2, cat = TRUE))
 #> >
 ```
 
-Indeed, in R version 3.1, `t.test()` does not return the standard error.
-Finally, we can kill the tmux server, which also stops both the local R
-process and the Docker container.
+Indeed, in R version 3.1, `t.test()` does not return the standard error
+of the mean. To stop both the local R process and the Docker container
+we can simply kill the session.
 
 ``` r
-kill_server()
+kill_session(s)
 ```
 
-And that concludes our demonstration. Note that tmux (and, as a result
+That concludes the demonstration. Note that tmux (and, as a result
 `tmuxr`) can run any process that runs in a terminal, not just R. Please
 have a look at [the reference](reference/) to learn more about what
 `tmuxr` has to offer.
