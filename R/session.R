@@ -41,11 +41,8 @@ kill_session <- function(target, inverse = FALSE) {
 #' @export
 list_sessions <- function() {
   flags <- c("-F", "#{session_id}")
-  tryCatch(
-    lapply(tmux_command("list-sessions", flags),
-           attach_session, lookup_id = FALSE),
-    error = function(e) list()
-  )
+  lapply(tmux_command("list-sessions", flags),
+         attach_session, lookup_id = FALSE)
 }
 
 
