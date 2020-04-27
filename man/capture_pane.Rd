@@ -42,16 +42,6 @@ A vector of strings or one string when \code{cat} is \code{TRUE}.
 \description{
 Capture the contents of a tmux pane
 }
-\examples{
-s <- new_session(shell_command = "sh")
-send_keys(s, "R --vanilla", "Enter")
-Sys.sleep(0.1)
-send_keys(s, "pi", "Enter")
-send_keys(s, "q(\"no\")", "Enter")
-cat(capture_pane(s, cat = TRUE))
-kill_session(s)
-
-}
 \seealso{
 \code{\link[=send_keys]{send_keys()}}
 }

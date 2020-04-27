@@ -127,7 +127,7 @@
     <p>Execute a tmux command</p>
     </div>
 
-    <pre class="usage"><span class='fu'>tmux_command</span>(<span class='no'>command</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>tmux_command</span>(<span class='no'>command</span>, <span class='no'>...</span>, <span class='kw'>.silent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -140,6 +140,10 @@
       <th>...</th>
       <td><p>Strings. Command flags.</p></td>
     </tr>
+    <tr>
+      <th>.silent</th>
+      <td><p>A Logical. Default: <code>FALSE</code>.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -148,8 +152,8 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='new_session.html'>new_session</a></span>()
-<span class='fu'><a href='split_window.html'>split_window</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; tmuxr pane 0:0.1: [80x11] [history 0/2000, 0 bytes] %1 (active) </div><div class='input'><span class='fu'>tmux_command</span>(<span class='st'>"list-panes"</span>, <span class='st'>"-t"</span> , <span class='st'>"0"</span>)</div><div class='output co'>#&gt; [1] "0: [80x12] [history 0/2000, 0 bytes] %0"         
-#&gt; [2] "1: [80x11] [history 0/2000, 0 bytes] %1 (active)"</div><div class='input'><span class='fu'><a href='kill_session.html'>kill_session</a></span>(<span class='no'>s</span>)</div></pre>
+<span class='fu'><a href='split_window.html'>split_window</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; tmuxr pane 5:0.1: [80x11] [history 0/2000, 0 bytes] %7 (active) </div><div class='input'><span class='fu'>tmux_command</span>(<span class='st'>"list-panes"</span>, <span class='st'>"-t"</span> , <span class='st'>"0"</span>)</div><div class='output co'>#&gt; [1] "0: [80x12] [history 0/2000, 0 bytes] %6"         
+#&gt; [2] "1: [80x11] [history 0/2000, 0 bytes] %7 (active)"</div><div class='input'><span class='fu'><a href='kill_session.html'>kill_session</a></span>(<span class='no'>s</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

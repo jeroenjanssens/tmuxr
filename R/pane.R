@@ -40,15 +40,6 @@ attach_pane <- function(x, lookup_id = TRUE) {
 #'
 #' @seealso [send_keys()]
 #'
-#' @examples
-#' s <- new_session(shell_command = "sh")
-#' send_keys(s, "R --vanilla", "Enter")
-#' Sys.sleep(0.1)
-#' send_keys(s, "pi", "Enter")
-#' send_keys(s, "q(\"no\")", "Enter")
-#' cat(capture_pane(s, cat = TRUE))
-#' kill_session(s)
-#'
 #' @export
 capture_pane <- function(target = NULL,
                          start = NULL,

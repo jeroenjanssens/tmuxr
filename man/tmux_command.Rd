@@ -4,12 +4,14 @@
 \alias{tmux_command}
 \title{Execute a tmux command}
 \usage{
-tmux_command(command, ...)
+tmux_command(command, ..., .silent = FALSE)
 }
 \arguments{
 \item{command}{A string.}
 
 \item{...}{Strings. Command flags.}
+
+\item{.silent}{A Logical. Default: \code{FALSE}.}
 }
 \value{
 A vector of strings.

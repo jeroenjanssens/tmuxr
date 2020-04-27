@@ -18,10 +18,10 @@ pipe_pane(
 \item{shell_command}{String. If \code{NULL}, the current pipe (if any) is closed.
 Default: \code{NULL}.}
 
-\item{stdout}{Logical. Connect standard input of pane to \code{shell_command}?
+\item{stdout}{Logical. Connect standard output of pane to \code{shell_command}?
 Default: \code{TRUE}.}
 
-\item{stdin}{Logical. Connect standard output of pane to \code{shell_command}?
+\item{stdin}{Logical. Connect standard input of pane to \code{shell_command}?
 Default: \code{FALSE}.}
 
 \item{open}{Logical. Only open a new pipe if no previous pipe exists.
