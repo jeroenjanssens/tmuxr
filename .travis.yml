@@ -4,6 +4,7 @@ cache:
   apt: true
   packages: true
 latex: false
+pandoc: false
 
 jobs:
 - env: TMUX_VERSION=3.1
@@ -46,4 +47,3 @@ notifications:
   email:
     on_success: change
     on_failure: change
-
