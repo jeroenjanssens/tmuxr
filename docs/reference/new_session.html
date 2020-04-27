@@ -182,13 +182,10 @@ session.</p></td>
     <p>Prior to tmux version 2.6, the actual height is one line less than <code>height</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>new_session</span>(<span class='st'>"foo"</span>, <span class='kw'>shell_command</span> <span class='kw'>=</span> <span class='st'>"bash"</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt; <span class='error'>Error: tmux: duplicate session: foo</span></div><div class='input'><span class='fu'><a href='list_sessions.html'>list_sessions</a></span>()</div><div class='output co'>#&gt; [[1]]
-#&gt; tmuxr session bay: 1 windows (created Mon Apr 27 13:19:34 2020) 
-#&gt; 
-#&gt; [[2]]
-#&gt; tmuxr session foo: 1 windows (created Mon Apr 27 13:21:59 2020) 
-#&gt; </div><div class='input'><span class='fu'><a href='kill_session.html'>kill_session</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span class='error'>Error in inherits(x, "tmuxr_object"): object 's' not found</span></div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>new_session</span>(<span class='st'>"foo"</span>, <span class='kw'>shell_command</span> <span class='kw'>=</span> <span class='st'>"bash"</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+<span class='fu'><a href='list_sessions.html'>list_sessions</a></span>()</div><div class='output co'>#&gt; [[1]]
+#&gt; tmuxr session foo: 1 windows (created Mon Apr 27 16:53:14 2020) 
+#&gt; </div><div class='input'><span class='fu'><a href='kill_session.html'>kill_session</a></span>(<span class='no'>s</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

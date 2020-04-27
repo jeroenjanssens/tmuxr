@@ -19,22 +19,91 @@ knitr::opts_chunk$set(
 [![Travis-CI build status](https://travis-ci.org/datascienceworkshops/tmuxr.svg?branch=master)](https://travis-ci.org/datascienceworkshops/tmuxr) 
 [![codecov](https://codecov.io/gh/datascienceworkshops/tmuxr/branch/master/graph/badge.svg)](https://codecov.io/gh/datascienceworkshops/tmuxr)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/tmuxr)](https://cran.r-project.org/package=tmuxr)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/tmuxr)](https://cran.r-project.org/package=tmuxr)
 
 ## Overview
 
-`tmuxr` is an R package that allows you (1) to manage [tmux](https://github.com/tmux/tmux/wiki) and (2) to interact with the processes it runs. It features a pipeable API with which you can create, control, and capture tmux sessions, windows, and panes.
-
-Most functions, such as `new_session`, `list_windows`, and `send_keys` are wrappers by the commands `tmux` offers. Other functions, such as `attach_window` and `send_lines` are added for convenience.
+`tmuxr` is an R package that allows you to manage [tmux](https://github.com/tmux/tmux/wiki) and interact with the processes it runs. It features a pipeable API with which you can create, control, and capture tmux sessions, windows, and panes.
 
 ## Installation
 
-The development version of `tmuxr` from GitHub can be installed with:
+The development version of `tmuxr` can be installed with:
 
 ```{r, eval = FALSE}
-# install.packages("devtools")
-devtools::install_github("datascienceworkshops/tmuxr")
+# install.packages("remotes")
+remotes::install_github("datascienceworkshops/tmuxr")
 ```
+
+## A demonstration
+
+To get an idea of what `tmuxr` has to offer, consider the following example, where we run two different versions of R in order to compare the output of the function `t.test()`. It's perhaps a bit contrived, but it allows us to demonstrate the various capabilities of `tmuxr`.
+
+```{r, include = FALSE}
+options(tmux_socket_name = "readme")
+tmuxr::kill_server()
+```
+
+Let's create a tmux session that runs a local version of R.
+
+```{r}
+library(tmuxr)
+s <- new_session(name = "demo", shell_command = "R --vanilla", height = 13)
+```
+
+We don't see anything---because a session starts in detached mode by default---but there's now a pane with a size of 80 by 13 with which we can interact.
+
+```{r, include = FALSE}
+Sys.sleep(0.5)
+```
+
+```{r}
+(p <- select_pane_active(s))
+```
+
+With the `send_keys()` function, we can simulate typing into that pane. To verify that this works, we can use the `capture_pane()` function to take a "screenshot". 
+ 
+```{r}
+send_keys(p, "pi", "Enter")
+cat(capture_pane(p, cat = TRUE))
+```
+
+That seems to work, so let's continue by creating a new pane that runs a different version of R using Docker. Notice that both panes now have a height of 6 lines because the window was split vertically.
+
+```{r}
+p2 <- split_window(s, shell_command = "docker run --rm -it rocker/r-ver:3.1.0")
+name(p2) <- "r-3.1"
+list_panes()
+```
+
+```{r, include = FALSE}
+Sys.sleep(1)
+```
+
+With `purrr::map`, we can interact with multiple panes in parallel. Here, we run the `t.test()` function with some dummy data and inspect the standard error of the mean.
+
+```{r}
+purrr::map(list_panes(), send_keys,
+           "(result <- t.test(1:10, y = c(7:20)))", "Enter",
+           "result$stderr", "Enter")
+Sys.sleep(0.5)
+
+cat(capture_pane(p, cat = TRUE))
+
+cat(capture_pane(p2, cat = TRUE))
+```
+
+Indeed, in R version 3.1, `t.test()` does not return the standard error. Finally, we can kill the tmux server, which also stops both the local R process and the Docker container.   
+
+```{r}
+kill_server()
+```
+
+And that concludes our demonstration. Note that tmux (and, as a result `tmuxr`) can run any process that runs in a terminal, not just R. Please have a look at [the reference](reference/) to learn more about what `tmuxr` has to offer.
+
+
+## Compatibility
+
+We [regularly test](https://travis-ci.org/datascienceworkshops/tmuxr) `tmuxr` on Ubuntu with tmux versions 2.1 through 3.1 and on macOS with the latest version of tmux provided by Homebrew. `tmuxr` might work on Windows using Cygwin or WSL, but we haven't tested this.
 
 ## License
 
