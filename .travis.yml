@@ -28,8 +28,7 @@ r_packages:
 
 warnings_are_errors: true
 
-before_install: ./.travis-tmux.sh
-
+before_install: ./bin/install-tmux-travis.sh
 after_success: if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi
 
 notifications:
