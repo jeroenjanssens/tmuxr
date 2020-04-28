@@ -55,15 +55,15 @@ select_pane_left_of(target = NULL)
 select_pane_right_of(target = NULL)
 }
 \arguments{
-\item{target}{A tmux_session, tmux_window, or tmux_pane. If \code{NULL}, the
+\item{target}{A tmuxr_session, tmuxr_window, or tmuxr_pane. If \code{NULL}, the
 currently active pane is used. Default: \code{NULL}.}
 
 \item{token}{A string. Default \code{NULL}.}
 }
 \value{
-A tmux_pane.
+A tmuxr_pane.
 }
 \description{
-Note that selecting pane from a non-active window does not select that
+Note that selecting a pane from a non-active window does not select that
 window.
 }

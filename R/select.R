@@ -1,10 +1,10 @@
 #' Select a tmux window
 #'
-#' @param target A tmux_session or tmux_window. If `NULL`, the
+#' @param target A tmuxr_session or tmuxr_window. If `NULL`, the
 #'   last session is used. Default: `NULL`.
 #' @param token A string. Default `NULL`.
 #'
-#' @return A tmux_window.
+#' @return A tmuxr_window.
 #' @export
 select_window <- function(target = NULL, token = NULL) {
   if (inherits(target, "tmuxr_window")) {
@@ -46,14 +46,14 @@ select_window_end <- function(target = NULL) select_window(target, "{end}")
 
 #' Select a tmux pane
 #'
-#' Note that selecting pane from a non-active window does not select that
+#' Note that selecting a pane from a non-active window does not select that
 #'   window.
 #'
-#' @param target A tmux_session, tmux_window, or tmux_pane. If `NULL`, the
+#' @param target A tmuxr_session, tmuxr_window, or tmuxr_pane. If `NULL`, the
 #'   currently active pane is used. Default: `NULL`.
 #' @param token A string. Default `NULL`.
 #'
-#' @return A tmux_pane.
+#' @return A tmuxr_pane.
 #' @export
 select_pane <- function(target = NULL, token = NULL) {
   if (inherits(target, "tmuxr_pane")) {

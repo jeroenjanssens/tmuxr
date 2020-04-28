@@ -1,22 +1,3 @@
-.data-science-workshops-logo {
-  height: 60px;
-}
-
-.copyright .data-science-workshops-logo {
-  vertical-align: baseline;
-  margin: -31px 2px -8px 2px;
-  height: 50px;
-}
-
-.navbar-brand {
-  padding: 0 54px 0 54px;
-  height: 50px;
-  line-height: 50px;
-  background-image: url(logo.svg);
-  background-size: 32px auto;
-  background-repeat: no-repeat;
-  background-position: 15px center;
-}
 .asciinema-player-wrapper {
   position: relative;
   text-align: center;

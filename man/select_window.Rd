@@ -25,13 +25,13 @@ select_window_start(target = NULL)
 select_window_end(target = NULL)
 }
 \arguments{
-\item{target}{A tmux_session or tmux_window. If \code{NULL}, the
+\item{target}{A tmuxr_session or tmuxr_window. If \code{NULL}, the
 last session is used. Default: \code{NULL}.}
 
 \item{token}{A string. Default \code{NULL}.}
 }
 \value{
-A tmux_window.
+A tmuxr_window.
 }
 \description{
 Select a tmux window
