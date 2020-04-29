@@ -26,6 +26,7 @@ Collate:
     send.R
     select.R
     utils.R
+    layout.R
 RoxygenNote: 7.1.0
 Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace", "collate"))
 Suggests: testthat

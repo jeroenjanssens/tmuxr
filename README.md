@@ -25,7 +25,7 @@ panes. Note that normally, managing tmux and the processes it runs is
 done in a detached mode, so you wouldn’t see anything, but the result
 would be the same.
 
-<asciinema-player src="reference/figures/tmuxr.cast" cols="114" rows="38" poster="npt:0:52"></asciinema-player>
+<script id="asciicast-325231" src="https://asciinema.org/a/325231.js" async></script>
 
 Have a look at [the
 reference](https://datascienceworkshops.github.io/tmuxr/reference/) to
