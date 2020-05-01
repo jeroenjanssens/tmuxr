@@ -35,3 +35,16 @@ send_keys <- function(target = NULL, ..., literal = FALSE, count = 1L) {
 
   invisible(target)
 }
+
+
+#' Send prefix to a tmux pane
+#'
+#' @export
+send_prefix <- function(target = NULL, secondary = FALSE) {
+  flags <- c()
+  if (secondary) flags <- c(flags, "-2")
+  if (!is.null(target)) flags <- c(flags, "-t", get_target(target))
+
+  tmux_command("send-prefix", flags)
+  invisible(target)
+}
