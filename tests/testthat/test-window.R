@@ -7,7 +7,6 @@ test_that("an existing window can be referenced", {
 })
 
 test_that("windows are printed correctly", {
-  kill_server()
   s <- new_session("foobarbaz", shell_command = "cat")
   w <- list_windows(s)[[1]]
   expect_output(print(w), "^tmuxr window foobarbaz:0: ")
@@ -31,6 +30,8 @@ test_that("window can be created", {
 
   expect_identical(sapply(list_windows(s1), name), c("a", "b"))
   expect_identical(sapply(list_windows(s2), name), c("x", "y"))
+  kill_session(s1)
+  kill_session(s2)
 })
 
 test_that("windows can be killed", {
@@ -84,7 +85,6 @@ test_that("the start directory can be set when creating a new window", {
 
 
 test_that("windows can be split", {
-
   s <- new_session()
   p1 <- list_panes(s)[[1]]
   expect_true(is_active(p1))
@@ -95,6 +95,7 @@ test_that("windows can be split", {
     expect_identical(tmuxr:::prop(p2, "pane_at_bottom"), "1")
   }
   expect_identical(height(p2), 5)
+  kill_session(s)
 
   s <- new_session()
   p1 <- list_panes(s)[[1]]
@@ -102,6 +103,7 @@ test_that("windows can be split", {
   expect_identical(height(p1), height(p2))
   expect_identical(width(p1), 69)
   expect_identical(width(p2), 10)
+  kill_session(s)
 
   s <- new_session()
   p1 <- list_panes(s)[[1]]
@@ -110,19 +112,14 @@ test_that("windows can be split", {
     expect_identical(tmuxr:::prop(p1, "pane_at_bottom"), "1")
     expect_identical(tmuxr:::prop(p2, "pane_at_top"), "1")
   }
-
-
-
-
-
-
-
+  kill_session(s)
 
   s <- new_session(width = 80)
   p1 <- list_panes(s)[[1]]
   p2 <- split_window(s, size = 0.25, vertical = FALSE)
   expect_identical(width(p1), 59)
   expect_identical(width(p2), 20)
+  kill_session(s)
 })
 
 test_that("windows can be split with full", {
@@ -133,12 +130,14 @@ test_that("windows can be split with full", {
   p2 <- split_window(s)
   p3 <- split_window(p2, vertical = FALSE, full = TRUE)
   expect_identical(height(p3), height(s))
+  kill_session(s)
 
   s <- new_session()
   p1 <- list_panes(s)[[1]]
   p2 <- split_window(s, vertical = FALSE)
   p3 <- split_window(p2, full = TRUE)
   expect_identical(width(p3), width(s))
+  kill_session(s)
 })
 
 test_that("the start directory can be set when splitting a window", {

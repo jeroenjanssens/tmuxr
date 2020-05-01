@@ -10,8 +10,6 @@ test_that("selecting panes works", {
     p
   }
 
-  kill_server()
-
   s1 <- new_session("foo", shell_command = sc("a"), width = 90, height = 30)
   w1 <- list_windows(s1)[[1]]
   pa <- list_panes(w1)[[1]]
@@ -54,11 +52,11 @@ test_that("selecting panes works", {
   expect_identical(select_pane_next(), pe)
 
   expect_warning(select_pane(pe, "{last}"))
+  kill_session(s1)
 })
 
 
 test_that("selecting windows works", {
-  # skip_on_travis()
   sc <- function(n) paste0("echo ", as.character(n), "; cat")
   nw <- function(n, ...) {
     w <- new_window(shell_command = sc(n), ...)
@@ -66,7 +64,6 @@ test_that("selecting windows works", {
     w
   }
 
-  kill_server()
 
   s0 <- new_session("s0", window_name = "w0", shell_command = sc("w0"))
   w0 <- list_windows(s0)[[1]]
@@ -99,4 +96,6 @@ test_that("selecting windows works", {
   expect_warning(select_window(w0, "{last}"))
   expect_identical(select_window_active(s0), w0)
   expect_identical(select_window_active(), w2)
+  kill_session(s0)
+  kill_session(s1)
 })

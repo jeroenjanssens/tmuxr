@@ -40,7 +40,6 @@ test_that("clock_mode works", {
 })
 
 test_that("contents can be captured", {
-
   specified_height <- 10
   s <- new_session(shell_command = "cat", height = specified_height)
 

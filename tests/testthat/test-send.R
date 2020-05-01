@@ -53,6 +53,5 @@ test_that("keys can be sent", {
 
   send_keys(s, "C-c") # exits cat and closes the session
   expect_error(cp(s))
-})
 
-kill_server()
+})

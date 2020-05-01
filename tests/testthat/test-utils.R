@@ -33,11 +33,6 @@ test_that("the name of an object can be changed", {
   name(w) <- "bar"
   expect_false(old_name == name(w))
 
-  # Doesn't work on older version
-  # old_name <- name(p)
-  # name(p) <- "bar"
-  # expect_false(old_name == name(p))
-
   kill_session(s)
 })
 
@@ -104,11 +99,10 @@ test_that("the width and height of a pane can be changed", {
   height(o) <- height(o) + 1
   expect_false(v == height(o))
 
-  kill_server()
+  kill_session(s)
 })
 
 test_that("index works", {
-  # skip_on_travis()
   s <- new_session()
   w1 <- select_window(s)
   expect_identical(index(w1), 0)
@@ -117,6 +111,7 @@ test_that("index works", {
   expect_identical(index(w2), 1)
   p2 <- split_window(w1)
   expect_identical(index(p2), 1)
+  kill_session(s)
 })
 
 
