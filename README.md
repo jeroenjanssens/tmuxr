@@ -14,7 +14,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 
 `tmuxr` is an R package that allows you to manage
 [tmux](https://github.com/tmux/tmux/wiki) and interact with the
-processes it runs. It features a pipable API with which you can create,
+processes it runs. It features a pipeable API with which you can create,
 control, and capture tmux sessions, windows, and panes.
 
 ## Demonstration
