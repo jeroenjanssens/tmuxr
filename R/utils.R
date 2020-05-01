@@ -272,3 +272,30 @@ index.tmuxr_window <-
 #' @export
 index.tmuxr_pane <-
   function(target) as.numeric(prop(target, "pane_index"))
+
+
+#' @export
+option_set <- function(target = NULL, option, value = NULL,
+                       type = c("session", "window", "pane", "server"),
+                       append = FALSE,
+                       expand = FALSE,
+                       global = FALSE,
+                       unset = FALSE,
+                       override = TRUE) {
+
+  flags <- switch(match.arg(type),
+                  session = NULL,
+                  window = "-w",
+                  pane = "-p",
+                  server = "-s")
+
+  if (append) flags <- c(flags, "-a")
+  if (expand) flags <- c(flags, "-F")
+  if (unset) flags <- c(flags, "-u")
+  if (!override) flags <- c(flags, "-o")
+  if (!is.null(target)) flags <- c(flags, "-t", get_target(target))
+  flags <- c(flags, option, value)
+  tmux_command("set-option", flags)
+  invisible(target)
+}
+
