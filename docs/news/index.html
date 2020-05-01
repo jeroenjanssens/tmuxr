@@ -125,8 +125,15 @@
 <h1 class="page-header" data-toc-text="0.2.0">
 <a href="#tmuxr-020" class="anchor"></a>tmuxr 0.2.0<small> Unreleased </small>
 </h1>
-<ul><li>
-</li></ul>
+<ul>
+<li>Added functions to change the size, layout, and style of sessions, windows, and panes.</li>
+<li>Added many unit tests to ensure package works with tmux version 2.1 and up.</li>
+<li>Replaced <code><a href="https://rdrr.io/r/base/system2.html">system2()</a></code> calls with <code><a href="http://processx.r-lib.org/reference/run.html">processx::run()</a></code> for improved speed and stability.</li>
+<li>Replaced id with name to identify sessions, windows, and panes.</li>
+<li>Removed all but one dependency, namely {processx}.</li>
+<li>Removed the notion of a prompt and all <code>wait_*()</code> and derivative <code>send_*()</code> functions. This will be part of {rexpect}.</li>
+<li>Improved README and structure of reference.</li>
+</ul>
 </div>
     <div id="tmuxr-010" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.0">
