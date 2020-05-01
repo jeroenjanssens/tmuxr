@@ -8,7 +8,7 @@
 #' @param target A tmuxr_window. If `NULL`, use currently active window.
 #' @param value A string. Layout definition or name of preset.
 #' @param width,height An integer. Width or height of the main pane.
-#' @param reverse A logical. If `TRUE` the direction in which totate the window
+#' @param reverse A logical. If `TRUE` the direction in which rotate the window
 #'   is reversed. Default: `FALSE`.
 #'
 #' @return A string. Layout definition.

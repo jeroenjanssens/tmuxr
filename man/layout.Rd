@@ -49,7 +49,7 @@ layout_rotate(target = NULL, reverse = FALSE)
 
 \item{width, height}{An integer. Width or height of the main pane.}
 
-\item{reverse}{A logical. If \code{TRUE} the direction in which totate the window
+\item{reverse}{A logical. If \code{TRUE} the direction in which rotate the window
 is reversed. Default: \code{FALSE}.}
 }
 \value{

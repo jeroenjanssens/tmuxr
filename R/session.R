@@ -55,7 +55,7 @@ list_sessions <- function() {
 #'   (by default starting at 0). Default: `NULL`.
 #' @param window_name A string. Name of initial window.
 #' @param start_directory A string. Working directory this session is run in.
-#' @param width An integer. Width of inital window. Default: 80.
+#' @param width An integer. Width of initial window. Default: 80.
 #' @param height An integer. Height of initial window. Default: 24.
 #' @param detached A logical. If `FALSE`, the `R` interpreter
 #'   waits for the session to be killed. Default: `TRUE`.

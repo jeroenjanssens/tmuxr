@@ -6,7 +6,7 @@ Authors@R: c(
     person("Data Science Workshops", role = c("cph", "fnd"))
     )                  
 Description: Create, control, and capture 'tmux' sessions, windows, and panes
-    using a pipeable API.
+    using a pipable API.
 Depends: R (>= 3.3.0)
 License: MIT + file LICENSE
 Encoding: UTF-8

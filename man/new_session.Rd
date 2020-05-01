@@ -23,7 +23,7 @@ name determined by \code{tmux}, which is the next unused integer
 
 \item{start_directory}{A string. Working directory this session is run in.}
 
-\item{width}{An integer. Width of inital window. Default: 80.}
+\item{width}{An integer. Width of initial window. Default: 80.}
 
 \item{height}{An integer. Height of initial window. Default: 24.}
 
