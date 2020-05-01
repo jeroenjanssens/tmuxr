@@ -5,7 +5,6 @@
 ^pkgdown$
 ^\.travis\.yml$
 ^bin$
-^NEWS\.md$
 ^README\.Rmd$
 ^README_cache$
 ^LICENSE\.md$
