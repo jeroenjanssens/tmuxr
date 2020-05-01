@@ -4,11 +4,14 @@
 \alias{object_name}
 \alias{name}
 \alias{name<-}
+\alias{set_name}
 \title{Name of a tmux object}
 \usage{
 name(target)
 
 name(target) <- value
+
+set_name(target, value)
 }
 \arguments{
 \item{target}{A tmuxr_session, tmuxr_window, or tmuxr_pane.}
@@ -19,7 +22,7 @@ name(target) <- value
 A string.
 }
 \description{
-Name of a tmux object
+Functions to get and set the name of a tmux session, window, and pane.
 }
 \seealso{
 \code{\link[=rename_session]{rename_session()}}, \code{\link[=rename_window]{rename_window()}}

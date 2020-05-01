@@ -135,54 +135,6 @@ resize_window <- function(target, width = NULL, height = NULL) {
 }
 
 
-#' Split a tmux window
-#'
-#' Create a new pane by splitting `target`.
-#'
-#' @param target A tmuxr_session, tmuxr_window, or tmuxr_pane.
-#' @param vertical A logical. If `TRUE` split `target` vertically, otherwise
-#'   horizontally. Default: `TRUE`.
-#' @param size A numeric. The size of the new pane in lines (for vertical
-#'   splits) or characters (for horizontal splits). If less than `0`, `size` is
-#'   interpreted as a percentage. Default: `NULL`.
-#' @param before A logical. If `TRUE`, create the new pane to the left of or
-#'   above the active pane. Default: `FALSE`.
-#' @param full A logical. If `TRUE`, create a new pane spanning the full window
-#'   width (for vertical splits) or full window height (for horizontal splits),
-#'   instead of splitting the active pane. Default: `FALSE`.
-#' @param start_directory A string. Working directory this pane is run in.
-#' @param shell_command A string. Shell command to be invoked when creating the
-#'   pane. If `NULL`, the default shell is used.
-#'
-#' @return A tmuxr_pane.
-#'
+#' @rdname new_pane
 #' @export
-split_window <- function(target = NULL,
-                         vertical = TRUE,
-                         size = NULL,
-                         before = FALSE,
-                         full = FALSE,
-                         start_directory = NULL,
-                         shell_command = NULL) {
-  flags <- c("-P", "-F", "#{pane_id}")
-  if (vertical) {
-    flags <- c(flags, "-v")
-  } else {
-    flags <- c(flags, "-h")
-  }
-  if (!is.null(size) && size > 0) {
-    if (size >= 1) {
-      flags <- c(flags, "-l", size)
-    } else {
-      flags <- c(flags, "-p", round(size * 100))
-    }
-  }
-  if (before) flags <- c(flags, "-b")
-  if (full) flags <- c(flags, "-f")
-  if (!is.null(target)) flags <- c(flags, "-t", get_target(target))
-  if (!is.null(start_directory)) flags <- c(flags, "-c", start_directory)
-  if (!is.null(shell_command)) flags <- c(flags, shell_command)
-
-  id <- tmux_command("split-window", flags)
-  structure(list(id = id), class = c("tmuxr_pane", "tmuxr_object"))
-}
+split_window <- new_pane

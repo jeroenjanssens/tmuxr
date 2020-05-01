@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a new tmux window — new_window • tmuxr</title>
+<title>Style of a tmux window or pane — style • tmuxr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,9 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Create a new tmux window — new_window" />
-<meta property="og:description" content="Create a new tmux window with name name.
-When the shell command completes, the window closes." />
+<meta property="og:title" content="Style of a tmux window or pane — style" />
+<meta property="og:description" content="Functions to get and set the layout of a tmux window or pane." />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -119,60 +118,35 @@ When the shell command completes, the window closes." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a new tmux window</h1>
-    <small class="dont-index">Source: <a href='https://github.com/datascienceworkshops/tmuxr/blob/master/R/window.R'><code>R/window.R</code></a></small>
-    <div class="hidden name"><code>new_window.Rd</code></div>
+    <h1>Style of a tmux window or pane</h1>
+    <small class="dont-index">Source: <a href='https://github.com/datascienceworkshops/tmuxr/blob/master/R/layout.R'><code>R/layout.R</code></a></small>
+    <div class="hidden name"><code>style.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create a new tmux window with name <code>name</code>.
-When the shell command completes, the window closes.</p>
+    <p>Functions to get and set the layout of a tmux window or pane.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>new_window</span>(
-  <span class='kw'>target</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>focus</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>start_directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>shell_command</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>style</span>(<span class='no'>target</span>)
+
+<span class='fu'>style</span>(<span class='no'>target</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+
+<span class='fu'>set_style</span>(<span class='no'>target</span>, <span class='no'>value</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>target</th>
-      <td><p>A tmuxr_session or tmuxr_window. If <code>NULL</code>, the last session
-is used.</p></td>
+      <td><p>A tmuxr_window or tmuxr_pane.</p></td>
     </tr>
     <tr>
-      <th>name</th>
-      <td><p>A string. Name of the window. If <code>NULL</code>, the
-name determined by the shell command. Default: <code>NULL</code>.</p></td>
-    </tr>
-    <tr>
-      <th>focus</th>
-      <td><p>A logical. If <code>FALSE</code>, the session does not make the new window
-the current window. Default: <code>TRUE</code>.</p></td>
-    </tr>
-    <tr>
-      <th>start_directory</th>
-      <td><p>A string. Working directory this window is run in.</p></td>
-    </tr>
-    <tr>
-      <th>shell_command</th>
-      <td><p>A string. Shell command to be invoked when creating the
-window. If <code>NULL</code>, the default shell is used.</p></td>
+      <th>value</th>
+      <td><p>A named list. Style definition.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tmuxr_window.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='new_session.html'>new_session</a></span>()
-<span class='fu'>new_window</span>()</div><div class='output co'>#&gt; tmuxr window 122:1: tmux* (1 panes) [80x24] [layout ace8,80x24,0,0,166] @144 (active) </div><div class='input'><span class='fu'><a href='kill_session.html'>kill_session</a></span>(<span class='no'>s</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

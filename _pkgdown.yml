@@ -23,48 +23,64 @@ navbar:
      href: https://github.com/datascienceworkshops/tmuxr
 
 reference:
-  - title: Server
-    contents:
-      - is_installed
-      - is_running
-      - kill_server
-      - start_server
-      - tmux_version
-  - title: Sessions
-    contents:
-      - attach_session
-      - kill_session
-      - list_sessions
-      - new_session
-      - rename_session
-  - title: Windows
-    contents:
-      - attach_window
-      - kill_window
-      - list_windows
-      - new_window
-      - resize_window
-      - rename_window
-      - split_window
-  - title: Panes
+  - title: Create and destroy
     contents:
       - attach_pane
-      - capture_pane
-      - clock_mode
+      - attach_session
+      - attach_window
       - kill_pane
+      - kill_server
+      - kill_session
+      - kill_window
+      - new_pane
+      - new_session
+      - new_window
+      - start_server
+
+  - title: Inspect
+    contents:
+      - id
+      - index
+      - is_active
+      - is_installed
+      - is_running
       - list_panes
-      - pipe_pane
-      - resize_pane
-      - send_keys
-  - title: Selecting
+      - list_sessions
+      - list_windows
+
+  - title: Navigate
     contents:
       - select_pane
       - select_window
-  - title: Utilities
+
+  - title: Layout and style
     contents:
-      - index
-      - is_active
+      - layout
       - object_name
       - object_size
+      - rename_session
+      - rename_window
+      - resize_pane
+      - resize_window
+      - style
+      - swap_pane
+
+  - title: Interact
+    contents:
+      - capture_pane
+      - pipe_pane
+      - send_keys
+      - send_prefix
+
+  - title: Helpers
+    contents:
       - display_message
+      - prop
+      - set_option
+      - style_convert
       - tmux_command
+      - tmux_version
+
+  - title: Miscellaneous
+    contents:
+      - clock_mode

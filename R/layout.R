@@ -1,27 +1,34 @@
-#' @export
-layout <- function(target) UseMethod("layout")
+# layout ------------------------------------------------------------------
 
-#' @export
-`layout<-` <- function(target, value) UseMethod("layout<-")
 
+#' Change layout of a tmux window
+#'
+#' Functions to get and set the layout of a tmux window.
+#'
+#' @param target A tmuxr_window. If `NULL`, use currently active window.
+#' @param value A string. Layout definition or name of preset.
+#' @param width,height An integer. Width or height of the main pane.
+#' @param reverse A logical. If `TRUE` the direction in which totate the window
+#'   is reversed. Default: `FALSE`.
+#'
+#' @return A string. Layout definition.
+#'
 #' @export
-layout.tmuxr_window <- function(target = NULL) {
+layout <- function(target = NULL) {
   prop(target, "window_layout")
 }
 
-#' @export
-`layout<-.tmuxr_window` <- function(target = NULL, value) layout_select(target, value)
 
+#' @rdname layout
 #' @export
-layout.tmuxr_pane <- function(target = NULL) {
-  prop(target, "window_layout")
+`layout<-` <- function(target, value) {
+  set_layout(target, value)
 }
 
-#' @export
-`layout<-.tmuxr_pane` <- function(target = NULL, value) layout_select(target, value)
 
-#' @keywords internal
-layout_select <- function(target = NULL, value) {
+#' @rdname layout
+#' @export
+set_layout <- function(target = NULL, value) {
   flags <- c()
   if (!is.null(target)) flags <- c(flags, "-t", get_target(target))
   flags <- c(flags, value)
@@ -30,46 +37,72 @@ layout_select <- function(target = NULL, value) {
 }
 
 
+#' @rdname layout
 #' @export
-layout_even_horizontal <-
-  function(target = NULL) layout_select(target, "even-horizontal")
+layout_even_horizontal <- function(target = NULL) {
+  set_layout(target, "even-horizontal")
+}
 
+
+#' @rdname layout
 #' @export
-layout_even_vertical <-
-  function(target = NULL) layout_select(target, "even-vertical")
+layout_even_vertical <- function(target = NULL) {
+  set_layout(target, "even-vertical")
+}
 
+
+#' @rdname layout
 #' @export
 layout_main_horizontal <- function(target = NULL, height = NULL) {
-  if (!is.null(height)) option_set(target, "main-pane-height", height)
-  layout_select(target, "main-horizontal")
+  if (!is.null(height)) set_option(target, "main-pane-height", height)
+  set_layout(target, "main-horizontal")
 }
 
+
+#' @rdname layout
 #' @export
 layout_main_vertical <- function(target = NULL, width = NULL) {
-  if (!is.null(width)) option_set(target, "main-pane-width", width)
-  layout_select(target, "main-vertical")
+  if (!is.null(width)) set_option(target, "main-pane-width", width)
+  set_layout(target, "main-vertical")
 }
 
-#' @export
-layout_tiled <-
-  function(target = NULL) layout_select(target, "tiled")
 
+#' @rdname layout
 #' @export
-layout_next <-
-  function(target = NULL) layout_select(target, "-n")
+layout_tiled <- function(target = NULL) {
+  set_layout(target, "tiled")
+}
 
+
+#' @rdname layout
 #' @export
-layout_previous <-
-  function(target = NULL) layout_select(target, "-p")
+layout_next <- function(target = NULL) {
+  set_layout(target, "-n")
+}
 
+
+#' @rdname layout
 #' @export
-layout_even <-
-  function(target = NULL) layout_select(target, "-E")
+layout_previous <- function(target = NULL) {
+  set_layout(target, "-p")
+}
 
+
+#' @rdname layout
 #' @export
-layout_undo <-
-  function(target = NULL) layout_select(target, "-o")
+layout_even <- function(target = NULL) {
+  set_layout(target, "-E")
+}
 
+
+#' @rdname layout
+#' @export
+layout_undo <- function(target = NULL) {
+  set_layout(target, "-o")
+}
+
+
+#' @rdname layout
 #' @export
 layout_rotate <- function(target = NULL, reverse = FALSE) {
   if (reverse) {
@@ -83,66 +116,86 @@ layout_rotate <- function(target = NULL, reverse = FALSE) {
   invisible(target)
 }
 
-#' @export
-style_pane <- function(target = NULL, background = NULL, foreground = NULL, ...) {
-  styles <- c(...)
-  if (!is.null(background)) styles <- c(styles, paste0("bg=", background))
-  if (!is.null(foreground)) styles <- c(styles, paste0("fg=", foreground))
-  option_set(target, "window-style",
-             value = paste(styles, collapse = ","),
-             type = "pane")
-}
 
-#' @export
-style_window <- function(target = NULL, background = NULL, foreground = NULL, ...) {
-  styles <- c(...)
-  if (!is.null(background)) styles <- c(styles, paste0("bg=", background))
-  if (!is.null(foreground)) styles <- c(styles, paste0("fg=", foreground))
-  option_set(target, "window-style",
-             value = paste(styles, collapse = ","),
-             type = "window")
-}
+# style -------------------------------------------------------------------
 
 
-#' @export
-style <- function(target) UseMethod("style")
-
-#' @export
-`style<-` <- function(target, value) UseMethod("style<-")
-
-#' Get style of tmux window
+#' Style of a tmux window or pane
 #'
+#' Functions to get and set the layout of a tmux window or pane.
+#'
+#' @param target A tmuxr_window or tmuxr_pane.
+#' @param value A named list. Style definition.
+#' @export
+style <- function(target) {
+  UseMethod("style")
+}
+
+
 #' @export
 style.tmuxr_window <- function(target) {
-  parse_style(prop(target, "window-style"))
+  strpstyle(prop(target, "window-style"))
 }
 
-#' Get style of tmux pane
-#'
+
 #' @export
 style.tmuxr_pane <- function(target) {
-  parse_style(prop(target, "window-style"))
+  strpstyle(prop(target, "window-style"))
 }
+
+
+#' @rdname style
+#' @export
+`style<-` <- function(target, value) {
+  UseMethod("style<-")
+}
+
 
 #' @export
 `style<-.tmuxr_window` <- function(target, value) {
-  option_set(target, "window-style", format_style(value), type = "window")
+  set_option(target, "window-style", strfstyle(value), type = "window")
 }
+
 
 #' @export
 `style<-.tmuxr_pane` <- function(target, value) {
-  option_set(target, "window-style", format_style(value), type = "pane")
+  set_option(target, "window-style", strfstyle(value), type = "pane")
 }
 
+
+#' @rdname style
 #' @export
-format_style <- function(...) {
+set_style <- function(target, value) {
+  style(target) <- value
+}
+
+
+#' Format and parse style strings
+#'
+#' Functions to convert a style string to a named list and back.
+#'
+#' @param ... Named strings and logicals or one named list.
+#'   Colors and attributes.
+#' @param x A string.
+#'
+#' @return A string or named list.
+#'
+#' @examples
+#' strfstyle(fg = "red", bg = "#00ff00", blink = TRUE, align = FALSE)
+#' strpstyle("fg=red,bg=#00ff00,blink,noalign")
+#' @name style_convert
+NULL
+
+
+#' @rdname style_convert
+#' @export
+strfstyle <- function(...) {
   args <- list(...)
+  styles <- c()
 
   if (length(args) == 1 && is.list(args[[1]]) && is.null(names(args))) {
     args <- args[[1]]
   }
-
-  styles <- c()
 
   for (k in names(args)) {
     v <- args[[k]]
@@ -157,13 +210,19 @@ format_style <- function(...) {
       styles <- c(styles, paste0(k, "=", v))
     }
   }
-  paste(styles, collapse = ",")
+  if (length(styles) > 0) {
+    paste(styles, collapse = ",")
+  } else {
+    "default"
+  }
 }
 
+
+#' @rdname style_convert
 #' @export
-parse_style <- function(x) {
+strpstyle <- function(x) {
   style <- list()
-  if (x == "default") return(NULL)
+  if (x %in% c("", "default")) return(list())
   parts <- unlist(strsplit(x, ",", fixed = TRUE))
   for (part in parts) {
     kv <- unlist(strsplit(part, "=", fixed = TRUE))
@@ -182,6 +241,14 @@ parse_style <- function(x) {
 
 
 
+#' Swap two tmux windows or panes
+#'
+#' @param from A tmuxr_window or tmuxr_pane.
+#' @param to A tmuxr_window or tmuxr_pane.
+#' @param reverse A logical.
+#' @param select A logical. If `FALSE`, do not select the new window or pane.
+#'   Default: `TRUE`.
+#'
 #' @export
 swap_pane <- function(from = NULL, to = NULL, reverse = FALSE, select = TRUE) {
   flags <- c()
@@ -201,6 +268,8 @@ swap_pane <- function(from = NULL, to = NULL, reverse = FALSE, select = TRUE) {
   invisible(to)
 }
 
+
+#' @rdname swap_pane
 #' @export
 swap_window <- function(from = NULL, to = NULL, select = TRUE) {
   flags <- c()
@@ -214,8 +283,3 @@ swap_window <- function(from = NULL, to = NULL, select = TRUE) {
 
 # tmux_options(named list)
 # tmux_options(): return named list of all options
-
-# options
-# prop
-# style
-# layout

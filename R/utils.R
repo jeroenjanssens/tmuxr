@@ -104,14 +104,34 @@ get_target <- function(x) {
 }
 
 
-#' @keywords internal
+#' Properties of a tmux object
+#'
+#' Get the properties of a tmux object, including sessions, windows,
+#'   and panes.
+#'
+#' @param target A tmuxr_session, tmuxr_window, or tmuxr_session. Default:
+#'   `NULL`.
+#' @param property A string.
+#' @return A string.
+#'
+#' @examples
+#' s <- new_session()
+#' prop(s, "session_created")
+#' kill_session(s)
+#'
+#' @export
 prop <- function(target = NULL, property) {
   message <- paste0("#{", property, "}")
   display_message(target, message)
 }
 
 
+# name --------------------------------------------------------------------
+
+
 #' Name of a tmux object
+#'
+#' Functions to get and set the name of a tmux session, window, and pane.
 #'
 #' @param target A tmuxr_session, tmuxr_window, or tmuxr_pane.
 #' @param value A string. New name.
@@ -121,18 +141,72 @@ prop <- function(target = NULL, property) {
 NULL
 
 
+#' @rdname object_name
+#' @export
+name <- function(target) {
+  UseMethod("name")
+}
+
+
+#' @export
+name.tmuxr_session <- function(target) {
+  prop(target, "session_name")
+}
+
+
+#' @export
+name.tmuxr_window <- function(target) {
+  prop(target, "window_name")
+}
+
+
+#' @export
+name.tmuxr_pane <- function(target) {
+  prop(target, "pane_title")
+}
+
 
 #' @rdname object_name
 #' @export
-name <- function(target) UseMethod("name")
+`name<-` <- function(target, value) {
+  UseMethod("name<-")
+}
+
+
+#' @export
+`name<-.tmuxr_session` <- function(target, value) {
+  rename_session(target, value)
+}
+
+
+#' @export
+`name<-.tmuxr_window` <- function(target, value) {
+  rename_window(target, value)
+}
+
+
+#' @export
+`name<-.tmuxr_pane` <- function(target, value) {
+  flags <- c("-t", get_target(target),
+             "-T", value)
+  tmux_command("select-pane", flags)
+  invisible(target)
+}
 
 
 #' @rdname object_name
 #' @export
-`name<-` <- function(target, value) UseMethod("name<-")
+set_name <- function(target, value) {
+  name(target) <- value
+}
 
+
+# width and height --------------------------------------------------------
 
 #' Width and height of a tmux object
+#'
+#' Functions to get and set the width and height of a tmux session, window,
+#'   and pane.
 #'
 #' @param target A tmuxr_session, tmuxr_window, or tmuxr_pane.
 #' @param value An integer.
@@ -148,134 +222,132 @@ NULL
 
 #' @rdname object_size
 #' @export
-width <- function(target) UseMethod("width")
+width <- function(target) {
+  UseMethod("width")
+}
+
+
+#' @export
+width.tmuxr_session <- function(target) {
+  as.numeric(prop(target, "window_width"))
+}
+
+
+#' @export
+width.tmuxr_window <- function(target) {
+  as.numeric(prop(target, "window_width"))
+}
+
+
+#' @export
+width.tmuxr_pane <- function(target) {
+  as.numeric(prop(target, "pane_width"))
+}
 
 
 #' @rdname object_size
 #' @export
-`width<-` <- function(target, value) UseMethod("width<-")
+`width<-` <- function(target, value) {
+  UseMethod("width<-")
+}
 
-
-#' @rdname object_size
-#' @export
-height <- function(target) UseMethod("height")
-
-
-#' @rdname object_size
-#' @export
-`height<-` <- function(target, value) UseMethod("height<-")
 
 #' @export
-name.tmuxr_session <-
-  function(target) prop(target, "session_name")
+`width<-.tmuxr_session` <- function(target, value) {
+  resize_window(target, width = value)
+}
+
 
 #' @export
-name.tmuxr_window <-
-  function(target) prop(target, "window_name")
+`width<-.tmuxr_window` <- function(target, value) {
+  resize_window(target, width = value)
+}
+
 
 #' @export
-name.tmuxr_pane <-
-  function(target) prop(target, "pane_title")
-
-#' @export
-width.tmuxr_session <-
-  function(target) as.numeric(prop(target, "window_width"))
-
-#' @export
-height.tmuxr_session <-
-  function(target) as.numeric(prop(target, "window_height"))
-
-#' @export
-width.tmuxr_window <-
-  function(target) as.numeric(prop(target, "window_width"))
-
-#' @export
-height.tmuxr_window <-
-  function(target) as.numeric(prop(target, "window_height"))
-
-#' @export
-width.tmuxr_pane <-
-  function(target) as.numeric(prop(target, "pane_width"))
-
-#' @export
-height.tmuxr_pane <-
-  function(target) as.numeric(prop(target, "pane_height"))
-
-#' @export
-`name<-.tmuxr_session` <-
-  function(target, value) rename_session(target, value)
-
-#' @export
-`name<-.tmuxr_window` <-
-  function(target, value) rename_window(target, value)
-
-#' @export
-`name<-.tmuxr_pane` <- function(target, value) {
-  flags <- c("-t", get_target(target),
-             "-T", value)
-  tmux_command("select-pane", flags)
-  invisible(target)
+`width<-.tmuxr_pane` <- function(target, value) {
+  resize_pane(target, width = value)
 }
 
 #' @export
-`width<-.tmuxr_session` <-
-  function(target, value) resize_window(target, width = value)
+#' @rdname object_size
+set_width <- function(target, value) {
+  width(target) <- value
+}
+
+
+#' @rdname object_size
+#' @export
+height <- function(target) {
+  UseMethod("height")
+}
+
 
 #' @export
-`width<-.tmuxr_window` <-
-  function(target, value) resize_window(target, width = value)
+height.tmuxr_session <- function(target) {
+  as.numeric(prop(target, "window_height"))
+}
+
 
 #' @export
-`width<-.tmuxr_pane` <-
-  function(target, value) resize_pane(target, width = value)
+height.tmuxr_window <- function(target) {
+  as.numeric(prop(target, "window_height"))
+}
+
 
 #' @export
-`height<-.tmuxr_session` <-
-  function(target, value) resize_window(target, height = value)
+height.tmuxr_pane <- function(target) {
+  as.numeric(prop(target, "pane_height"))
+}
+
+
+#' @rdname object_size
+#' @export
+`height<-` <- function(target, value) {
+  UseMethod("height<-")
+}
+
 
 #' @export
-`height<-.tmuxr_window` <-
-  function(target, value) resize_window(target, height = value)
+`height<-.tmuxr_session` <- function(target, value) {
+  resize_window(target, height = value)
+}
+
 
 #' @export
-`height<-.tmuxr_pane` <-
-  function(target, value) resize_pane(target, height = value)
+`height<-.tmuxr_window` <- function(target, value) {
+  resize_window(target, height = value)
+}
 
 
-#' Is tmux object active?
+#' @export
+`height<-.tmuxr_pane` <- function(target, value) {
+  resize_pane(target, height = value)
+}
+
+
+#' @export
+#' @rdname object_size
+set_height <- function(target, value) {
+  height(target) <- value
+}
+
+#' Set option
 #'
-#' @param target A tmuxr_window or tmuxr_pane.
-#' @return A logical.
-#' @export
-is_active <- function(target) UseMethod("is_active")
-
-#' @export
-is_active.tmuxr_window <-
-  function(target) prop(target, "window_active") == "1"
-
-#' @export
-is_active.tmuxr_pane <-
-  function(target) prop(target, "pane_active") == "1"
-
-
-#' Index of a tmux object
+#' @param target A tmuxr_session, tmuxr_window, or tmuxr_pane. Default: `NULL`.
+#' @param option A string.
+#' @param value A string. Default: `NULL`.
+#' @param type A string. Type of option. Default: `session`.
+#' @param append A logical. Default: `FALSE`.
+#' @param expand A logical. Default: `FALSE`.
+#' @param global A logical. Default: `FALSE`.
+#' @param unset A logical. Default: `FALSE`.
+#' @param override A logical. Default: `TRUE`.
 #'
-#' @param target A tmuxr_window or tmuxr_pane.
-#' @return An integer.
 #' @export
-index <- function(target) UseMethod("index")
-
-#' @export
-index.tmuxr_window <-
-  function(target) as.numeric(prop(target, "window_index"))
-
-#' @export
-index.tmuxr_pane <-
-  function(target) as.numeric(prop(target, "pane_index"))
-
-
-#' @export
-option_set <- function(target = NULL, option, value = NULL,
+set_option <- function(target = NULL,
+                       option,
+                       value = NULL,
                        type = c("session", "window", "pane", "server"),
                        append = FALSE,
                        expand = FALSE,
@@ -298,4 +370,5 @@ option_set <- function(target = NULL, option, value = NULL,
   tmux_command("set-option", flags)
   invisible(target)
 }
+
 

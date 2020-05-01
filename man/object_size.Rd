@@ -4,17 +4,23 @@
 \alias{object_size}
 \alias{width}
 \alias{width<-}
+\alias{set_width}
 \alias{height}
 \alias{height<-}
+\alias{set_height}
 \title{Width and height of a tmux object}
 \usage{
 width(target)
 
 width(target) <- value
 
+set_width(target, value)
+
 height(target)
 
 height(target) <- value
+
+set_height(target, value)
 }
 \arguments{
 \item{target}{A tmuxr_session, tmuxr_window, or tmuxr_pane.}
@@ -25,7 +31,8 @@ height(target) <- value
 An integer. The new width or height.
 }
 \description{
-Width and height of a tmux object
+Functions to get and set the width and height of a tmux session, window,
+and pane.
 }
 \note{
 The size of a tmuxr_pane can only be changed if there are other panes in the

@@ -21,12 +21,13 @@ Collate:
     tmuxr-package.R
     server.R
     session.R
-    window.R
     pane.R
+    window.R
     send.R
     select.R
     utils.R
     layout.R
+    inspect.R
 RoxygenNote: 7.1.0
 Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace", "collate"))
 Suggests: testthat

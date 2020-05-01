@@ -39,6 +39,10 @@ send_keys <- function(target = NULL, ..., literal = FALSE, count = 1L) {
 
 #' Send prefix to a tmux pane
 #'
+#' @param target A tmuxr_session, tmuxr_window, or tmuxr_pane. If `NULL`,
+#'   the currently active pane is used. Default: `NULL`.
+#' @param secondary A logical. If `TRUE`, send secondary prefix. Default:
+#'   `NULL`.
 #' @export
 send_prefix <- function(target = NULL, secondary = FALSE) {
   flags <- c()
