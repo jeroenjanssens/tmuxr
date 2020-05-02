@@ -1,3 +1,13 @@
+## Resubmission
+This is a resubmission. The tests failed on Windows, which was expected (see 
+section "Windows support" below), and on Ubuntu, which was unexpected. In this
+version (tmuxr 0.2.1) I have:
+
+* Improved the tests such that the tmux server does not get killed in between 
+  the tests.
+* Added tmux version 3.0a to Travis-CI. This is the version used by CRAN.
+
+
 ## Test environments
 
 * Local:
