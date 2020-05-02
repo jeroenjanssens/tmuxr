@@ -9,9 +9,14 @@ pandoc: false
 jobs:
 - env: TMUX_VERSION=3.1
   r: devel
+- env: TMUX_VERSION=3.0a
+  r: devel
 - env: TMUX_VERSION=3.1
   r: oldrel
+- env: TMUX_VERSION=3.0a
+  r: oldrel
 - env: TMUX_VERSION=3.1
+- env: TMUX_VERSION=3.0a
 - env: TMUX_VERSION=3.0
 - env: TMUX_VERSION=2.9
 - env: TMUX_VERSION=2.8
