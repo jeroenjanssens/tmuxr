@@ -9,7 +9,7 @@
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
 Create, control, and capture 'tmux' sessions, windows, and panes
-    using a pipable API.
+    using a pipeable API.
 }
 \seealso{
 Useful links:
