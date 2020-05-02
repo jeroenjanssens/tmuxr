@@ -1,6 +1,16 @@
-## Resubmission
+## Resubmission (version 0.2.2)
+
+This is a resubmission. The tests still fail on Windows, as expected (see
+section "Windows support" below), but now succeed on Linux. In this version
+(tmuxr 0.2.2) I have:
+
+* Fixed a typo in DESCRIPTION.
+
+
+## Resubmission (version 0.2.1)
+
 This is a resubmission. The tests failed on Windows, which was expected (see 
-section "Windows support" below), and on Ubuntu, which was unexpected. In this
+section "Windows support" below), and on Linux, which was unexpected. In this
 version (tmuxr 0.2.1) I have:
 
 * Improved the tests such that the tmux server does not get killed in between 
