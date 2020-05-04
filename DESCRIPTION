@@ -18,7 +18,7 @@ OS_type: unix
 Imports:
     processx
 Suggests:
-    covr
+    covr,
     testthat
 Collate:
     tmuxr-package.R
@@ -33,4 +33,3 @@ Collate:
     inspect.R
 RoxygenNote: 7.1.0
 Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace", "collate"))
-Suggests: testthat
