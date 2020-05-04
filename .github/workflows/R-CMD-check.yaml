@@ -12,7 +12,7 @@ jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
 
-    name: "${{ runner.os }}, R: ${{ matrix.config.r }}, tmux: ${{ matrix.config.tmux }}"
+    name: "${{ matrix.config.os }}, R: ${{ matrix.config.r }}, tmux: ${{ matrix.config.tmux }}"
 
     strategy:
       fail-fast: false
