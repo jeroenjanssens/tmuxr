@@ -4,7 +4,7 @@
 \name{tmuxr-package}
 \alias{tmuxr}
 \alias{tmuxr-package}
-\title{tmuxr: "Manage 'tmux' Sessions, Windows, and Panes"}
+\title{tmuxr: Manage 'tmux' Sessions, Windows, and Panes}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
