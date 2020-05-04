@@ -36,11 +36,14 @@ Have a look at [the reference](https://datascienceworkshops.github.io/tmuxr/refe
 
 ## Installation
 
-The development version of `tmuxr` can be installed with:
+`tmuxr` is available through CRAN and can be installed with
+`install.packages("tmuxr")`. The package is under active development though and
+the latest set of features can be obtained by installing from this repository
+using `devtools`:
 
-```{r, eval = FALSE}
-# install.packages("remotes")
-remotes::install_github("datascienceworkshops/tmuxr")
+```{r, eval=FALSE}
+# install.packages("devtools")
+devtools::install_github("datascienceworkshops/tmuxr")
 ```
 
 ## Compatibility

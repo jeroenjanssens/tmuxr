@@ -35,11 +35,14 @@ learn more about what `tmuxr` has to offer.
 
 ## Installation
 
-The development version of `tmuxr` can be installed with:
+`tmuxr` is available through CRAN and can be installed with
+`install.packages("tmuxr")`. The package is under active development
+though and the latest set of features can be obtained by installing from
+this repository using `devtools`:
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("datascienceworkshops/tmuxr")
+# install.packages("devtools")
+devtools::install_github("datascienceworkshops/tmuxr")
 ```
 
 ## Compatibility
