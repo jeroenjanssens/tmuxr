@@ -12,30 +12,30 @@ jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
 
-    name: ${{ runner.os }}, R: ${{ matrix.config.r }}, tmux: ${{ matrix.config.tmux }}
+    name: "${{ runner.os }}, R: ${{ matrix.config.r }}, tmux: ${{ matrix.config.tmux }}"
 
     strategy:
       fail-fast: false
       matrix:
         config:
-          - {os: macOS-latest, r: 'devel', tmux: "3.1"}
-          - {os: macOS-latest, r: '4.0', tmux: "3.1"}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.1"}
-          - {os: ubuntu-16.04, r: '3.6', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.1"}
-          - {os: ubuntu-16.04, r: '3.5', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.1"}
-          - {os: ubuntu-16.04, r: '3.4', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.1"}
-          - {os: ubuntu-16.04, r: '3.3', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.1"}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.0a"}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.0"}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.9"}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.8"}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.7"}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.6"}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.5"}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.4"}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.3"}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.2"}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.1"}
+          - {os: macOS-latest, r: "devel", tmux: "3.1"}
+          - {os: macOS-latest, r: "4.0", tmux: "3.1"}
+          - {os: ubuntu-16.04, r: "4.0", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.1"}
+          - {os: ubuntu-16.04, r: "3.6", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.1"}
+          - {os: ubuntu-16.04, r: "3.5", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.1"}
+          - {os: ubuntu-16.04, r: "3.4", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.1"}
+          - {os: ubuntu-16.04, r: "3.3", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.1"}
+          - {os: ubuntu-16.04, r: "4.0", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.0a"}
+          - {os: ubuntu-16.04, r: "4.0", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.0"}
+          - {os: ubuntu-16.04, r: "4.0", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.9"}
+          - {os: ubuntu-16.04, r: "4.0", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.8"}
+          - {os: ubuntu-16.04, r: "4.0", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.7"}
+          - {os: ubuntu-16.04, r: "4.0", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.6"}
+          - {os: ubuntu-16.04, r: "4.0", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.5"}
+          - {os: ubuntu-16.04, r: "4.0", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.4"}
+          - {os: ubuntu-16.04, r: "4.0", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.3"}
+          - {os: ubuntu-16.04, r: "4.0", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.2"}
+          - {os: ubuntu-16.04, r: "4.0", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.1"}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
