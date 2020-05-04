@@ -91,6 +91,7 @@ test_that("stdin of pane can be connected", {
     expect_error(pipe_pane(s, "seq 5", stdin = TRUE))
   } else {
     pipe_pane(s, "seq 5", stdin = TRUE)
+    Sys.sleep(0.5)
     pipe_pane(s)
     Sys.sleep(0.5)
     expect_identical(head(capture_pane(s), 5),
