@@ -20,26 +20,27 @@ jobs:
         config:
           - {os: macOS-latest, r: 'devel'}
           - {os: macOS-latest, r: '4.0'}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", env: TMUX_VERSION=3.1}
-          - {os: ubuntu-16.04, r: '3.6', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", env: TMUX_VERSION=3.1}
-          - {os: ubuntu-16.04, r: '3.5', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", env: TMUX_VERSION=3.1}
-          - {os: ubuntu-16.04, r: '3.4', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", env: TMUX_VERSION=3.1}
-          - {os: ubuntu-16.04, r: '3.3', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", env: TMUX_VERSION=3.1}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", env: TMUX_VERSION=3.0a}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", env: TMUX_VERSION=3.0}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", env: TMUX_VERSION=2.9}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", env: TMUX_VERSION=2.8}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", env: TMUX_VERSION=2.7}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", env: TMUX_VERSION=2.6}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", env: TMUX_VERSION=2.5}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", env: TMUX_VERSION=2.4}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", env: TMUX_VERSION=2.3}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", env: TMUX_VERSION=2.2}
-          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", env: TMUX_VERSION=2.1}
+          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.1"}
+          - {os: ubuntu-16.04, r: '3.6', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.1"}
+          - {os: ubuntu-16.04, r: '3.5', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.1"}
+          - {os: ubuntu-16.04, r: '3.4', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.1"}
+          - {os: ubuntu-16.04, r: '3.3', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.1"}
+          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.0a"}
+          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.0"}
+          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.9"}
+          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.8"}
+          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.7"}
+          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.6"}
+          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.5"}
+          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.4"}
+          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.3"}
+          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.2"}
+          - {os: ubuntu-16.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.1"}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       RSPM: ${{ matrix.config.rspm }}
+      TMUX_VERSION: ${{ matrix.config.tmux }}
 
     steps:
       - uses: actions/checkout@v2
@@ -76,15 +77,15 @@ jobs:
       - name: Install tmux on Linux
         if: runner.os == 'Linux'
         run: |
-              echo "Installing tmux ${TMUX_VERSION}..."
-              cd /tmp
-              wget https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz
-              tar -xzf tmux-${TMUX_VERSION}.tar.gz
-              cd tmux-${TMUX_VERSION}
-              ./configure
-              make
-              sudo make install
-              echo "Successfully installed tmux ${TMUX_VERSION}"
+          echo "Installing tmux ${TMUX_VERSION}..."
+          cd /tmp
+          wget https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz
+          tar -xzf tmux-${TMUX_VERSION}.tar.gz
+          cd tmux-${TMUX_VERSION}
+          ./configure
+          make
+          sudo make install
+          echo "Successfully installed tmux ${TMUX_VERSION}"
 
       - name: Install tmux on macOS
         if: runner.os == 'macOS'
