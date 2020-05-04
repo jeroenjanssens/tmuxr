@@ -3,6 +3,8 @@
 
 # tmuxr <img src="man/figures/logo.png" align="right" width="100px" />
 
+[![R build
+status](https://github.com/datascienceworkshops/tmuxr/workflows/R-CMD-check/badge.svg)](https://github.com/datascienceworkshops/tmuxr/actions)
 [![Travis-CI build
 status](https://travis-ci.org/datascienceworkshops/tmuxr.svg?branch=master)](https://travis-ci.org/datascienceworkshops/tmuxr)
 [![codecov](https://codecov.io/gh/datascienceworkshops/tmuxr/branch/master/graph/badge.svg)](https://codecov.io/gh/datascienceworkshops/tmuxr)
