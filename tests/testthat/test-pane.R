@@ -79,7 +79,7 @@ test_that("stdout of pane can be connected", {
   send_keys(s, "Enter")
   pipe_pane(s)
   kill_session(s)
-  Sys.sleep(0.1)
+  Sys.sleep(0.5)
   output <- paste0(readLines(out_file, warn = FALSE), collapse = "\n")
   unlink(out_file)
   expect_identical(output, "Hello there!")
@@ -92,7 +92,7 @@ test_that("stdin of pane can be connected", {
   } else {
     pipe_pane(s, "seq 5", stdin = TRUE)
     pipe_pane(s)
-    Sys.sleep(0.1)
+    Sys.sleep(0.5)
     expect_identical(head(capture_pane(s), 5),
                      as.character(seq(5)))
   }
