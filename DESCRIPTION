@@ -17,6 +17,9 @@ SystemRequirements: tmux
 OS_type: unix
 Imports:
     processx
+Suggests:
+    covr
+    testthat
 Collate:
     tmuxr-package.R
     server.R
