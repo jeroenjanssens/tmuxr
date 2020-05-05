@@ -25,11 +25,16 @@ send_keys <- function(target = NULL, ..., literal = FALSE, count = 1L) {
   if (literal) flags <- c(flags, "-l")
   if (!is.null(target)) flags <- c(flags, "-t", get_target(target))
 
-  if (tmux_version() < 2.4) {
-    flags <- c(flags, ...)
-    for (i in seq(count)) tmux_command("send-keys", flags)
+  if (count > 1L) {
+    if (tmux_version() < 2.4) {
+      flags <- c(flags, ...)
+      for (i in seq(count)) tmux_command("send-keys", flags)
+    } else {
+      flags <- c(flags, "-N", count, ...)
+      tmux_command("send-keys", flags)
+    }
   } else {
-    flags <- c(flags, "-N", count, ...)
+    flags <- c(flags, ...)
     tmux_command("send-keys", flags)
   }
 
