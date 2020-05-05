@@ -1,4 +1,4 @@
-# tmuxr 0.2.0
+# tmuxr 0.2.2
 
 * Added functions to change the size, layout, and style of sessions, windows, and panes.
 * Added many unit tests to ensure package works with tmux version 2.1 and up.
