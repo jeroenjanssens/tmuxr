@@ -57,9 +57,11 @@ start_server <- function() {
 #' @return A numeric or string.
 #'
 #' @examples
+#' \dontrun{
 #' tmux_version()
 #' tmux_version() >= 2.8
 #' tmux_version(as_numeric = FALSE)
+#' }
 #'
 #' @export
 tmux_version <- function(as_numeric = TRUE) {

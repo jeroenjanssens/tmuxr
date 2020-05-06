@@ -181,8 +181,10 @@ set_style <- function(target, value) {
 #' @return A string or named list.
 #'
 #' @examples
+#' \dontrun{
 #' strfstyle(fg = "red", bg = "#00ff00", blink = TRUE, align = FALSE)
 #' strpstyle("fg=red,bg=#00ff00,blink,noalign")
+#' }
 #' @name style_convert
 NULL
 

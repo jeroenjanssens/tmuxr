@@ -7,10 +7,12 @@
 #' @return A vector of strings.
 #'
 #' @examples
+#' \dontrun{
 #' s <- new_session()
 #' split_window(s)
 #' tmux_command("list-panes", "-t" , "0")
 #' kill_session(s)
+#' }
 #'
 #' @export
 tmux_command <- function(command, ..., .silent = FALSE) {
@@ -60,10 +62,12 @@ tmux_command <- function(command, ..., .silent = FALSE) {
 #'   ignored. If `verbose` is `TRUE` a warning will be given.
 #'
 #' @examples
+#' \dontrun{
 #' s <- new_session("jazz", height = 12)
 #' display_message(s, "#{window_active}")
 #' display_message(s, "session '#{session_name}' has height #{window_height}.")
 #' kill_session(s)
+#' }
 #'
 #' @export
 display_message <- function(target = NULL,
@@ -115,9 +119,11 @@ get_target <- function(x) {
 #' @return A string.
 #'
 #' @examples
+#' \dontrun{
 #' s <- new_session()
 #' prop(s, "session_created")
 #' kill_session(s)
+#' }
 #'
 #' @export
 prop <- function(target = NULL, property) {

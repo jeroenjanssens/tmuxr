@@ -67,9 +67,11 @@ list_sessions <- function() {
 #'
 #' @return A tmuxr_session.
 #' @examples
+#' \dontrun{
 #' s <- new_session("foo", shell_command = "bash", height = 10)
 #' list_sessions()
 #' kill_session(s)
+#' }
 #'
 #' @export
 new_session <- function(name = NULL,

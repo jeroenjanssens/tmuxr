@@ -71,9 +71,11 @@ list_windows <- function(target = NULL) {
 #'
 #' @return A tmuxr_window.
 #' @examples
+#' \dontrun{
 #' s <- new_session()
 #' new_window()
 #' kill_session(s)
+#' }
 #'
 #' @export
 new_window <- function(target = NULL,
