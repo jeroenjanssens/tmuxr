@@ -20,8 +20,10 @@ Get the properties of a tmux object, including sessions, windows,
 and panes.
 }
 \examples{
+\dontrun{
 s <- new_session()
 prop(s, "session_created")
 kill_session(s)
+}
 
 }

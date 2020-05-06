@@ -35,8 +35,10 @@ Create a new tmux window with name \code{name}.
 When the shell command completes, the window closes.
 }
 \examples{
+\dontrun{
 s <- new_session()
 new_window()
 kill_session(s)
+}
 
 }

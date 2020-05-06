@@ -162,8 +162,12 @@ output. If <code>FALSE</code>, the message is sent to <code>target</code>. Defau
 ignored. If <code>verbose</code> is <code>TRUE</code> a warning will be given.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='new_session.html'>new_session</a></span>(<span class='st'>"jazz"</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>12</span>)
-<span class='fu'>display_message</span>(<span class='no'>s</span>, <span class='st'>"#{window_active}"</span>)</div><div class='output co'>#&gt; [1] "1"</div><div class='input'><span class='fu'>display_message</span>(<span class='no'>s</span>, <span class='st'>"session '#{session_name}' has height #{window_height}."</span>)</div><div class='output co'>#&gt; [1] "session 'jazz' has height 12."</div><div class='input'><span class='fu'><a href='kill_session.html'>kill_session</a></span>(<span class='no'>s</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='new_session.html'>new_session</a></span>(<span class='st'>"jazz"</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>12</span>)
+<span class='fu'>display_message</span>(<span class='no'>s</span>, <span class='st'>"#{window_active}"</span>)
+<span class='fu'>display_message</span>(<span class='no'>s</span>, <span class='st'>"session '#{session_name}' has height #{window_height}."</span>)
+<span class='fu'><a href='kill_session.html'>kill_session</a></span>(<span class='no'>s</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

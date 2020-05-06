@@ -23,6 +23,8 @@ A string or named list.
 Functions to convert a style string to a named list and back.
 }
 \examples{
+\dontrun{
 strfstyle(fg = "red", bg = "#00ff00", blink = TRUE, align = FALSE)
 strpstyle("fg=red,bg=#00ff00,blink,noalign")
+}
 }

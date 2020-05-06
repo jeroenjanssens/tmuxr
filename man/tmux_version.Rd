@@ -17,8 +17,10 @@ A numeric or string.
 Get the version of tmux.
 }
 \examples{
+\dontrun{
 tmux_version()
 tmux_version() >= 2.8
 tmux_version(as_numeric = FALSE)
+}
 
 }

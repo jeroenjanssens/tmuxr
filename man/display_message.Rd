@@ -29,9 +29,11 @@ The \code{verbose} argument is not supported for tmux version < 2.9 and will be
 ignored. If \code{verbose} is \code{TRUE} a warning will be given.
 }
 \examples{
+\dontrun{
 s <- new_session("jazz", height = 12)
 display_message(s, "#{window_active}")
 display_message(s, "session '#{session_name}' has height #{window_height}.")
 kill_session(s)
+}
 
 }

@@ -21,6 +21,7 @@ are processed as literal UTF-8 characters. Default: \code{FALSE}.}
 Send keys to a tmux pane
 }
 \examples{
+\dontrun{
 s <- new_session(shell_command = "cat")
 send_keys(s, "Speak", "Space", "friend")
 send_keys(s, "BSpace", count = 6L)
@@ -29,6 +30,7 @@ send_keys(s, "enter", "!", literal = TRUE)
 send_keys(s, "enter", literal = FALSE)
 capture_pane(s, start = 0L, end = 1L)
 kill_session(s)
+}
 
 }
 \seealso{

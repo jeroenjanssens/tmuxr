@@ -157,13 +157,16 @@ are processed as literal UTF-8 characters. Default: <code>FALSE</code>.</p></td>
     <div class='dont-index'><p><code><a href='capture_pane.html'>capture_pane()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='new_session.html'>new_session</a></span>(<span class='kw'>shell_command</span> <span class='kw'>=</span> <span class='st'>"cat"</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='new_session.html'>new_session</a></span>(<span class='kw'>shell_command</span> <span class='kw'>=</span> <span class='st'>"cat"</span>)
 <span class='fu'>send_keys</span>(<span class='no'>s</span>, <span class='st'>"Speak"</span>, <span class='st'>"Space"</span>, <span class='st'>"friend"</span>)
 <span class='fu'>send_keys</span>(<span class='no'>s</span>, <span class='st'>"BSpace"</span>, <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>6L</span>)
 <span class='fu'>send_keys</span>(<span class='no'>s</span>, <span class='st'>"mellon and "</span>)
 <span class='fu'>send_keys</span>(<span class='no'>s</span>, <span class='st'>"enter"</span>, <span class='st'>"!"</span>, <span class='kw'>literal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='fu'>send_keys</span>(<span class='no'>s</span>, <span class='st'>"enter"</span>, <span class='kw'>literal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'><a href='capture_pane.html'>capture_pane</a></span>(<span class='no'>s</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>end</span> <span class='kw'>=</span> <span class='fl'>1L</span>)</div><div class='output co'>#&gt; [1] "Speak mellon and enter!" "Speak mellon and enter!"</div><div class='input'><span class='fu'><a href='kill_session.html'>kill_session</a></span>(<span class='no'>s</span>)</div></pre>
+<span class='fu'><a href='capture_pane.html'>capture_pane</a></span>(<span class='no'>s</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>end</span> <span class='kw'>=</span> <span class='fl'>1L</span>)
+<span class='fu'><a href='kill_session.html'>kill_session</a></span>(<span class='no'>s</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

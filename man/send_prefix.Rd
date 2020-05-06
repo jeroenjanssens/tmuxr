@@ -11,7 +11,7 @@ send_prefix(target = NULL, secondary = FALSE)
 the currently active pane is used. Default: \code{NULL}.}
 
 \item{secondary}{A logical. If \code{TRUE}, send secondary prefix. Default:
-\code{NULL}.}
+\code{FALSE}.}
 }
 \description{
 Send prefix to a tmux pane

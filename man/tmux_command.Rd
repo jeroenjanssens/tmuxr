@@ -20,9 +20,11 @@ A vector of strings.
 Execute a tmux command
 }
 \examples{
+\dontrun{
 s <- new_session()
 split_window(s)
 tmux_command("list-panes", "-t" , "0")
 kill_session(s)
+}
 
 }

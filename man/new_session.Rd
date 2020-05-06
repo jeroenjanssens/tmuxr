@@ -43,8 +43,10 @@ Create a new tmux session with name \code{name}.
 Prior to tmux version 2.6, the actual height is one line less than \code{height}.
 }
 \examples{
+\dontrun{
 s <- new_session("foo", shell_command = "bash", height = 10)
 list_sessions()
 kill_session(s)
+}
 
 }

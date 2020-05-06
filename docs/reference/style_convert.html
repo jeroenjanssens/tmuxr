@@ -150,18 +150,10 @@ Colors and attributes.</p></td>
     <p>A string or named list.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>strfstyle</span>(<span class='kw'>fg</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"#00ff00"</span>, <span class='kw'>blink</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>align</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] "fg=red,bg=#00ff00,blink,noalign"</div><div class='input'><span class='fu'>strpstyle</span>(<span class='st'>"fg=red,bg=#00ff00,blink,noalign"</span>)</div><div class='output co'>#&gt; $fg
-#&gt; [1] "red"
-#&gt; 
-#&gt; $bg
-#&gt; [1] "#00ff00"
-#&gt; 
-#&gt; $blink
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $align
-#&gt; [1] FALSE
-#&gt; </div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'>strfstyle</span>(<span class='kw'>fg</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"#00ff00"</span>, <span class='kw'>blink</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>align</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>strpstyle</span>(<span class='st'>"fg=red,bg=#00ff00,blink,noalign"</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
