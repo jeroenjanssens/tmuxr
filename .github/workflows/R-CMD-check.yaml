@@ -27,6 +27,7 @@ jobs:
           - {os: ubuntu-16.04, r: "3.3", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.1"}
           - {os: ubuntu-16.04, r: "4.0", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.0a"}
           - {os: ubuntu-16.04, r: "4.0", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "3.0"}
+          - {os: ubuntu-16.04, r: "4.0", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.9a"}
           - {os: ubuntu-16.04, r: "4.0", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.9"}
           - {os: ubuntu-16.04, r: "4.0", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.8"}
           - {os: ubuntu-16.04, r: "4.0", rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest", tmux: "2.7"}

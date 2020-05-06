@@ -18,6 +18,7 @@ jobs:
 - env: TMUX_VERSION=3.1
 - env: TMUX_VERSION=3.0a
 - env: TMUX_VERSION=3.0
+- env: TMUX_VERSION=2.9a
 - env: TMUX_VERSION=2.9
 - env: TMUX_VERSION=2.8
 - env: TMUX_VERSION=2.7
