@@ -15,6 +15,8 @@ jobs:
   r: oldrel
 - env: TMUX_VERSION=3.0a
   r: oldrel
+- env: TMUX_VERSION=3.1b
+- env: TMUX_VERSION=3.1a
 - env: TMUX_VERSION=3.1
 - env: TMUX_VERSION=3.0a
 - env: TMUX_VERSION=3.0
@@ -29,7 +31,6 @@ jobs:
 - env: TMUX_VERSION=2.2
 - env: TMUX_VERSION=2.1
 - os: osx
-  env: R_CODECOV=true
 
 addons:
   apt:
@@ -47,7 +48,6 @@ r_packages:
 warnings_are_errors: true
 
 before_install: ./bin/install-tmux-travis.sh
-after_success: if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi
 
 notifications:
   email:
