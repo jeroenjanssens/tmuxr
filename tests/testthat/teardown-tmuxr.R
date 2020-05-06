@@ -1,1 +1,3 @@
-kill_server()
+if (is_installed()) {
+  kill_server()
+}

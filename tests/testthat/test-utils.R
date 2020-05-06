@@ -1,6 +1,7 @@
 context("utils")
 
 test_that("display_message works", {
+  skip_if_tmux_not_installed()
   s <- new_session()
 
   expect_identical(display_message(s, "foo"), "foo")
@@ -21,6 +22,7 @@ test_that("display_message works", {
 })
 
 test_that("the name of an object can be changed", {
+  skip_if_tmux_not_installed()
   s <- new_session("foo")
   w <- list_windows()[[1]]
   p <- list_panes()[[1]]
@@ -37,6 +39,7 @@ test_that("the name of an object can be changed", {
 })
 
 test_that("the width and height of a session can be changed", {
+  skip_if_tmux_not_installed()
   s <- new_session()
 
   v <- width(s)
@@ -61,6 +64,7 @@ test_that("the width and height of a session can be changed", {
 })
 
 test_that("the width and height of a window can be changed", {
+  skip_if_tmux_not_installed()
   s <- new_session()
   w <- list_windows()[[1]]
 
@@ -86,6 +90,7 @@ test_that("the width and height of a window can be changed", {
 })
 
 test_that("the width and height of a pane can be changed", {
+  skip_if_tmux_not_installed()
   s <- new_session()
   split_window(vertical = TRUE)
   split_window(vertical = FALSE)
@@ -103,6 +108,7 @@ test_that("the width and height of a pane can be changed", {
 })
 
 test_that("index works", {
+  skip_if_tmux_not_installed()
   s <- new_session()
   w1 <- select_window(s)
   expect_identical(index(w1), 0)

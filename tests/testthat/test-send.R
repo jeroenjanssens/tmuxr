@@ -1,7 +1,11 @@
 context("send")
 
 test_that("keys can be sent", {
-  cp <- function(x) capture_pane(x, start = 0, end = 5)
+  skip_if_tmux_not_installed()
+  cp <- function(x) {
+    Sys.sleep(0.5)
+    capture_pane(x, start = 0, end = 5)
+  }
 
   s <- new_session(shell_command = "cat")
   expect_identical(cp(s), c("",

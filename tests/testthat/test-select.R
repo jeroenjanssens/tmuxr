@@ -1,16 +1,19 @@
 context("select")
 
 test_that("selecting panes works", {
+  skip_if_tmux_not_installed()
   skip_if(tmux_version() < 2.3)
 
   sc <- function(n) paste0("echo ", as.character(n), "; cat")
 
   sw <- function(target, n, ...) {
     p <- split_window(target, shell_command = sc(n), ...)
+    Sys.sleep(0.1)
     p
   }
 
   s1 <- new_session("foo", shell_command = sc("a"), width = 90, height = 30)
+  Sys.sleep(0.5)
   w1 <- list_windows(s1)[[1]]
   pa <- list_panes(w1)[[1]]
 
@@ -57,6 +60,7 @@ test_that("selecting panes works", {
 
 
 test_that("selecting windows works", {
+  skip_if_tmux_not_installed()
   sc <- function(n) paste0("echo ", as.character(n), "; cat")
   nw <- function(n, ...) {
     w <- new_window(shell_command = sc(n), ...)
@@ -66,10 +70,12 @@ test_that("selecting windows works", {
 
 
   s0 <- new_session("s0", window_name = "w0", shell_command = sc("w0"))
+  Sys.sleep(0.1)
   w0 <- list_windows(s0)[[1]]
   w1 <- nw("w1")
 
   s1 <- new_session("s1", window_name = "w2", shell_command = sc("w2"))
+  Sys.sleep(0.1)
   w2 <- list_windows(s1)[[1]]
   w3 <- nw("w3")
 

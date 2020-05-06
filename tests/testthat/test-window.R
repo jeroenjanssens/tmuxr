@@ -1,19 +1,23 @@
 context("window")
 
 test_that("an existing window can be referenced", {
+  skip_if_tmux_not_installed()
   s <- new_session(window_name = "foo")
   expect_identical(attach_window("foo"), list_windows(s)[[1]])
   kill_session(s)
 })
 
 test_that("windows are printed correctly", {
+  skip_if_tmux_not_installed()
   s <- new_session("foobarbaz", shell_command = "cat")
+  Sys.sleep(0.5)
   w <- list_windows(s)[[1]]
   expect_output(print(w), "^tmuxr window foobarbaz:0: ")
   kill_session(s)
 })
 
 test_that("window can be created", {
+  skip_if_tmux_not_installed()
   s <- new_session()
   expect_length(list_windows(s), 1)
   new_window()
@@ -35,6 +39,7 @@ test_that("window can be created", {
 })
 
 test_that("windows can be killed", {
+  skip_if_tmux_not_installed()
   s <- new_session()
   w1 <- list_windows(s)[[1]]
   w2 <- new_window()
@@ -46,6 +51,7 @@ test_that("windows can be killed", {
 })
 
 test_that("other windows can be killed", {
+  skip_if_tmux_not_installed()
   s <- new_session()
   w1 <- list_windows(s)[[1]]
   new_window()
@@ -61,6 +67,7 @@ test_that("other windows can be killed", {
 })
 
 test_that("window focus works", {
+  skip_if_tmux_not_installed()
   s <- new_session()
   w1 <- list_windows(s)[[1]]
   expect_true(is_active(w1))
@@ -75,16 +82,18 @@ test_that("window focus works", {
 })
 
 test_that("the start directory can be set when creating a new window", {
+  skip_if_tmux_not_installed()
   start_dir <- "/"
   s <- new_session()
   w <- new_window(start_directory = start_dir, shell_command = "pwd; cat")
-  Sys.sleep(0.1)
+  Sys.sleep(0.5)
   expect_identical(capture_pane(w, start = 0, end = 0), start_dir)
   kill_session(s)
 })
 
 
 test_that("windows can be split", {
+  skip_if_tmux_not_installed()
   s <- new_session()
   p1 <- list_panes(s)[[1]]
   expect_true(is_active(p1))
@@ -123,6 +132,7 @@ test_that("windows can be split", {
 })
 
 test_that("windows can be split with full", {
+  skip_if_tmux_not_installed()
   skip_if(tmux_version() < 2.3)
 
   s <- new_session()
@@ -141,11 +151,13 @@ test_that("windows can be split with full", {
 })
 
 test_that("the start directory can be set when splitting a window", {
+  skip_if_tmux_not_installed()
   start_dir <- "/"
   s <- new_session(shell_command = "pwd; cat")
+  Sys.sleep(0.5)
   p1 <- list_panes(s)[[1]]
   p2 <- split_window(start_directory = start_dir, shell_command = "pwd; cat")
-  Sys.sleep(0.1)
+  Sys.sleep(0.5)
   expect_identical(capture_pane(p2, start = 0, end = 0), start_dir)
   expect_false(capture_pane(p1, start = 0, end = 0) ==
                  capture_pane(p2, start = 0, end = 0))
