@@ -1,3 +1,10 @@
+# tmuxr 0.2.3
+
+* Ensured tests are being skipped when the tmux binary is not found (cf. Section 1.6 of "Writing R Extensions").
+* Made tests more robust by giving tmux more time to call external tools.
+* Marked all example code with \dontrun{}.
+* Added tmux versions 2.9a, 3.1a, and 3.1b to both Travis-CI and R-CMD-check on GitHub Actions.
+
 # tmuxr 0.2.2
 
 * Added functions to change the size, layout, and style of sessions, windows, and panes.

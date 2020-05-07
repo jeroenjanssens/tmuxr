@@ -1,21 +1,9 @@
-## Resubmission (version 0.2.2)
+## This version (0.2.3) fixes issues related to examples and tests
 
-This is a resubmission. The tests still fail on Windows, as expected (see
-section "Windows support" below), but now succeed on Linux. In this version
-(tmuxr 0.2.2) I have:
-
-* Fixed a typo in DESCRIPTION.
-
-
-## Resubmission (version 0.2.1)
-
-This is a resubmission. The tests failed on Windows, which was expected (see 
-section "Windows support" below), and on Linux, which was unexpected. In this
-version (tmuxr 0.2.1) I have:
-
-* Improved the tests such that the tmux server does not get killed in between 
-  the tests.
-* Added tmux version 3.0a to Travis-CI. This is the version used by CRAN.
+* Ensured tests are being skipped when the tmux binary is not found (cf. Section 1.6 of "Writing R Extensions").
+* Made tests more robust by giving tmux more time to call external tools.
+* Marked all example code with \dontrun{}.
+* Added tmux versions 2.9a, 3.1a, and 3.1b to both Travis-CI and R-CMD-check on GitHub Actions.
 
 
 ## Test environments
@@ -30,6 +18,14 @@ version (tmuxr 0.2.1) I have:
         * R-oldrel
     * macOS
         * R-release
+* GitHub Actions:
+    * Ubuntu 16.04
+        * R-release
+        * R-devel
+        * R-oldrel
+    * macOS
+        * R-release
+        * R-devel
 
 
 ## R CMD check results
