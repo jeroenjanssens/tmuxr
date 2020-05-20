@@ -1,10 +1,10 @@
+Sys.setenv(TMUX_TMPDIR = tempdir())
+
 if (Sys.getenv("TMUX_BINARY") != "") {
   options(tmux_binary = Sys.getenv("TMUX_BINARY"))
 }
 
-options(tmux_config_file = "/dev/null",
-        tmux_socket_name = paste0("test-",
-                                  basename(getOption("tmux_binary", "tmux"))))
+options(tmux_config_file = "/dev/null")
 
 if (!is_installed()) {
   message("Binary not found, skipping tests.")
