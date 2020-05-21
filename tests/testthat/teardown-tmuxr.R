@@ -1,7 +1,7 @@
 if (is_installed()) {
   new_session()
   Sys.sleep(0.1)
-  socket_path <- prop(NULL, "socket_path")
+  socket_path <- getOption("tmux_socket_path")
   kill_server()
   Sys.sleep(0.1)
   fs::file_delete(socket_path)
