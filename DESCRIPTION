@@ -19,6 +19,7 @@ Imports:
     processx
 Suggests:
     covr,
+    fs,
     testthat
 Collate:
     tmuxr-package.R
