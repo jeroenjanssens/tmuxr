@@ -5,7 +5,7 @@ if (Sys.getenv("TMUX_BINARY") != "") {
 }
 
 options(tmux_config_file = "/dev/null",
-        tmux_socket_path = fs::file_temp(pattern = "tmux-socket-", tmp_dir = fs::path_wd()))
+        tmux_socket_path = fs::file_temp(pattern = "tmux-socket-", tmp_dir = "/tmp"))
 
 if (!is_installed()) {
   message("Binary not found, skipping tests.")
