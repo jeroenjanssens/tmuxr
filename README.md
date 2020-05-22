@@ -27,9 +27,10 @@ panes. Note that normally, managing tmux and the processes it runs is
 done in a detached mode, so you wouldn’t see anything, but the result
 would be the same.
 
-<script id="asciicast-325231" src="https://asciinema.org/a/325231.js" async></script>
+[![tmuxr
+demonstration](man/figures/demo.png)](https://asciinema.org/a/325231)
 
-Have a look at [the
+Have a look at [the function
 reference](https://datascienceworkshops.github.io/tmuxr/reference/) to
 learn more about what `tmuxr` has to offer.
 

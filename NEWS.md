@@ -1,3 +1,8 @@
+# tmuxr 0.2.4
+
+* Fixed that the temporary socket file would be deleted after testing.
+
+
 # tmuxr 0.2.3
 
 * Ensured tests are being skipped when the tmux binary is not found (cf. Section 1.6 of "Writing R Extensions").
