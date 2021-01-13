@@ -10,6 +10,7 @@ capture_pane(
   end = NULL,
   escape = FALSE,
   escape_control = FALSE,
+  trailing_spaces = FALSE,
   join = FALSE,
   cat = FALSE
 )
@@ -29,6 +30,9 @@ background attributes. Default: \code{FALSE}.}
 
 \item{escape_control}{A logical. If \code{TRUE}, also escape control characters
 as octal \\xxx. Default: \code{FALSE}.}
+
+\item{trailing_spaces}{A logical. If \code{TRUE}, preserve trailing spaces at
+each line. Default: \code{FALSE}.}
 
 \item{join}{A logical. If \code{TRUE}, join wrapped lines and preserve trailing
 spaces at each line. Default: \code{FALSE}.}

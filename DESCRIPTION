@@ -32,5 +32,5 @@ Collate:
     utils.R
     layout.R
     inspect.R
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace", "collate"))

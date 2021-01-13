@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tmuxr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4.9000</span>
       </span>
     </div>
 
@@ -127,7 +127,7 @@
     <p>Display a message.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>display_message</span>(<span class='kw'>target</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>message</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>stdout</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>display_message</span><span class='op'>(</span>target <span class='op'>=</span> <span class='cn'>NULL</span>, message <span class='op'>=</span> <span class='cn'>NULL</span>, verbose <span class='op'>=</span> <span class='cn'>FALSE</span>, stdout <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -162,12 +162,14 @@ output. If <code>FALSE</code>, the message is sent to <code>target</code>. Defau
 ignored. If <code>verbose</code> is <code>TRUE</code> a warning will be given.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='new_session.html'>new_session</a></span>(<span class='st'>"jazz"</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>12</span>)
-<span class='fu'>display_message</span>(<span class='no'>s</span>, <span class='st'>"#{window_active}"</span>)
-<span class='fu'>display_message</span>(<span class='no'>s</span>, <span class='st'>"session '#{session_name}' has height #{window_height}."</span>)
-<span class='fu'><a href='kill_session.html'>kill_session</a></span>(<span class='no'>s</span>)
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>s</span> <span class='op'>&lt;-</span> <span class='fu'><a href='new_session.html'>new_session</a></span><span class='op'>(</span><span class='st'>"jazz"</span>, height <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span>
+<span class='fu'>display_message</span><span class='op'>(</span><span class='va'>s</span>, <span class='st'>"#{window_active}"</span><span class='op'>)</span>
+<span class='fu'>display_message</span><span class='op'>(</span><span class='va'>s</span>, <span class='st'>"session '#{session_name}' has height #{window_height}."</span><span class='op'>)</span>
+<span class='fu'><a href='kill_session.html'>kill_session</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -183,7 +185,7 @@ ignored. If <code>verbose</code> is <code>TRUE</code> a warning will be given.</
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
