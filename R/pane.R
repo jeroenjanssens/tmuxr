@@ -31,6 +31,8 @@ attach_pane <- function(x, lookup_id = TRUE) {
 #'   background attributes. Default: `FALSE`.
 #' @param escape_control A logical. If `TRUE`, also escape control characters
 #'   as octal \\xxx. Default: `FALSE`.
+#' @param trailing_spaces A logical. If `TRUE`, preserve trailing spaces at
+#'   each line. Default: `FALSE`.
 #' @param join A logical. If `TRUE`, join wrapped lines and preserve trailing
 #'   spaces at each line. Default: `FALSE`.
 #' @param cat A logical. If `TRUE`, concatenate lines into one string.
@@ -46,6 +48,7 @@ capture_pane <- function(target = NULL,
                          end = NULL,
                          escape = FALSE,
                          escape_control = FALSE,
+                         trailing_spaces = FALSE,
                          join = FALSE,
                          cat = FALSE) {
   flags <- c("-p")
@@ -54,6 +57,7 @@ capture_pane <- function(target = NULL,
   if (!is.null(end)) flags <- c(flags, "-E", end)
   if (escape) flags <- c(flags, "-e")
   if (escape_control) flags <- c(flags, "-C")
+  if (trailing_spaces) flags <- c(flags, "-N")
   if (join) flags <- c(flags, "-J")
 
   output <- tmux_command("capture-pane", flags)
