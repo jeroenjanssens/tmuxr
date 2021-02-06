@@ -19,8 +19,8 @@ navbar:
     - text: "Reference"
       href: reference/index.html
   right:
-   - icon: fa-github fa-lg
-     href: https://github.com/datascienceworkshops/tmuxr
+    - icon: fab fa-github fa-lg
+      href: https://github.com/datascienceworkshops/tmuxr
 
 reference:
   - title: Create and destroy
