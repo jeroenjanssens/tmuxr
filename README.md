@@ -47,7 +47,7 @@ devtools::install_github("datascienceworkshops/tmuxr")
 ## Compatibility
 
 We [regularly test](https://travis-ci.org/datascienceworkshops/tmuxr)
-`tmuxr` on Ubuntu with tmux versions 2.1 through 3.1b and on macOS with
+`tmuxr` on Ubuntu with tmux versions 2.1 through 3.1c and on macOS with
 the latest version of tmux provided by Homebrew. `tmuxr` might work on
 Windows using Cygwin or WSL, but we haven’t tested this.
 
