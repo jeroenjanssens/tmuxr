@@ -18,7 +18,7 @@
 tmux_command <- function(command, ..., .silent = FALSE) {
   stopifnot(is.character(command), length(command) == 1)
 
-  tmux_options <- c()
+  tmux_options <- c("-u")
 
   if (!is.null(getOption("tmux_config_file")))
     tmux_options <- c(tmux_options, "-f", getOption("tmux_config_file"))
