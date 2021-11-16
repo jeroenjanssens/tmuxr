@@ -2,10 +2,9 @@ destination: docs
 
 authors:
   Jeroen Janssens:
-    href: https://jeroenjanssens.com
+    href: https://datascienceworkshops.com
   Data Science Workshops:
-    href: https://www.datascienceworkshops.com
-    html: <img class="data-science-workshops-logo" src="https://www.datascienceworkshops.com/assets/img/logo-dsw-flat-light.svg" />
+    href: https://datascienceworkshops.com
 template:
   params:
     bootswatch: cosmo

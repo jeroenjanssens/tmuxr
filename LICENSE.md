@@ -1,7 +1,7 @@
 The MIT License (MIT)
 =====================
 
-Copyright © 2017 Data Science Workshops.
+Copyright © 2021 Data Science Workshops.
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation

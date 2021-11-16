@@ -8,7 +8,6 @@ status](https://github.com/datascienceworkshops/tmuxr/workflows/R-CMD-check/badg
 [![codecov](https://codecov.io/gh/datascienceworkshops/tmuxr/branch/master/graph/badge.svg)](https://codecov.io/gh/datascienceworkshops/tmuxr)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/tmuxr)](https://cran.r-project.org/package=tmuxr)
 
 ## Overview
 
@@ -34,9 +33,7 @@ learn more about what `tmuxr` has to offer.
 
 ## Installation
 
-`tmuxr` is available through CRAN and can be installed with
-`install.packages("tmuxr")`. The development version can be installed
-from this repository using `remotes`:
+`tmuxr` can be installed from this repository using `remotes`:
 
 ``` r
 # install.packages("remotes")
