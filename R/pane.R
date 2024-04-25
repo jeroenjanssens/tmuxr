@@ -229,13 +229,15 @@ new_pane <- function(target = NULL,
   } else {
     flags <- c(flags, "-h")
   }
+
   if (!is.null(size) && size > 0) {
     if (size >= 1) {
       flags <- c(flags, "-l", size)
     } else {
-      flags <- c(flags, "-p", round(size * 100))
+      flags <- c(flags, "-l", paste0(round(size * 100), "%"))
     }
   }
+
   if (before) flags <- c(flags, "-b")
   if (full) flags <- c(flags, "-f")
   if (!is.null(target)) flags <- c(flags, "-t", get_target(target))
