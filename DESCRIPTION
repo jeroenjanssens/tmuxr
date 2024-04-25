@@ -1,6 +1,6 @@
 Package: tmuxr
 Title: Manage 'tmux' Sessions, Windows, and Panes
-Version: 0.2.4.9002
+Version: 0.2.5
 Authors@R: c(
     person("Jeroen", "Janssens", email = "jeroen@jeroenjanssens.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-5878-8924"))
     )                  
@@ -31,5 +31,5 @@ Collate:
     utils.R
     layout.R
     inspect.R
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.1
 Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace", "collate"))
