@@ -16,8 +16,8 @@ knitr::opts_chunk$set(
 
 # tmuxr <img src="man/figures/logo.png" align="right" width="100px" />
 
-[![R build status](https://github.com/datascienceworkshops/tmuxr/workflows/R-CMD-check/badge.svg)](https://github.com/datascienceworkshops/tmuxr/actions)
-[![codecov](https://codecov.io/gh/datascienceworkshops/tmuxr/branch/master/graph/badge.svg)](https://codecov.io/gh/datascienceworkshops/tmuxr)
+[![R build status](https://github.com/jeroenjanssens/tmuxr/workflows/R-CMD-check/badge.svg)](https://github.com/jeroenjanssens/tmuxr/actions)
+[![codecov](https://codecov.io/gh/jeroenjanssens/tmuxr/branch/master/graph/badge.svg)](https://codecov.io/gh/jeroenjanssens/tmuxr)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
 ## Overview
@@ -30,7 +30,7 @@ The recording below demonstrates various capabilities of `tmuxr` such as: runnin
 
 [![tmuxr demonstration](man/figures/demo.png)](https://asciinema.org/a/325231)
 
-Have a look at [the function reference](https://datascienceworkshops.github.io/tmuxr/reference/) to learn more about what `tmuxr` has to offer.
+Have a look at [the function reference](https://jeroenjanssens.github.io/tmuxr/reference/) to learn more about what `tmuxr` has to offer.
 
 ## Installation
 
@@ -38,7 +38,7 @@ Have a look at [the function reference](https://datascienceworkshops.github.io/t
 
 ```{r, eval=FALSE}
 # install.packages("remotes")
-remotes::install_github("datascienceworkshops/tmuxr")
+remotes::install_github("jeroenjanssens/tmuxr")
 ```
 
 ## Compatibility

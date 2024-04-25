@@ -2,10 +2,9 @@ destination: docs
 
 authors:
   Jeroen Janssens:
-    href: https://datascienceworkshops.com
-  Data Science Workshops:
-    href: https://datascienceworkshops.com
+    href: https://jeroenjanssens.com
 template:
+  bootstrap: 5
   params:
     bootswatch: cosmo
 
@@ -19,7 +18,7 @@ navbar:
       href: reference/index.html
   right:
     - icon: fab fa-github fa-lg
-      href: https://github.com/datascienceworkshops/tmuxr
+      href: https://github.com/jeroenjanssens/tmuxr
 
 reference:
   - title: Create and destroy

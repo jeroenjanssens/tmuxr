@@ -1,9 +1,8 @@
 Package: tmuxr
 Title: Manage 'tmux' Sessions, Windows, and Panes
-Version: 0.2.4.9001
+Version: 0.2.4.9002
 Authors@R: c(
-    person("Jeroen", "Janssens", email = "jeroen@datascienceworkshops.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-5878-8924")),
-    person("Data Science Workshops", role = c("cph", "fnd"))
+    person("Jeroen", "Janssens", email = "jeroen@jeroenjanssens.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-5878-8924"))
     )                  
 Description: Create, control, and capture 'tmux' sessions, windows, and panes
     using a pipeable API.
@@ -11,8 +10,8 @@ Depends: R (>= 3.3.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-URL: https://datascienceworkshops.github.io/tmuxr, https://github.com/datascienceworkshops/tmuxr
-BugReports: https://github.com/datascienceworkshops/tmuxr/issues
+URL: https://jeroenjanssens.github.io/tmuxr, https://github.com/jeroenjanssens/tmuxr
+BugReports: https://github.com/jeroenjanssens/tmuxr/issues
 SystemRequirements: tmux
 OS_type: unix
 Imports:

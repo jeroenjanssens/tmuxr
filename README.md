@@ -4,8 +4,8 @@
 # tmuxr <img src="man/figures/logo.png" align="right" width="100px" />
 
 [![R build
-status](https://github.com/datascienceworkshops/tmuxr/workflows/R-CMD-check/badge.svg)](https://github.com/datascienceworkshops/tmuxr/actions)
-[![codecov](https://codecov.io/gh/datascienceworkshops/tmuxr/branch/master/graph/badge.svg)](https://codecov.io/gh/datascienceworkshops/tmuxr)
+status](https://github.com/jeroenjanssens/tmuxr/workflows/R-CMD-check/badge.svg)](https://github.com/jeroenjanssens/tmuxr/actions)
+[![codecov](https://codecov.io/gh/jeroenjanssens/tmuxr/branch/master/graph/badge.svg)](https://codecov.io/gh/jeroenjanssens/tmuxr)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
@@ -28,8 +28,8 @@ would be the same.
 demonstration](man/figures/demo.png)](https://asciinema.org/a/325231)
 
 Have a look at [the function
-reference](https://datascienceworkshops.github.io/tmuxr/reference/) to
-learn more about what `tmuxr` has to offer.
+reference](https://jeroenjanssens.github.io/tmuxr/reference/) to learn
+more about what `tmuxr` has to offer.
 
 ## Installation
 
@@ -37,7 +37,7 @@ learn more about what `tmuxr` has to offer.
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("datascienceworkshops/tmuxr")
+remotes::install_github("jeroenjanssens/tmuxr")
 ```
 
 ## Compatibility
