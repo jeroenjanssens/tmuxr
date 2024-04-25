@@ -34,3 +34,5 @@ cache/
 .Rproj.user
 
 CRAN-RELEASE
+
+check/

@@ -3,9 +3,7 @@
 
 # tmuxr <img src="man/figures/logo.png" align="right" width="100px" />
 
-[![R build
-status](https://github.com/jeroenjanssens/tmuxr/workflows/R-CMD-check/badge.svg)](https://github.com/jeroenjanssens/tmuxr/actions)
-[![codecov](https://codecov.io/gh/jeroenjanssens/tmuxr/branch/master/graph/badge.svg)](https://codecov.io/gh/jeroenjanssens/tmuxr)
+[![R-CMD-check](https://github.com/jeroenjanssens/tmuxr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jeroenjanssens/tmuxr/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
@@ -42,7 +40,7 @@ remotes::install_github("jeroenjanssens/tmuxr")
 
 ## Compatibility
 
-We regularly test `tmuxr` on Ubuntu with tmux versions 2.1 through 3.1c
+We regularly test `tmuxr` on Ubuntu with tmux versions 2.1 through 3.4
 and on macOS with the latest version of tmux provided by Homebrew.
 `tmuxr` might work on Windows using Cygwin or WSL, but we haven’t tested
 this.
