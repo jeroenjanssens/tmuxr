@@ -18,14 +18,28 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: ubuntu-latest,   r: 'release'}
-          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
-          - {os: ubuntu-latest,   r: 'oldrel-1'}
-          - {os: macos-latest,   r: 'release'}
+          - {os: ubuntu-latest, r: 'release', tmux: '3.4'}
+          - {os: macos-latest,  r: 'release', tmux: '3.4'}
+          - {os: ubuntu-latest, r: 'devel', http-user-agent: 'release', tmux: '3.4'}
+          - {os: ubuntu-latest, r: 'oldrel-1', tmux: '3.4'}
+          - {os: ubuntu-latest, r: 'release', tmux: '3.3'}
+          - {os: ubuntu-latest, r: 'release', tmux: '3.2'}
+          - {os: ubuntu-latest, r: 'release', tmux: '3.1'}
+          - {os: ubuntu-latest, r: 'release', tmux: '3.0'}
+          - {os: ubuntu-latest, r: 'release', tmux: '2.9'}
+          - {os: ubuntu-latest, r: 'release', tmux: '2.8'}
+          - {os: ubuntu-latest, r: 'release', tmux: '2.7'}
+          - {os: ubuntu-latest, r: 'release', tmux: '2.6'}
+          - {os: ubuntu-latest, r: 'release', tmux: '2.5'}
+          - {os: ubuntu-latest, r: 'release', tmux: '2.4'}
+          - {os: ubuntu-latest, r: 'release', tmux: '2.3'}
+          - {os: ubuntu-latest, r: 'release', tmux: '2.2'}
+          - {os: ubuntu-latest, r: 'release', tmux: '2.1'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
+      TMUX_VERSION: ${{ matrix.config.tmux }}
 
     steps:
       - uses: actions/checkout@v4
@@ -42,6 +56,25 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
+
+      - name: Install tmux on Linux
+        if: runner.os == 'Linux'
+        run: |
+          echo "Installing tmux ${TMUX_VERSION}..."
+          sudo apt-get install -y libevent-dev ncurses-dev build-essential bison pkg-config
+          cd /tmp
+          wget https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz
+          tar -xzf tmux-${TMUX_VERSION}.tar.gz
+          cd tmux-${TMUX_VERSION}
+          ./configure
+          make
+          sudo make install
+          echo "Successfully installed tmux ${TMUX_VERSION}"
+  
+      - name: Install tmux on macOS
+        if: runner.os == 'macOS'
+        run: |
+          brew install tmux
 
       - uses: r-lib/actions/check-r-package@v2
         with:
