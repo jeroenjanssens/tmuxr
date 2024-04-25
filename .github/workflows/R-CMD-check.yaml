@@ -25,6 +25,7 @@ jobs:
           - {os: ubuntu-latest, r: 'release', tmux: '3.3'}
           - {os: ubuntu-latest, r: 'release', tmux: '3.2'}
           - {os: ubuntu-latest, r: 'release', tmux: '3.1'}
+          - {os: ubuntu-latest, r: 'release', tmux: '3.0a'}
           - {os: ubuntu-latest, r: 'release', tmux: '3.0'}
           - {os: ubuntu-latest, r: 'release', tmux: '2.9'}
           - {os: ubuntu-latest, r: 'release', tmux: '2.8'}
