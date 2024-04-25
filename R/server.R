@@ -71,6 +71,6 @@ tmux_version <- function(as_numeric = TRUE) {
     matches <- regexec("\\d+\\.\\d+", version)
     as.numeric(regmatches(version, matches)[[1]])
   } else {
-    trimws(version)
+    strsplit(version, " ")[[1]][2]
   }
 }

@@ -45,6 +45,11 @@ test_that("clock_mode works", {
 
 test_that("contents can be captured", {
   skip_if_tmux_not_installed()
+
+  # There is a bug with version 3.2a regarding the size of the window
+  # skip_if(strsplit(tmux_version(as_numeric = FALSE), " ")[[1]][2] == "3.2a")
+  skip_if(tmux_version(as_numeric = FALSE) == "3.2a")
+
   specified_height <- 10
   s <- new_session(shell_command = "cat", height = specified_height)
 
