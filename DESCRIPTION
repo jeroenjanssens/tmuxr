@@ -10,7 +10,7 @@ Depends: R (>= 3.3.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-URL: https://jeroenjanssens.github.io/tmuxr, https://github.com/jeroenjanssens/tmuxr
+URL: https://tmuxr.jeroenjanssens.com, https://github.com/jeroenjanssens/tmuxr
 BugReports: https://github.com/jeroenjanssens/tmuxr/issues
 SystemRequirements: tmux
 OS_type: unix

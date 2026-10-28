@@ -26,7 +26,7 @@ would be the same.
 demonstration](man/figures/demo.png)](https://asciinema.org/a/325231)
 
 Have a look at [the function
-reference](https://jeroenjanssens.github.io/tmuxr/reference/) to learn
+reference](https://tmuxr.jeroenjanssens.com/reference/) to learn
 more about what `tmuxr` has to offer.
 
 ## Installation
